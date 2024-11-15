@@ -1,21 +1,32 @@
 import {
+  BurgerIcon,
+  ListIcon,
   Logo,
   ProfileIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import NavBar from "../nav-bar/nav-bar";
-import NavLink from "../nav-link/nav-link";
+import NavList from "../nav-list/nav-list";
+import NavListItem from "../nav-list-item/nav-list-item";
 import "./app-header.css";
 
 function AppHeader() {
   return (
     <header className="header pt-4 pb-4">
-      <div className="header-container">
-        <NavBar />
+      <nav className="header-nav">
+        <NavList>
+          <NavListItem linkText="Конструктор" linkHref="#" isActive={true}>
+            <BurgerIcon type="primary" className="nav-icon_primary" />
+          </NavListItem>
+          <NavListItem linkText="Лента заказов" linkHref="#" isActive={false}>
+            <ListIcon type="disabled" className="nav-icon_disabled" />
+          </NavListItem>
+        </NavList>
         <Logo />
-        <NavLink linkText="Личный кабинет" linkHref="#">
-          <ProfileIcon type="disabled" />
-        </NavLink>
-      </div>
+        <NavList>
+          <NavListItem linkText="Личный кабинет" linkHref="#" isActive={false}>
+            <ProfileIcon type="disabled" className="nav-icon_disabled" />
+          </NavListItem>
+        </NavList>
+      </nav>
     </header>
   );
 }
