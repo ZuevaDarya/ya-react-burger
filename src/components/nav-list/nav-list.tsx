@@ -1,10 +1,7 @@
+import { NavListPropsType } from "../../types/types";
 import "./nav-list.css";
 
-type NavBarPropsType = {
-  children: React.ReactNode;
-};
-
-function NavList({ children }: NavBarPropsType) {
+function NavList({ children }: NavListPropsType) {
   return <ul className="nav-list">{children}</ul>;
 }
 

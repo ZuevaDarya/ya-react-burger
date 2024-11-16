@@ -1,29 +1,5 @@
 .burger-ingredients-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-.ingredient-card {
-  position: relative;
-  max-width: var(--max-ingredient-card-width);
-  min-height: 208px;
-}
-
-.ingredient-card:hover {
-  cursor: pointer;
-  background-color: var(--interface-modal-bg);
-}
-
-.ingredient-card-price {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.ingredient-card-title {
-  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px; 
 }

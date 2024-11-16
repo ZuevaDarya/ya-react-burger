@@ -1,12 +1,5 @@
+import { NavLinkPropsType } from '../../types/types';
 import "./nav-list-item.css";
-
-type NavLinkPropsType = {
-  linkText: string;
-  linkHref: string;
-  isActive: boolean;
-  classes?: string;
-  children?: React.ReactNode;
-};
 
 function NavListItem({
   linkText,

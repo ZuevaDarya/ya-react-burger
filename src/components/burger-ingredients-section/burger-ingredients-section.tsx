@@ -1,26 +1,20 @@
-import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import burgerImg from "../../images/bun-01.svg";
+import { BurgerIngredientsSectionPropsType } from "../../types/types";
+import IngredientCard from '../ingredient-card/ingredient-card';
 import "./burger-ingredients-section.css";
-
-type BurgerIngredientsSectionPropsType = {
-  title: string;
-};
 
 function BurgerIngredientsSection({
   title,
+  ingredients
 }: BurgerIngredientsSectionPropsType) {
   return (
-    <section>
+    <section className="mb-10">
       <h2 className="text text_type_main-medium">{title}</h2>
       <div className="pt-6 pl-4 pr-4 burger-ingredients-container">
-        <div className="pl-4 pr-4 ingredient-card">
-          <img src={burgerImg} alt="" />
-          <div className="pt-1 pb-1 ingredient-card-price">
-            <span className="text text_type_digits-default">20</span>
-            <CurrencyIcon type="primary" />
-          </div>
-          <p className="text text_type_main-small ingredient-card-title">Краторная булка N-200i</p>
-        </div>
+        {
+          ingredients.map((ingredient, idx) => (
+            <IngredientCard key={idx} ingredient={ingredient} />
+          ))
+        }
       </div>
     </section>
   );

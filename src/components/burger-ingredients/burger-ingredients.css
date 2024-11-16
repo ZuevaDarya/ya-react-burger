@@ -1,0 +1,21 @@
+.ingredients-section-container {
+  max-height: 28%;
+  overflow-y: auto;
+}
+
+.ingredients-section-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ingredients-section-container::-webkit-scrollbar-track {
+  background: var(--interface-input);
+}
+
+.ingredients-section-container::-webkit-scrollbar-thumb {
+  background: var(--text-dark-grey-secondary-text);
+}
+
+.ingredients-section-container::-webkit-scrollbar-thumb:hover {
+  cursor: pointer;
+  background: var(--scroll-hover-color);
+}

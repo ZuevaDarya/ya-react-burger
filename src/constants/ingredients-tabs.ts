@@ -4,17 +4,23 @@ export enum IngredientsTabsValue {
   Three = 'three',
 };
 
+export enum TabValue {
+  Bun = 'Булки',
+  Sauce = 'Соусы',
+  Topping = 'Начинки',
+};
+
 export const INGREDIENTS_TABS = [
   {
-    title: 'Булки',
+    title: TabValue.Bun,
     value: IngredientsTabsValue.One
   },
   {
-    title: 'Соусы',
+    title: TabValue.Sauce,
     value: IngredientsTabsValue.Two
   },
   {
-    title: 'Начинки',
+    title: TabValue.Topping,
     value: IngredientsTabsValue.Three
   }
 ];

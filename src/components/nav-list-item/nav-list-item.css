@@ -33,3 +33,9 @@
   color: var(--text-disabled);
 }
 
+.nav-link_default,
+.nav-link_disabled,
+.nav-icon_primary,
+.nav-icon_disabled {
+  transition: var(--common-transition);
+}
