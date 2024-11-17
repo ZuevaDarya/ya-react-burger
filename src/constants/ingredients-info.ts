@@ -21,6 +21,11 @@ enum Price {
   MeatPrice = '300'
 }
 
+export enum ConstructorElemType {
+  Top = 'top',
+  Bottom = 'bottom'
+}
+
 export const INGREDIENT_BUNS = [
   {
     src: bunImg01,
@@ -109,4 +114,48 @@ export const INGREDIENT_TOPPING = [
     count: 1
   },
 ];
+
+export const INGREDIENTS_IN_CONSTRUCTOR = [
+  {
+    title: 'Соус традиционный галактический',
+    price: Price.SaucePrice,
+    thumbnail: sauceImg03
+  },
+  {
+    title: 'Мясо бессмертных моллюсков Protostomia',
+    price: Price.MeatPrice,
+    thumbnail: meatImg02
+  },
+  {
+    title: 'Плоды фалленианского дерева',
+    price: Price.ToppingPrice,
+    thumbnail: toppingImg05
+  },
+  {
+    title: 'Хрустящие минеральные кольца',
+    price: Price.ToppingPrice,
+    thumbnail: toppingImg03,
+  },
+  {
+    title: 'Хрустящие минеральные кольца',
+    price: Price.ToppingPrice,
+    thumbnail: toppingImg03,
+  },
+];
+
+export const INGREDIENTS_IN_CONSTRUCTOR_TOP = {
+  type: ConstructorElemType.Top,
+  isLocked: true,
+  title: 'Краторная булка N-200i (верх)',
+  price: Price.BunPrice,
+  thumbnail: bunImg01
+};
+
+export const INGREDIENTS_IN_CONSTRUCTOR_BUTTOM = {
+  type: ConstructorElemType.Bottom,
+  isLocked: true,
+  title: 'Краторная булка N-200i (низ)',
+  price: Price.BunPrice,
+  thumbnail: bunImg01
+};
 

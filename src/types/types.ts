@@ -1,3 +1,5 @@
+import { ConstructorElemType } from '../constants/ingredients-info';
+
 export type NavListPropsType = {
   children: React.ReactNode;
 };
@@ -22,8 +24,22 @@ export type BurgerIngredientsSectionPropsType = {
   ingredients: IngredientType[];
 };
 
-export type IngredientCardPricePropsType = Pick<IngredientType, "price">;
+export type PricePropsType = Pick<IngredientType, "price"> & {
+  classes?: string;
+};
 
 export type IngredientCardPropsType = {
   ingredient: IngredientType;
+};
+
+export type BurgerConstructorItemType = {
+  type?: ConstructorElemType;
+  isLocked?: boolean;
+  title: string;
+  price: string;
+  thumbnail: string;
+};
+
+export type BurgerConstructorItemPropsType = {
+  ingredient: BurgerConstructorItemType;
 };
