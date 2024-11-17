@@ -8,6 +8,11 @@ import meatImg01 from "../images/meat-01.svg";
 import meatImg02 from "../images/meat-02.svg";
 import meatImg03 from "../images/meat-03.svg";
 import meatImg04 from "../images/meat-04.svg";
+import toppingImg01 from "../images/cheese.svg";
+import toppingImg02 from "../images/core.svg";
+import toppingImg03 from "../images/mineral rings.svg";
+import toppingImg04 from "../images/salad.svg";
+import toppingImg05 from "../images/sp 1.svg";
 
 enum Price {
   BunPrice = '20',
@@ -76,4 +81,32 @@ export const INGREDIENT_TOPPING = [
     title: 'Говяжий метеорит (отбивная)',
     price: Price.MeatPrice,
   },
+  {
+    src: toppingImg01,
+    title: 'Сыр с астероидной плесенью',
+    price: Price.ToppingPrice,
+  },
+  {
+    src: toppingImg02,
+    title: 'Кристаллы марсианских альфа-сахаридов',
+    price: Price.ToppingPrice,
+  },
+  {
+    src: toppingImg03,
+    title: 'Хрустящие минеральные кольца',
+    price: Price.ToppingPrice,
+    count: 2
+  },
+  {
+    src: toppingImg04,
+    title: 'Мини-салат Экзо-Плантаго',
+    price: Price.ToppingPrice,
+  },
+  {
+    src: toppingImg05,
+    title: 'Плоды фалленианского дерева',
+    price: Price.ToppingPrice,
+    count: 1
+  },
 ];
+

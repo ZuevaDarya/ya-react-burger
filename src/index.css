@@ -35,5 +35,8 @@ html {
   scrollbar-color: auto !important;
 }
 
+#root {
+  height: inherit;
+}
 
 
