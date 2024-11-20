@@ -9,20 +9,12 @@
   cursor: pointer;
 }
 
-.nav-list-item:hover > .nav-icon_primary {
-  fill: var(--text-disabled);
+.nav-list-item:hover > svg {
+  fill: var(--scroll-hover-color);
 }
 
-.nav-list-item:hover > .nav-icon_disabled {
-  fill: var(--text-primary-light-standart-text);
-}
-
-.nav-list-item:hover > .nav-link_default {
-  color: var(--text-disabled);
-}
-
-.nav-list-item:hover > .nav-link_disabled {
-  color: var(--text-primary-light-standart-text);
+.nav-list-item:hover > a {
+  color: var(--scroll-hover-color);
 }
 
 .nav-link_default {
@@ -36,6 +28,7 @@
 .nav-link_default,
 .nav-link_disabled,
 .nav-icon_primary,
-.nav-icon_disabled {
+.nav-icon_disabled,
+.nav-list-item svg {
   transition: var(--common-transition);
 }

@@ -6,12 +6,12 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import NavList from "../nav-list/nav-list";
 import NavListItem from "../nav-list-item/nav-list-item";
-import "./app-header.css";
+import headerStyles from "./app-header.module.css";
 
 function AppHeader() {
   return (
-    <header className="header pt-4 pb-4">
-      <nav className="header-nav">
+    <header className={`${headerStyles.header} pt-4 pb-4`}>
+      <nav className={headerStyles.nav}>
         <NavList>
           <NavListItem linkText="Конструктор" linkHref="#" isActive={true} classes="pr-5">
             <BurgerIcon type="primary" className="nav-icon_primary" />

@@ -115,6 +115,22 @@ export const INGREDIENT_TOPPING = [
   },
 ];
 
+export const INGREDIENTS_IN_CONSTRUCTOR_TOP = {
+  type: ConstructorElemType.Top,
+  isLocked: true,
+  title: 'Краторная булка N-200i (верх)',
+  price: Price.BunPrice,
+  thumbnail: bunImg01
+};
+
+export const INGREDIENTS_IN_CONSTRUCTOR_BUTTOM = {
+  type: ConstructorElemType.Bottom,
+  isLocked: true,
+  title: 'Краторная булка N-200i (низ)',
+  price: Price.BunPrice,
+  thumbnail: bunImg01
+};
+
 export const INGREDIENTS_IN_CONSTRUCTOR = [
   {
     title: 'Соус традиционный галактический',
@@ -142,20 +158,3 @@ export const INGREDIENTS_IN_CONSTRUCTOR = [
     thumbnail: toppingImg03,
   },
 ];
-
-export const INGREDIENTS_IN_CONSTRUCTOR_TOP = {
-  type: ConstructorElemType.Top,
-  isLocked: true,
-  title: 'Краторная булка N-200i (верх)',
-  price: Price.BunPrice,
-  thumbnail: bunImg01
-};
-
-export const INGREDIENTS_IN_CONSTRUCTOR_BUTTOM = {
-  type: ConstructorElemType.Bottom,
-  isLocked: true,
-  title: 'Краторная булка N-200i (низ)',
-  price: Price.BunPrice,
-  thumbnail: bunImg01
-};
-

@@ -1,5 +1,5 @@
-import { NavLinkPropsType } from '../../types/types';
-import "./nav-list-item.css";
+import { NavLinkPropsType } from "../../types/types";
+import navItemStyles from "./nav-list-item.module.css";
 
 function NavListItem({
   linkText,
@@ -9,8 +9,8 @@ function NavListItem({
   children,
 }: NavLinkPropsType) {
   const LINK_TYPES = {
-    default: "nav-link_default",
-    disabled: "nav-link_disabled",
+    default: navItemStyles["nav-link_default"],
+    disabled: navItemStyles["nav-link_disabled"],
   };
 
   let linkActiveClass = LINK_TYPES.default;
@@ -19,10 +19,10 @@ function NavListItem({
   }
 
   return (
-    <li className={`nav-list-item pt-4 pb-4 ${classes}`}>
+    <li className={`${navItemStyles["nav-list-item"]} pt-4 pb-4 ${classes}`}>
       {children}
       <a
-        className={`text text_type_main-default nav-link ${linkActiveClass}`}
+        className={`text text_type_main-default ${linkActiveClass}`}
         href={linkHref}
       >
         {linkText}

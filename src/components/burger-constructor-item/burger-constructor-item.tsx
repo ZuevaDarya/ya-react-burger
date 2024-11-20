@@ -3,11 +3,11 @@ import {
   ConstructorElement,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { BurgerConstructorItemPropsType } from "../../types/types";
-import "./burger-constructor-item.css";
+import constructorItemStyles from "./burger-constructor-item.module.css";
 
 function BurgerConstructorItem({ ingredient }: BurgerConstructorItemPropsType) {
   return (
-    <li className="burger-constructor-item">
+    <div className={`${constructorItemStyles["burger-constructor-item"]} ${ingredient.type && "pr-4"}`}>
       {!ingredient.type && <DragIcon type="primary" />}
       <ConstructorElement
         type={ingredient.type}
@@ -16,7 +16,7 @@ function BurgerConstructorItem({ ingredient }: BurgerConstructorItemPropsType) {
         price={Number(ingredient.price)}
         thumbnail={ingredient.thumbnail}
       />
-    </li>
+    </div>
   );
 }
 
