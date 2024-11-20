@@ -18,7 +18,7 @@ function BurgerIngredients({ ingredients }: BurgerIngredientsPropsType) {
   return (
     <div className={ingredientsStyles["burger-ingredients"]}>
       <h1 className="text text_type_main-large mt-10 mb-5">Соберите бургер</h1>
-      <BurgerIngredientsTabs />
+      <BurgerIngredientsTabs bunsRef={bunsRef} sauceRef={sauceRef} toppingRef={toppingRef}/>
       <div className={ingredientsStyles["ingredients-section"]}>
         <BurgerIngredientsSection
           ref={bunsRef}

@@ -1,12 +1,9 @@
+import { forwardRef } from 'react';
 import { BurgerIngredientsSectionPropsType } from "../../types/types";
 import IngredientCard from '../ingredient-card/ingredient-card';
 import sectionStyles from "./burger-ingredients-section.module.css";
 
-function BurgerIngredientsSection({
-  ref,
-  title,
-  ingredients
-}: BurgerIngredientsSectionPropsType) {
+const BurgerIngredientsSection = forwardRef<HTMLElement, BurgerIngredientsSectionPropsType>(({title, ingredients} , ref) => {
   return (
     <section className="mb-10" ref={ref}>
       <h2 className="text text_type_main-medium">{title}</h2>
@@ -19,6 +16,6 @@ function BurgerIngredientsSection({
       </div>
     </section>
   );
-}
+});
 
 export default BurgerIngredientsSection;

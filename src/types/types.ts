@@ -13,8 +13,9 @@ export type NavLinkPropsType = {
   children?: React.ReactNode;
 };
 
+export type ScrollTabsRefType = React.MutableRefObject<HTMLElement | null>;
+
 export type BurgerIngredientsSectionPropsType = {
-  ref: React.MutableRefObject<HTMLElement | null>;
   title: string;
   ingredients: IngredientType[];
 };
@@ -58,4 +59,8 @@ export type BurgerIngredientsPropsType = {
   ingredients: IngredientType[];
 }
 
-
+export type BurgerIngredientsTabsPropsType = {
+  bunsRef: ScrollTabsRefType;
+  sauceRef: ScrollTabsRefType;
+  toppingRef: ScrollTabsRefType;
+}
