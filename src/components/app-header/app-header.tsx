@@ -20,7 +20,7 @@ function AppHeader() {
             <ListIcon type="disabled" className="nav-icon_disabled" />
           </NavListItem>
         </NavList>
-        <Logo />
+        <Logo className={headerStyles.logo} />
         <NavList>
           <NavListItem linkText="Личный кабинет" linkHref="#" isActive={false} classes="pl-5">
             <ProfileIcon type="disabled" className="nav-icon_disabled" />

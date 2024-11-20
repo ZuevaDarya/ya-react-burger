@@ -4,6 +4,7 @@
 }
 
 .nav {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between; 
@@ -11,4 +12,10 @@
   max-width: var(--max-content-width);
   margin: 0 auto;
   gap: 112px;
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
