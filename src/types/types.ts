@@ -28,12 +28,9 @@ export type IngredientCardPropsType = {
   ingredient: IngredientType;
 };
 
-export type BurgerConstructorItemType = {
-  type?: ConstructorElemType;
+export type BurgerConstructorItemType = IngredientType & {
+  typePos?: ConstructorElemType;
   isLocked?: boolean;
-  title: string;
-  price: string;
-  thumbnail: string;
 };
 
 export type BurgerConstructorItemPropsType = {
@@ -43,7 +40,7 @@ export type BurgerConstructorItemPropsType = {
 export type IngredientType = {
   _id: string;
   name: string;
-  type: IngredientsType;
+  type: IngredientsType | string;
   proteins: number;
   fat: number;
   carbohydrates: number;

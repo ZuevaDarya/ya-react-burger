@@ -16,7 +16,7 @@ function BurgerConstructor() {
       <div className={`${burgerConstructorStyles["burger-constructor-list"]}`}>
         <BurgerConstructorItem ingredient={INGREDIENTS_IN_CONSTRUCTOR_TOP} />
         <div
-          className={`${burgerConstructorStyles["burger-constructor-list"]} pr-2`}
+          className={`${burgerConstructorStyles["burger-constructor-list"]}`}
         >
           {INGREDIENTS_IN_CONSTRUCTOR.map((ingredient, idx) => (
             <BurgerConstructorItem key={idx} ingredient={ingredient} />
