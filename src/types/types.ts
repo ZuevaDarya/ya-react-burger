@@ -1,4 +1,5 @@
 import { ConstructorElemType } from '../constants/ingredients-info';
+import { IngredientsType } from '../constants/ingredients-type';
 
 export type NavListPropsType = {
   children: React.ReactNode;
@@ -12,14 +13,8 @@ export type NavLinkPropsType = {
   children?: React.ReactNode;
 };
 
-export type IngredientType = {
-  src: string;
-  price: string;
-  title: string;
-  count?: number;
-};
-
 export type BurgerIngredientsSectionPropsType = {
+  ref: React.MutableRefObject<HTMLElement | null>;
   title: string;
   ingredients: IngredientType[];
 };
@@ -43,3 +38,24 @@ export type BurgerConstructorItemType = {
 export type BurgerConstructorItemPropsType = {
   ingredient: BurgerConstructorItemType;
 };
+
+export type IngredientType = {
+  _id: string;
+  name: string;
+  type: IngredientsType;
+  proteins: number;
+  fat: number;
+  carbohydrates: number;
+  calories: number;
+  price: number;
+  image: string;
+  image_mobile: string;
+  image_large: string;
+  __v: number;
+}
+
+export type BurgerIngredientsPropsType = {
+  ingredients: IngredientType[];
+}
+
+

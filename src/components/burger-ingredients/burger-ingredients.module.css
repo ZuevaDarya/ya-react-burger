@@ -1,3 +1,10 @@
+.burger-ingredients {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  grid-template-columns: 1fr;
+  width: 100%;
+}
+
 .ingredients-section {
   overflow-y: auto;
 }

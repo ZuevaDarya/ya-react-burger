@@ -10,10 +10,10 @@ import burgerConstructorStyles from "./burger-constructor.module.css";
 
 function BurgerConstructor() {
   return (
-    <div className="pt-25 pl-4" style={{ display: "grid" }}>
-      <div
-        className={`${burgerConstructorStyles["burger-constructor-list"]}`}
-      >
+    <div
+      className={`pt-25 pl-4 ${burgerConstructorStyles["burger-constructor"]}`}
+    >
+      <div className={`${burgerConstructorStyles["burger-constructor-list"]}`}>
         <BurgerConstructorItem ingredient={INGREDIENTS_IN_CONSTRUCTOR_TOP} />
         <div
           className={`${burgerConstructorStyles["burger-constructor-list"]} pr-2`}
@@ -25,7 +25,7 @@ function BurgerConstructor() {
         <BurgerConstructorItem ingredient={INGREDIENTS_IN_CONSTRUCTOR_BUTTOM} />
       </div>
       <div className={burgerConstructorStyles["constructor-price-container"]}>
-        <Price price="610" classes="text_type_digits-medium" />
+        <Price price={610} classes="text_type_digits-medium" />
         <Button htmlType="button" type="primary" size="large">
           Оформить заказ
         </Button>
