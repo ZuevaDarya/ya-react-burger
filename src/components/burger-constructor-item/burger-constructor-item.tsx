@@ -9,9 +9,11 @@ import { ConstructorElemType } from "../../constants/ingredients-info";
 function BurgerConstructorItem({ ingredient }: BurgerConstructorItemPropsType) {
   return (
     <div
-      className={`${constructorItemStyles["burger-constructor-item"]} ${
-        ingredient.type && "pr-4"
-      }`}
+      className={`
+        ${constructorItemStyles["burger-constructor-item"]} 
+        ${!ingredient.isLocked && "pr-4"} 
+        ${ingredient.isLocked && "ml-6"}
+      `}
     >
       {!ingredient.typePos && <DragIcon type="primary" />}
       <ConstructorElement
