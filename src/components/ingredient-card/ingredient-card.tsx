@@ -15,7 +15,7 @@ function IngredientCard({ ingredient }: IngredientCardPropsType) {
   return (
     <div
       className={`pl-4 pr-4 ${cardStyles["ingredient-card"]}`}
-      onClick={handleClick}
+      onDoubleClick={handleClick}
     >
       <img src={ingredient.image} alt={ingredient.name} />
       <Price price={ingredient.price} classes="text_type_digits-default" />
