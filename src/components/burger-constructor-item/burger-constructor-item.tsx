@@ -21,11 +21,11 @@ function BurgerConstructorItem({ ingredient }: BurgerConstructorItemPropsType) {
           ingredient.typePos === ConstructorElemType.Bottom
             ? ingredient.name + " (низ)"
             : ingredient.typePos === ConstructorElemType.Top
-            ? ingredient.name + "верх"
+            ? ingredient.name + " (верх)"
             : ingredient.name
         }
         price={ingredient.price}
-        thumbnail={ingredient.image_mobile}
+        thumbnail={ingredient.image}
       />
     </div>
   );

@@ -38,3 +38,13 @@ html {
 #root {
   height: inherit;
 }
+
+.constructor-element__price {
+  width: 100%;
+  max-width: 90px;
+}
+
+.constructor-element__action {
+  width: 100%;
+  max-width: 27px;
+}
