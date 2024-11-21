@@ -50,14 +50,18 @@ export type IngredientType = {
   image_mobile: string;
   image_large: string;
   __v: number;
-}
+};
 
 export type BurgerIngredientsPropsType = {
   ingredients: IngredientType[];
-}
+};
 
 export type BurgerIngredientsTabsPropsType = {
   bunsRef: ScrollTabsRefType;
   sauceRef: ScrollTabsRefType;
   toppingRef: ScrollTabsRefType;
+};
+
+export type BurgerConstructorPropsType = {
+  ingredients: BurgerConstructorItemType[];
 }

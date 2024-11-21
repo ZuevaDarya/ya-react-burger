@@ -5,15 +5,16 @@ import ingredientsStyles from "./burger-ingredients.module.css";
 import { BurgerIngredientsPropsType } from '../../types/types';
 import { IngredientsType } from '../../constants/ingredients-type';
 import { useRef } from 'react';
+import getSameIngredients from '../../utils/get-same-ingredients';
 
 function BurgerIngredients({ ingredients }: BurgerIngredientsPropsType) {
   const bunsRef = useRef<HTMLElement | null>(null);
   const sauceRef = useRef<HTMLElement | null>(null);
   const toppingRef = useRef<HTMLElement | null>(null);
 
-  const buns = ingredients.filter(ingredient => ingredient.type === IngredientsType.Bun);
-  const sauce = ingredients.filter(ingredient => ingredient.type === IngredientsType.Sauce);
-  const topping = ingredients.filter(ingredient => ingredient.type === IngredientsType.Main);
+  const buns = getSameIngredients(ingredients, IngredientsType.Bun);
+  const sauce = getSameIngredients(ingredients, IngredientsType.Sauce);
+  const topping = getSameIngredients(ingredients, IngredientsType.Main);
 
   return (
     <div className={ingredientsStyles["burger-ingredients"]}>
