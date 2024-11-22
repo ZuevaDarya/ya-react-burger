@@ -2,29 +2,32 @@ import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import cardStyles from "./ingredient-card.module.css";
 import Price from "../price/price";
 import { IngredientCardPropsType } from "../../types/types";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ModalOverlay from "../modal-overlay/modal-overlay";
+import IngredientDetails from "../ingredient-details.tsx/ingredient-details";
 
 function IngredientCard({ ingredient }: IngredientCardPropsType) {
-  const [count, setCount] = useState<number>(0);
+  const [count, setCount] = useState<number>(1);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const onClose = useCallback(() => setIsModalOpen(false), []);
+  const onClose = () => setIsModalOpen(false);
 
-  const handleKeydown = useCallback((e: KeyboardEvent) => {
+  const handleKeydown = (e: KeyboardEvent) => {
     if (e.key === "Escape") {
       onClose();
     }
-  }, []);
+  };
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeydown);
     return () => {
       document.removeEventListener("keydown", handleKeydown);
-    }
-  }, []); 
+    };
+  }, []);
 
-  const handleDoubleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleDoubleClick = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     e.stopPropagation();
     setCount((prev) => prev + 1);
   };
@@ -32,11 +35,15 @@ function IngredientCard({ ingredient }: IngredientCardPropsType) {
   const hadleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
     setIsModalOpen(true);
-  }
+  };
 
   return (
     <>
-      {isModalOpen && <ModalOverlay isTitle={true} onClose={onClose} />}
+      {isModalOpen && (
+        <ModalOverlay isTitle={true} onClose={onClose}>
+          <IngredientDetails ingredient={ingredient} />
+        </ModalOverlay>
+      )}
       <div
         className={`pl-4 pr-4 ${cardStyles["ingredient-card"]}`}
         onDoubleClick={handleDoubleClick}

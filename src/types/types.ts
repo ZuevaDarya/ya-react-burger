@@ -68,7 +68,17 @@ export type BurgerConstructorPropsType = {
 
 export type ModalPropsType = {
   isTitle: boolean;
-  onClose: () => void; 
+  onClose: () => void;
+  children: React.ReactNode;
 };
 
 export type ModalOverlayPropsType = ModalPropsType;
+
+export type IngredientDetailsPropsType = {
+  ingredient: IngredientType;
+}
+
+export type ColoriesItemPropsType = {
+  nameCalories: string;
+  numCalories: number;
+}

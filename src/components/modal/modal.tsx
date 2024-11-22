@@ -2,7 +2,7 @@ import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import modalStyles from "./modal.module.css";
 import { ModalPropsType } from "../../types/types";
 
-function Modal({ isTitle, onClose }: ModalPropsType) {
+function Modal({ isTitle, onClose, children }: ModalPropsType) {
   const modalHeaderStyle = isTitle
     ? { justifyContent: "space-between" }
     : { justifyContent: "end" };
@@ -13,6 +13,7 @@ function Modal({ isTitle, onClose }: ModalPropsType) {
         {isTitle && <h1 className="text text_type_main-large">Детали ингредиента</h1>}
         <CloseIcon type="primary" className={modalStyles["close-icon"]} onClick={onClose}/>
       </div>
+      { children }
     </div>
   );
 }
