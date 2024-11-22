@@ -65,3 +65,10 @@ export type BurgerIngredientsTabsPropsType = {
 export type BurgerConstructorPropsType = {
   ingredients: BurgerConstructorItemType[];
 }
+
+export type ModalPropsType = {
+  isTitle: boolean;
+  onClose: () => void; 
+};
+
+export type ModalOverlayPropsType = ModalPropsType;
