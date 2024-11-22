@@ -2,7 +2,7 @@ import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import cardStyles from "./ingredient-card.module.css";
 import Price from "../price/price";
 import { IngredientCardPropsType } from "../../types/types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ModalOverlay from "../modal-overlay/modal-overlay";
 import IngredientDetails from "../ingredient-details.tsx/ingredient-details";
 
@@ -11,19 +11,6 @@ function IngredientCard({ ingredient }: IngredientCardPropsType) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const onClose = () => setIsModalOpen(false);
-
-  const handleKeydown = (e: KeyboardEvent) => {
-    if (e.key === "Escape") {
-      onClose();
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeydown);
-    return () => {
-      document.removeEventListener("keydown", handleKeydown);
-    };
-  }, []);
 
   const handleDoubleClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>

@@ -1,0 +1,10 @@
+.order-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 36px;
+}
+
+.order-id {
+  text-shadow: 0 4px 32px var(--order-id-accent), 0 0 8px var(--order-id-accent), 0 0 16px var(--order-id-accent);
+}

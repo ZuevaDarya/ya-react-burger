@@ -82,3 +82,7 @@ export type ColoriesItemPropsType = {
   nameCalories: string;
   numCalories: number;
 }
+
+export type OrderDetailsPropsType = {
+  orderId: string;
+}

@@ -5,6 +5,7 @@ import {
 import { BurgerConstructorItemPropsType } from "../../types/types";
 import constructorItemStyles from "./burger-constructor-item.module.css";
 import { ConstructorElemType } from "../../constants/ingredients-info";
+import { memo } from 'react';
 
 function BurgerConstructorItem({ ingredient }: BurgerConstructorItemPropsType) {
   return (
@@ -33,4 +34,4 @@ function BurgerConstructorItem({ ingredient }: BurgerConstructorItemPropsType) {
   );
 }
 
-export default BurgerConstructorItem;
+export default memo(BurgerConstructorItem);

@@ -17,6 +17,7 @@
   --scroll-hover-color: #6a6a8a;
   --modal-overlay-color: rgba(0, 0, 0, .6);
   --modal-border-radius: 40px;
+  --order-id-accent: rgba(76, 76, 255, .5);
 
   background-color: var(--interface-bg);
 

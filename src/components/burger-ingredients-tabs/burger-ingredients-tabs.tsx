@@ -36,14 +36,14 @@ function BurgerIngredientsTabs({
 
   return (
     <div className="mb-10" style={{ display: "flex" }}>
-      {INGREDIENTS_TABS.map((ingredient, idx) => (
+      {INGREDIENTS_TABS.map((tab, idx) => (
         <Tab
-          value={ingredient.value}
-          active={current === ingredient.value}
-          onClick={() => handleClick(ingredient.value)}
+          value={tab.value}
+          active={current === tab.value}
+          onClick={() => handleClick(tab.value)}
           key={idx}
         >
-          {ingredient.title}
+          {tab.title}
         </Tab>
       ))}
     </div>
