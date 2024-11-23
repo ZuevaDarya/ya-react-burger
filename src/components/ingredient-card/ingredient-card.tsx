@@ -4,8 +4,8 @@ import Price from "../price/price";
 import { IngredientCardPropsType } from "../../types/types";
 import { useState } from "react";
 import IngredientDetails from "../ingredient-details.tsx/ingredient-details";
-import { useModal } from '../hooks/useModal';
-import Modal from '../modal/modal';
+import { useModal } from "../../hooks/useModal";
+import Modal from "../modal/modal";
 
 function IngredientCard({ ingredient }: IngredientCardPropsType) {
   const [count, setCount] = useState<number>(1);
@@ -13,7 +13,9 @@ function IngredientCard({ ingredient }: IngredientCardPropsType) {
 
   const onClose = () => closeModal();
 
-  const handleDoubleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleDoubleClick = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     e.stopPropagation();
     setCount((prev) => prev + 1);
   };
@@ -37,7 +39,9 @@ function IngredientCard({ ingredient }: IngredientCardPropsType) {
       >
         <img src={ingredient.image} alt={ingredient.name} />
         <Price price={ingredient.price} classes="text_type_digits-default" />
-        <p className={`text text_type_main-small ${cardStyles["ingredient-card-title"]}`}>
+        <p
+          className={`text text_type_main-small ${cardStyles["ingredient-card-title"]}`}
+        >
           {ingredient.name}
         </p>
         {count !== 0 && (
