@@ -5,6 +5,7 @@ import {
   IngredientsTabsValue,
 } from "../../constants/ingredients-tabs";
 import { BurgerIngredientsTabsPropsType } from "../../types/types";
+import tabsStyles from "./burger-ingredients-tabs.module.css";
 
 function BurgerIngredientsTabs({
   bunsRef,
@@ -35,7 +36,7 @@ function BurgerIngredientsTabs({
   };
 
   return (
-    <div className="mb-10" style={{ display: "flex" }}>
+    <div className={`${tabsStyles["tabs-container"]} mb-10`}>
       {INGREDIENTS_TABS.map((tab, idx) => (
         <Tab
           value={tab.value}
