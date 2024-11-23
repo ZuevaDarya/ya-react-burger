@@ -5,12 +5,12 @@ import burgerConstructorStyles from "./burger-constructor.module.css";
 import { BurgerConstructorPropsType } from "../../types/types";
 import { ConstructorElemType, IngredientsType } from "../../constants/ingredients-type";
 import getSameIngredients from "../../utils/get-same-ingredients";
-import { useState } from "react";
-import ModalOverlay from "../modal-overlay/modal-overlay";
+import { useModal } from '../hooks/useModal';
 import OrderDetails from "../order-details/order-details";
+import Modal from '../modal/modal';
 
 function BurgerConstructor({ ingredients }: BurgerConstructorPropsType) {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const { isModalOpen, openModal, closeModal } = useModal();
 
   const bun = getSameIngredients(ingredients, IngredientsType.Bun)[0];
   const buns = [
@@ -21,19 +21,19 @@ function BurgerConstructor({ ingredients }: BurgerConstructorPropsType) {
     (ingredients) => ingredients.type !== IngredientsType.Bun
   );
 
-  const onClose = () => setIsModalOpen(false);
+  const onClose = () => closeModal();
 
   const hadleClick = (e: React.SyntheticEvent<Element, Event>) => {
     e.stopPropagation();
-    setIsModalOpen(true);
+    openModal();
   };
 
   return (
     <>
       {isModalOpen && (
-        <ModalOverlay isTitle={false} onClose={onClose}>
+        <Modal isTitle={false} onClose={onClose}>
           <OrderDetails orderId="034536" />
-        </ModalOverlay>
+        </Modal>
       )}
 
       <div

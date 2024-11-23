@@ -71,7 +71,7 @@ export type ModalPropsType = {
   children: React.ReactNode;
 };
 
-export type ModalOverlayPropsType = ModalPropsType;
+export type ModalOverlayPropsType = Pick<ModalPropsType, "onClose">;
 
 export type IngredientDetailsPropsType = {
   ingredient: IngredientType;

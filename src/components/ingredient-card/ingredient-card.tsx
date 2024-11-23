@@ -3,33 +3,32 @@ import cardStyles from "./ingredient-card.module.css";
 import Price from "../price/price";
 import { IngredientCardPropsType } from "../../types/types";
 import { useState } from "react";
-import ModalOverlay from "../modal-overlay/modal-overlay";
 import IngredientDetails from "../ingredient-details.tsx/ingredient-details";
+import { useModal } from '../hooks/useModal';
+import Modal from '../modal/modal';
 
 function IngredientCard({ ingredient }: IngredientCardPropsType) {
   const [count, setCount] = useState<number>(1);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const { isModalOpen, openModal, closeModal } = useModal();
 
-  const onClose = () => setIsModalOpen(false);
+  const onClose = () => closeModal();
 
-  const handleDoubleClick = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
+  const handleDoubleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
     setCount((prev) => prev + 1);
   };
 
   const hadleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
-    setIsModalOpen(true);
+    openModal();
   };
 
   return (
     <>
       {isModalOpen && (
-        <ModalOverlay isTitle={true} onClose={onClose}>
+        <Modal isTitle={true} onClose={onClose}>
           <IngredientDetails ingredient={ingredient} />
-        </ModalOverlay>
+        </Modal>
       )}
       <div
         className={`pl-4 pr-4 ${cardStyles["ingredient-card"]}`}
