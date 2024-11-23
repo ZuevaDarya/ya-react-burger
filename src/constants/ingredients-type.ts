@@ -3,3 +3,8 @@ export enum IngredientsType {
   Main = 'main',
   Sauce = 'sauce',
 }
+
+export enum ConstructorElemType {
+  Top = 'top',
+  Bottom = 'bottom'
+}

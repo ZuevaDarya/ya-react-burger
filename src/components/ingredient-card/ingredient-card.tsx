@@ -38,9 +38,7 @@ function IngredientCard({ ingredient }: IngredientCardPropsType) {
       >
         <img src={ingredient.image} alt={ingredient.name} />
         <Price price={ingredient.price} classes="text_type_digits-default" />
-        <p
-          className={`text text_type_main-small ${cardStyles["ingredient-card-title"]}`}
-        >
+        <p className={`text text_type_main-small ${cardStyles["ingredient-card-title"]}`}>
           {ingredient.name}
         </p>
         {count !== 0 && (

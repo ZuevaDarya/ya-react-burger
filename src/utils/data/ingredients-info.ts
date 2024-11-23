@@ -1,7 +1,4 @@
-export enum ConstructorElemType {
-  Top = 'top',
-  Bottom = 'bottom'
-}
+import { ConstructorElemType } from '../../constants/ingredients-type';
 
 export const INGREDIENTS_IN_CONSTRUCTOR_TOP = {
   typePos: ConstructorElemType.Top,

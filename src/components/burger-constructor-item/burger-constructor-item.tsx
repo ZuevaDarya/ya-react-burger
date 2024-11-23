@@ -4,8 +4,8 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { BurgerConstructorItemPropsType } from "../../types/types";
 import constructorItemStyles from "./burger-constructor-item.module.css";
-import { ConstructorElemType } from "../../constants/ingredients-info";
-import { memo } from 'react';
+import { memo } from "react";
+import { ConstructorElemType } from '../../constants/ingredients-type';
 
 function BurgerConstructorItem({ ingredient }: BurgerConstructorItemPropsType) {
   return (

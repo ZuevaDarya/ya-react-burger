@@ -1,5 +1,4 @@
-import { ConstructorElemType } from '../constants/ingredients-info';
-import { IngredientsType } from '../constants/ingredients-type';
+import { ConstructorElemType, IngredientsType } from '../constants/ingredients-type';
 
 export type NavListPropsType = {
   children: React.ReactNode;
