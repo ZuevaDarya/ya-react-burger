@@ -1,0 +1,21 @@
+.header {
+  width: 100%;
+  background-color: var(--interface-modal-bg);
+}
+
+.nav {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+  align-items: center;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  gap: 112px;
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}

@@ -1,0 +1,15 @@
+
+.ingredient-card {
+  position: relative;
+  max-width: var(--max-ingredient-card-width);
+  min-height: 208px;
+}
+
+.ingredient-card:hover {
+  cursor: pointer;
+  background-color: var(--interface-modal-bg);
+}
+
+.ingredient-card-title {
+  text-align: center;
+}

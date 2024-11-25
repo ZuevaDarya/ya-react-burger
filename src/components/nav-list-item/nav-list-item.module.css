@@ -1,0 +1,34 @@
+.nav-list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-list-item:hover {
+  cursor: pointer;
+}
+
+.nav-list-item:hover > svg {
+  fill: var(--scroll-hover-color);
+}
+
+.nav-list-item:hover > a {
+  color: var(--scroll-hover-color);
+}
+
+.nav-link_default {
+  color: var(--text-primary-light-standart-text);
+}
+
+.nav-link_disabled {
+  color: var(--text-disabled);
+}
+
+.nav-link_default,
+.nav-link_disabled,
+.nav-icon_primary,
+.nav-icon_disabled,
+.nav-list-item svg {
+  transition: var(--common-transition);
+}

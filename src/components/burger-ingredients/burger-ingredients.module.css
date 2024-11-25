@@ -1,0 +1,27 @@
+.burger-ingredients {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  grid-template-columns: 1fr;
+  width: 100%;
+}
+
+.ingredients-section {
+  overflow-y: auto;
+}
+
+.ingredients-section::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ingredients-section::-webkit-scrollbar-track {
+  background: var(--interface-input);
+}
+
+.ingredients-section::-webkit-scrollbar-thumb {
+  background: var(--text-dark-grey-secondary-text);
+}
+
+.ingredients-section::-webkit-scrollbar-thumb:hover {
+  cursor: pointer;
+  background: var(--scroll-hover-color);
+}
