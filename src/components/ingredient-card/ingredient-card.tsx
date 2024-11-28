@@ -6,12 +6,18 @@ import { useState } from "react";
 import IngredientDetails from "../ingredient-details.tsx/ingredient-details";
 import { useModal } from "../../hooks/useModal";
 import Modal from "../modal/modal";
+import { useAppDispatch } from '../../services/store';
+import { addCurrentIngredient, removeCurrentIngredient } from '../../services/ingredient-details-slice';
 
 function IngredientCard({ ingredient }: IngredientCardPropsType) {
   const [count, setCount] = useState<number>(1);
   const { isModalOpen, openModal, closeModal } = useModal();
+  const dispatch = useAppDispatch();
 
-  const onClose = () => closeModal();
+  const onClose = () => {
+    closeModal();
+    dispatch(removeCurrentIngredient());
+  };
 
   const handleDoubleClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -23,6 +29,7 @@ function IngredientCard({ ingredient }: IngredientCardPropsType) {
   const hadleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
     openModal();
+    dispatch(addCurrentIngredient(ingredient));
   };
 
   return (

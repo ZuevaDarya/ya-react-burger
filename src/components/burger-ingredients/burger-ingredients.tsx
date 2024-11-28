@@ -2,19 +2,21 @@ import BurgerIngredientsSection from "../burger-ingredients-section/burger-ingre
 import BurgerIngredientsTabs from "../burger-ingredients-tabs/burger-ingredients-tabs";
 import { TabValue } from "../../constants/ingredients-tabs";
 import ingredientsStyles from "./burger-ingredients.module.css";
-import { BurgerIngredientsPropsType } from '../../types/types';
 import { IngredientsType } from '../../constants/ingredients-type';
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import getSameIngredients from '../../utils/get-same-ingredients';
+import { useAppSelector } from '../../services/store';
 
-function BurgerIngredients({ ingredients }: BurgerIngredientsPropsType) {
+function BurgerIngredients() {
   const bunsRef = useRef<HTMLElement | null>(null);
   const sauceRef = useRef<HTMLElement | null>(null);
   const toppingRef = useRef<HTMLElement | null>(null);
 
-  const buns = getSameIngredients(ingredients, IngredientsType.Bun);
-  const sauce = getSameIngredients(ingredients, IngredientsType.Sauce);
-  const topping = getSameIngredients(ingredients, IngredientsType.Main);
+  const ingredients = useAppSelector((store) => store.burgerIngredients.ingredients);
+
+  const buns = useMemo(() => getSameIngredients(ingredients, IngredientsType.Bun), [ingredients]);
+  const sauce = useMemo(() => getSameIngredients(ingredients, IngredientsType.Sauce), [ingredients]);
+  const topping = useMemo(() => getSameIngredients(ingredients, IngredientsType.Main), [ingredients]);
 
   return (
     <div className={ingredientsStyles["burger-ingredients"]}>

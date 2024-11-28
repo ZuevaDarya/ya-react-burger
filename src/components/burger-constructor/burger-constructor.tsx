@@ -2,7 +2,6 @@ import BurgerConstructorItem from "../burger-constructor-item/burger-constructor
 import Price from "../price/price";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import burgerConstructorStyles from "./burger-constructor.module.css";
-import { BurgerConstructorPropsType } from "../../types/types";
 import {
   ConstructorElemType,
   IngredientsType,
@@ -12,17 +11,17 @@ import { useModal } from "../../hooks/useModal";
 import OrderDetails from "../order-details/order-details";
 import Modal from "../modal/modal";
 
-function BurgerConstructor({ ingredients }: BurgerConstructorPropsType) {
+function BurgerConstructor() {
   const { isModalOpen, openModal, closeModal } = useModal();
 
-  const bun = getSameIngredients(ingredients, IngredientsType.Bun)[0];
-  const buns = [
-    { ...bun, isLocked: true, typePos: ConstructorElemType.Top },
-    { ...bun, isLocked: true, typePos: ConstructorElemType.Bottom },
-  ];
-  const otherIngredients = ingredients.filter(
-    (ingredients) => ingredients.type !== IngredientsType.Bun
-  );
+  // const bun = getSameIngredients(ingredients, IngredientsType.Bun)[0];
+  // const buns = [
+  //   { ...bun, isLocked: true, typePos: ConstructorElemType.Top },
+  //   { ...bun, isLocked: true, typePos: ConstructorElemType.Bottom },
+  // ];
+  // const otherIngredients = ingredients.filter(
+  //   (ingredients) => ingredients.type !== IngredientsType.Bun
+  // );
 
   const onClose = () => closeModal();
 
@@ -45,7 +44,8 @@ function BurgerConstructor({ ingredients }: BurgerConstructorPropsType) {
         <div
           className={`${burgerConstructorStyles["burger-constructor-list"]}`}
         >
-          {buns && <BurgerConstructorItem ingredient={buns[0]} />}
+          <p>Перетащите сюда нужные ингредиенты, чтобы собрать космический бургер</p>
+          {/* {buns && <BurgerConstructorItem ingredient={buns[0]} />}
           <div
             className={`${burgerConstructorStyles["burger-constructor-list"]}`}
           >
@@ -56,7 +56,7 @@ function BurgerConstructor({ ingredients }: BurgerConstructorPropsType) {
               />
             ))}
           </div>
-          {buns && <BurgerConstructorItem ingredient={buns[1]} />}
+          {buns && <BurgerConstructorItem ingredient={buns[1]} />} */}
         </div>
         <div className={burgerConstructorStyles["constructor-price-container"]}>
           <Price price={610} classes="text_type_digits-medium" />
