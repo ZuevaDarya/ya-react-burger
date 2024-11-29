@@ -1,3 +1,4 @@
+import { IngredientsTabsValue } from '../constants/ingredients-tabs';
 import { ConstructorElemType, IngredientsType } from '../constants/ingredients-type';
 
 export type NavListPropsType = {
@@ -59,6 +60,8 @@ export type BurgerIngredientsTabsPropsType = {
   bunsRef: ScrollTabsRefType;
   sauceRef: ScrollTabsRefType;
   toppingRef: ScrollTabsRefType;
+  current: IngredientsTabsValue | string;
+  setCurrent: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type BurgerConstructorPropsType = {
