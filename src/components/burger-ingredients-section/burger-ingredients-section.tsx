@@ -3,8 +3,7 @@ import { BurgerIngredientsSectionPropsType } from "../../types/types";
 import IngredientCard from "../ingredient-card/ingredient-card";
 import sectionStyles from "./burger-ingredients-section.module.css";
 
-const BurgerIngredientsSection = memo(
-  forwardRef<HTMLElement, BurgerIngredientsSectionPropsType>(
+const BurgerIngredientsSection = forwardRef<HTMLElement, BurgerIngredientsSectionPropsType>(
     ({ title, ingredients }, ref) => {
       return (
         <section className="mb-10" ref={ref}>
@@ -19,7 +18,6 @@ const BurgerIngredientsSection = memo(
         </section>
       );
     }
-  )
-);
+  );
 
-export default BurgerIngredientsSection;
+export default memo(BurgerIngredientsSection);
