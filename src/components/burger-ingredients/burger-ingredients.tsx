@@ -1,11 +1,15 @@
 import BurgerIngredientsSection from "../burger-ingredients-section/burger-ingredients-section";
 import BurgerIngredientsTabs from "../burger-ingredients-tabs/burger-ingredients-tabs";
-import { IngredientsTabsValue, TabValue } from "../../constants/ingredients-tabs";
+import {
+  IngredientsTabsValue,
+  TabValue,
+} from "../../constants/ingredients-tabs";
 import ingredientsStyles from "./burger-ingredients.module.css";
-import { IngredientsType } from '../../constants/ingredients-type';
-import { useMemo, useRef, useState } from 'react';
-import getSameIngredients from '../../utils/get-same-ingredients';
-import { useAppSelector } from '../../services/store';
+import { IngredientsType } from "../../constants/ingredients-type";
+import { useMemo, useRef, useState } from "react";
+import getSameIngredients from "../../utils/get-same-ingredients";
+import { useAppSelector } from "../../services/store";
+import { fillHashTable } from "../../utils/functions/fill-hash-table";
 
 function BurgerIngredients() {
   const tabsRef = useRef<HTMLDivElement | null>(null);
@@ -17,11 +21,14 @@ function BurgerIngredients() {
     IngredientsTabsValue.One
   );
 
-  const ingredients = useAppSelector((store) => store.burgerIngredients.ingredients);
+  const allIngredients = useAppSelector((store) => store.burgerIngredients.ingredients);
+  const { ingredients, bun }  = useAppSelector((store) => store.constructorIngredients);
 
-  const buns = useMemo(() => getSameIngredients(ingredients, IngredientsType.Bun), [ingredients]);
-  const sauce = useMemo(() => getSameIngredients(ingredients, IngredientsType.Sauce), [ingredients]);
-  const topping = useMemo(() => getSameIngredients(ingredients, IngredientsType.Main), [ingredients]);
+  const ingredientsCountHashTable = fillHashTable(allIngredients, ingredients, bun);
+
+  const buns = useMemo(() => getSameIngredients(allIngredients, IngredientsType.Bun), [allIngredients]);
+  const sauce = useMemo(() => getSameIngredients(allIngredients, IngredientsType.Sauce), [allIngredients]);
+  const topping = useMemo(() => getSameIngredients(allIngredients, IngredientsType.Main), [allIngredients]);
 
   const handleScroll = () => {
     if (tabsRef.current && bunsRef.current && sauceRef.current && toppingRef.current) {
@@ -36,7 +43,7 @@ function BurgerIngredients() {
 
       if (bunsDistance < sauceDistance && bunsDistance < toppingDistance) {
         setCurrent(IngredientsTabsValue.One);
-      } else if (sauceDistance < bunsDistance && sauceDistance < toppingDistance)  {
+      } else if (sauceDistance < bunsDistance && sauceDistance < toppingDistance) {
         setCurrent(IngredientsTabsValue.Two);
       } else {
         setCurrent(IngredientsTabsValue.Three);
@@ -47,15 +54,15 @@ function BurgerIngredients() {
   return (
     <div className={ingredientsStyles["burger-ingredients"]}>
       <h1 className="text text_type_main-large mt-10 mb-5">Соберите бургер</h1>
-      <BurgerIngredientsTabs 
-        ref={tabsRef} 
-        bunsRef={bunsRef} 
-        sauceRef={sauceRef} 
+      <BurgerIngredientsTabs
+        ref={tabsRef}
+        bunsRef={bunsRef}
+        sauceRef={sauceRef}
         toppingRef={toppingRef}
         current={current}
         setCurrent={setCurrent}
       />
-      <div 
+      <div
         className={ingredientsStyles["ingredients-section"]}
         onScroll={handleScroll}
       >
@@ -63,16 +70,19 @@ function BurgerIngredients() {
           ref={bunsRef}
           title={TabValue.Bun}
           ingredients={buns}
+          hashTable={ingredientsCountHashTable}
         />
         <BurgerIngredientsSection
           ref={sauceRef}
           title={TabValue.Sauce}
           ingredients={sauce}
+          hashTable={ingredientsCountHashTable}
         />
         <BurgerIngredientsSection
           ref={toppingRef}
           title={TabValue.Topping}
           ingredients={topping}
+          hashTable={ingredientsCountHashTable}
         />
       </div>
     </div>

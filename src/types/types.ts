@@ -15,9 +15,14 @@ export type NavLinkPropsType = {
 
 export type ScrollTabsRefType = React.MutableRefObject<HTMLElement | null>;
 
+export type HashTableType = { 
+  [x: string]: number;
+};
+
 export type BurgerIngredientsSectionPropsType = {
   title: string;
   ingredients: IngredientType[];
+  hashTable: HashTableType;
 };
 
 export type PricePropsType = Pick<IngredientType, "price"> & {
@@ -26,6 +31,7 @@ export type PricePropsType = Pick<IngredientType, "price"> & {
 
 export type IngredientCardPropsType = {
   ingredient: IngredientType;
+  count: number;
 };
 
 export type BurgerConstructorItemType = IngredientType & {
@@ -95,4 +101,5 @@ export type OrderDetailsPropsType = {
 export type BurgerTemplatePropsType = {
   text: string;
   type?: ConstructorElemType;
+  isHover?: boolean;
 };

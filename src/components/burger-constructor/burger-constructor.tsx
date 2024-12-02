@@ -52,7 +52,7 @@ function BurgerConstructor() {
           className={`${burgerConstructorStyles["burger-constructor-list"]}`}
         >
           {!bun ? (
-            <BurgerTemplate text="булку" type={ConstructorElemType.Top} />
+            <BurgerTemplate text="булку" type={ConstructorElemType.Top} isHover={isHover} />
           ) : (
             <BurgerConstructorItem
               ingredient={bun}
@@ -63,7 +63,7 @@ function BurgerConstructor() {
           <div
             className={`${burgerConstructorStyles["burger-constructor-list"]}`}
           >
-            {ingredients.length === 0 && <BurgerTemplate text="начинку" />}
+            {ingredients.length === 0 && <BurgerTemplate text="начинку" isHover={isHover} />}
             {ingredients.length !== 0 &&
               ingredients.map(({ uuid, ingredient }) => (
                 <BurgerConstructorItem
@@ -74,7 +74,7 @@ function BurgerConstructor() {
               ))}
           </div>
           {!bun ? (
-            <BurgerTemplate text="булку" type={ConstructorElemType.Bottom} />
+            <BurgerTemplate text="булку" type={ConstructorElemType.Bottom} isHover={isHover} />
           ) : (
             <BurgerConstructorItem
               ingredient={bun}
