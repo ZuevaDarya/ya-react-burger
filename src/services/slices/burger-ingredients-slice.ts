@@ -1,14 +1,7 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { SliceNamespace } from '../constants/slice-namespace';
-import { BASE_URL, API_PATHS } from '../constants/api-constants';
-import { BurgerIngredientsStateType } from '../types/services-types';
-
-export const getIngredients = createAsyncThunk(
-  `${SliceNamespace.BurgerIngredients}/getIngredients`,
-  async () => {
-    return await fetch(`${BASE_URL}${API_PATHS.ingredients}`).then(res => res.json());
-  }
-);
+import { createSlice } from '@reduxjs/toolkit';
+import { SliceNamespace } from '../../constants/slice-namespace';
+import { BurgerIngredientsStateType } from '../../types/services-types';
+import { getIngredients } from '../thunks';
 
 const initialState: BurgerIngredientsStateType = {
   ingredients: [],

@@ -6,8 +6,14 @@ export type BurgerIngredientsStateType = {
   isSuccess: boolean
 }
 
+export type IngredientConstructorSliceType = {
+  uuid: string;
+  ingredient: IngredientType;
+}
+
 export type ConstructorIngredientsStateType = {
-  ingredients: IngredientType[];
+  ingredients: IngredientConstructorSliceType[];
+  bun: IngredientType | null;
 }
 
 export type IngredientDetailsType = {

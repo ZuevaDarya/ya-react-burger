@@ -1,18 +1,28 @@
 import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import cardStyles from "./ingredient-card.module.css";
 import Price from "../price/price";
-import { IngredientCardPropsType } from "../../types/types";
+import { IngredientCardPropsType, IngredientType } from "../../types/types";
 import { useState } from "react";
 import IngredientDetails from "../ingredient-details.tsx/ingredient-details";
 import { useModal } from "../../hooks/useModal";
 import Modal from "../modal/modal";
-import { useAppDispatch } from '../../services/store';
-import { addCurrentIngredient, removeCurrentIngredient } from '../../services/ingredient-details-slice';
+import { useAppDispatch } from "../../services/store";
+import {
+  addCurrentIngredient,
+  removeCurrentIngredient,
+} from "../../services/slices/ingredient-details-slice";
+import { useDrag } from "react-dnd";
 
 function IngredientCard({ ingredient }: IngredientCardPropsType) {
-  const [count, setCount] = useState<number>(1);
+  const [count, setCount] = useState<number>(0);
   const { isModalOpen, openModal, closeModal } = useModal();
+
   const dispatch = useAppDispatch();
+
+  const [, dragRef] = useDrag<IngredientType>({
+    type: "ingredient",
+    item: { ...ingredient },
+  });
 
   const onClose = () => {
     closeModal();
@@ -43,6 +53,8 @@ function IngredientCard({ ingredient }: IngredientCardPropsType) {
         className={`pl-4 pr-4 ${cardStyles["ingredient-card"]}`}
         onDoubleClick={handleDoubleClick}
         onClick={hadleClick}
+        ref={dragRef}
+        draggable
       >
         <img src={ingredient.image} alt={ingredient.name} />
         <Price price={ingredient.price} classes="text_type_digits-default" />

@@ -35,6 +35,9 @@ export type BurgerConstructorItemType = IngredientType & {
 
 export type BurgerConstructorItemPropsType = {
   ingredient: BurgerConstructorItemType;
+  isLocked?: boolean;
+  typePos?: ConstructorElemType;
+  uuid?: string;
 };
 
 export type IngredientType = {
@@ -78,13 +81,18 @@ export type ModalOverlayPropsType = Pick<ModalPropsType, "onClose">;
 
 export type IngredientDetailsPropsType = {
   ingredient: IngredientType;
-}
+};
 
 export type ColoriesItemPropsType = {
   nameCalories: string;
   numCalories: number;
-}
+};
 
 export type OrderDetailsPropsType = {
   orderId: string;
-}
+};
+
+export type BurgerTemplatePropsType = {
+  text: string;
+  type?: ConstructorElemType;
+};

@@ -2,26 +2,32 @@ import BurgerConstructorItem from "../burger-constructor-item/burger-constructor
 import Price from "../price/price";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import burgerConstructorStyles from "./burger-constructor.module.css";
-import {
-  ConstructorElemType,
-  IngredientsType,
-} from "../../constants/ingredients-type";
-import getSameIngredients from "../../utils/get-same-ingredients";
+import { ConstructorElemType } from "../../constants/ingredients-type";
 import { useModal } from "../../hooks/useModal";
 import OrderDetails from "../order-details/order-details";
 import Modal from "../modal/modal";
+import { useAppDispatch, useAppSelector } from "../../services/store";
+import BurgerTemplate from "../burger-template/burger-template";
+import { useDrop } from "react-dnd";
+import { addIngredientInConstructor } from "../../services/slices/constructor-ingredients-slice";
+import { IngredientType } from "../../types/types";
 
 function BurgerConstructor() {
   const { isModalOpen, openModal, closeModal } = useModal();
+  const dispatch = useAppDispatch();
+  const { ingredients, bun } = useAppSelector(
+    (store) => store.constructorIngredients
+  );
 
-  // const bun = getSameIngredients(ingredients, IngredientsType.Bun)[0];
-  // const buns = [
-  //   { ...bun, isLocked: true, typePos: ConstructorElemType.Top },
-  //   { ...bun, isLocked: true, typePos: ConstructorElemType.Bottom },
-  // ];
-  // const otherIngredients = ingredients.filter(
-  //   (ingredients) => ingredients.type !== IngredientsType.Bun
-  // );
+  const [{ isHover }, dropTarget] = useDrop({
+    accept: "ingredient",
+    drop(ingredient: IngredientType) {
+      dispatch(addIngredientInConstructor(ingredient));
+    },
+    collect: (monitor) => ({
+      isHover: monitor.isOver(),
+    }),
+  });
 
   const onClose = () => closeModal();
 
@@ -39,27 +45,47 @@ function BurgerConstructor() {
       )}
 
       <div
+        ref={dropTarget}
         className={`pt-25 pl-4 ${burgerConstructorStyles["burger-constructor"]}`}
       >
         <div
           className={`${burgerConstructorStyles["burger-constructor-list"]}`}
         >
-          <p>Перетащите сюда нужные ингредиенты, чтобы собрать космический бургер</p>
-          {/* {buns && <BurgerConstructorItem ingredient={buns[0]} />}
+          {!bun ? (
+            <BurgerTemplate text="булку" type={ConstructorElemType.Top} />
+          ) : (
+            <BurgerConstructorItem
+              ingredient={bun}
+              isLocked={true}
+              typePos={ConstructorElemType.Top}
+            />
+          )}
           <div
             className={`${burgerConstructorStyles["burger-constructor-list"]}`}
           >
-            {otherIngredients.map((ingredient) => (
-              <BurgerConstructorItem
-                key={ingredient._id}
-                ingredient={ingredient}
-              />
-            ))}
+            {ingredients.length === 0 && <BurgerTemplate text="начинку" />}
+            {ingredients.length !== 0 &&
+              ingredients.map(({ uuid, ingredient }) => (
+                <BurgerConstructorItem
+                  key={uuid}
+                  uuid={uuid}
+                  ingredient={ingredient}
+                />
+              ))}
           </div>
-          {buns && <BurgerConstructorItem ingredient={buns[1]} />} */}
+          {!bun ? (
+            <BurgerTemplate text="булку" type={ConstructorElemType.Bottom} />
+          ) : (
+            <BurgerConstructorItem
+              ingredient={bun}
+              isLocked={true}
+              typePos={ConstructorElemType.Bottom}
+            />
+          )}
         </div>
+
         <div className={burgerConstructorStyles["constructor-price-container"]}>
-          <Price price={610} classes="text_type_digits-medium" />
+          <Price price={0} classes="text_type_digits-medium" />
           <Button
             htmlType="button"
             type="primary"

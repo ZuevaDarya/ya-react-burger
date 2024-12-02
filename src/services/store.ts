@@ -10,7 +10,8 @@ const preloadedState: PreloadedStateType = {
     isSuccess: false
   },
   constructorIngredients: {
-    ingredients: []
+    ingredients: [],
+    bun: null
   },
   ingredientDetails: {
     currentIngredient: null
