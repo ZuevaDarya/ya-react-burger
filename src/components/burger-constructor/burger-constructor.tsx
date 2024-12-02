@@ -11,13 +11,12 @@ import BurgerTemplate from "../burger-template/burger-template";
 import { useDrop } from "react-dnd";
 import { addIngredientInConstructor } from "../../services/slices/constructor-ingredients-slice";
 import { IngredientType } from "../../types/types";
+import { useMemo } from 'react';
 
 function BurgerConstructor() {
   const { isModalOpen, openModal, closeModal } = useModal();
   const dispatch = useAppDispatch();
-  const { ingredients, bun } = useAppSelector(
-    (store) => store.constructorIngredients
-  );
+  const { ingredients, bun } = useAppSelector((store) => store.constructorIngredients);
 
   const [{ isHover }, dropTarget] = useDrop({
     accept: "ingredient",
@@ -35,6 +34,16 @@ function BurgerConstructor() {
     e.stopPropagation();
     openModal();
   };
+
+  const totalPrice = useMemo(() => {
+    let sum = 0;
+
+    if (bun) {
+      sum = bun.price * 2;
+    }
+
+    return ingredients.reduce((sum, { ingredient }) => sum += ingredient.price, sum);
+  }, [ingredients, bun]);
 
   return (
     <>
@@ -85,7 +94,7 @@ function BurgerConstructor() {
         </div>
 
         <div className={burgerConstructorStyles["constructor-price-container"]}>
-          <Price price={0} classes="text_type_digits-medium" />
+          <Price price={totalPrice} classes="text_type_digits-medium" />
           <Button
             htmlType="button"
             type="primary"
