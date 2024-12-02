@@ -22,12 +22,13 @@ export type IngredientDetailsType = {
 
 export type OrderType = {
   name: string;
-  order: { number: number };
-  success: boolean;
+  number: number;
 };
 
 export type OrderdetailsStateType = {
   order: OrderType | null;
+  isRequest: boolean;
+  isSuccess: boolean;
 }
 
 export type PreloadedStateType = {
@@ -36,3 +37,11 @@ export type PreloadedStateType = {
   ingredientDetails: IngredientDetailsType;
   orderDetails: OrderdetailsStateType;
 };
+
+export type OrderResponeType = {
+  name: string;
+  order: {
+    number: number;
+  }
+  success: boolean;
+} 

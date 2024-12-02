@@ -17,7 +17,9 @@ const preloadedState: PreloadedStateType = {
     currentIngredient: null
   },
   orderDetails: {
-    order: null
+    order: null,
+    isRequest: false,
+    isSuccess: false
   }
 }
 

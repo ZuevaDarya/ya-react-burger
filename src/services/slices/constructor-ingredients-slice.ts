@@ -24,12 +24,17 @@ const constructorIngredientsSlice = createSlice({
     removeIngredientFromConstructor: (state, { payload }: PayloadAction<string>) => {
       state.ingredients = state.ingredients.filter(({ uuid }) => uuid !== payload);
     },
+    clearConstructor: (state) => {
+      state.ingredients = [];
+      state.bun = null;
+    }
   }
 });
 
 export const {
   addIngredientInConstructor,
-  removeIngredientFromConstructor
+  removeIngredientFromConstructor,
+  clearConstructor
 } = constructorIngredientsSlice.actions;
 
 export default constructorIngredientsSlice.reducer;

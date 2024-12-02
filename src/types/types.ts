@@ -95,7 +95,7 @@ export type ColoriesItemPropsType = {
 };
 
 export type OrderDetailsPropsType = {
-  orderId: string;
+  orderId: number;
 };
 
 export type BurgerTemplatePropsType = {

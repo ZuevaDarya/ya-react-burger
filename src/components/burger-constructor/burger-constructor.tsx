@@ -9,14 +9,16 @@ import Modal from "../modal/modal";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import BurgerTemplate from "../burger-template/burger-template";
 import { useDrop } from "react-dnd";
-import { addIngredientInConstructor } from "../../services/slices/constructor-ingredients-slice";
+import { addIngredientInConstructor, clearConstructor } from "../../services/slices/constructor-ingredients-slice";
 import { IngredientType } from "../../types/types";
 import { useMemo } from 'react';
+import { createOrder } from '../../services/thunks';
 
 function BurgerConstructor() {
   const { isModalOpen, openModal, closeModal } = useModal();
   const dispatch = useAppDispatch();
   const { ingredients, bun } = useAppSelector((store) => store.constructorIngredients);
+  const order = useAppSelector((store) => store.orderDetails.order);
 
   const [{ isHover }, dropTarget] = useDrop({
     accept: "ingredient",
@@ -28,10 +30,26 @@ function BurgerConstructor() {
     }),
   });
 
-  const onClose = () => closeModal();
+  const onClose = () => {
+    closeModal();
+    dispatch(clearConstructor());
+  }
+
+  const ingredientsIds = useMemo(() => {
+    if (bun) {
+      return [
+        bun._id,
+        ...ingredients.map(({ ingredient }) => ingredient._id),
+        bun._id
+      ];
+    } else {
+      return ingredients.map(({ ingredient }) => ingredient._id);
+    }
+  }, [ingredients, bun]);
 
   const hadleClick = (e: React.SyntheticEvent<Element, Event>) => {
     e.stopPropagation();
+    dispatch(createOrder(ingredientsIds));
     openModal();
   };
 
@@ -47,9 +65,9 @@ function BurgerConstructor() {
 
   return (
     <>
-      {isModalOpen && (
+      {isModalOpen && order && (
         <Modal isTitle={false} onClose={onClose}>
-          <OrderDetails orderId="034536" />
+          <OrderDetails orderId={order.number} />
         </Modal>
       )}
 
@@ -57,21 +75,11 @@ function BurgerConstructor() {
         ref={dropTarget}
         className={`pt-25 pl-4 ${burgerConstructorStyles["burger-constructor"]}`}
       >
-        <div
-          className={`${burgerConstructorStyles["burger-constructor-list"]}`}
-        >
-          {!bun ? (
-            <BurgerTemplate text="булку" type={ConstructorElemType.Top} isHover={isHover} />
-          ) : (
-            <BurgerConstructorItem
-              ingredient={bun}
-              isLocked={true}
-              typePos={ConstructorElemType.Top}
-            />
-          )}
-          <div
-            className={`${burgerConstructorStyles["burger-constructor-list"]}`}
-          >
+        <div className={`${burgerConstructorStyles["burger-constructor-list"]}`}>
+          {!bun && <BurgerTemplate text="булку" type={ConstructorElemType.Top} isHover={isHover} />}
+          {bun && <BurgerConstructorItem ingredient={bun} isLocked={true}  typePos={ConstructorElemType.Top} />}
+    
+          <div className={`${burgerConstructorStyles["burger-constructor-list"]}`}>
             {ingredients.length === 0 && <BurgerTemplate text="начинку" isHover={isHover} />}
             {ingredients.length !== 0 &&
               ingredients.map(({ uuid, ingredient }) => (
@@ -82,15 +90,8 @@ function BurgerConstructor() {
                 />
               ))}
           </div>
-          {!bun ? (
-            <BurgerTemplate text="булку" type={ConstructorElemType.Bottom} isHover={isHover} />
-          ) : (
-            <BurgerConstructorItem
-              ingredient={bun}
-              isLocked={true}
-              typePos={ConstructorElemType.Bottom}
-            />
-          )}
+          {!bun && <BurgerTemplate text="булку" type={ConstructorElemType.Bottom} isHover={isHover} /> }
+          {bun && <BurgerConstructorItem ingredient={bun} isLocked={true} typePos={ConstructorElemType.Bottom} />}
         </div>
 
         <div className={burgerConstructorStyles["constructor-price-container"]}>
