@@ -1,3 +1,4 @@
+import { API_PATHS } from '../constants/api-constants';
 import { IngredientsTabsValue } from '../constants/ingredients-tabs';
 import { ConstructorElemType, IngredientsType } from '../constants/ingredients-type';
 import { IngredientConstructorSliceType } from './services-types';
@@ -111,3 +112,6 @@ export type BurgerTemplatePropsType = {
 };
 
 export type FillHashTableFuncType = (x: IngredientType[], y: IngredientConstructorSliceType[], z?: IngredientType | null) => HashTableType;
+
+type ApiPathsKeys = keyof typeof API_PATHS;
+export type  ApiPathsType = typeof API_PATHS[ApiPathsKeys];
