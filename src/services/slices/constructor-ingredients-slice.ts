@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ConstructorIngredientsStateType, SwapIngredientActionType } from '../../types/services-types';
+import { ConstructorIngredientsStateType, IngredientConstructorSliceType, SwapIngredientActionType } from '../../types/services-types';
 import { SliceNamespace } from '../../constants/slice-namespace';
 import { IngredientType } from '../../types/types';
 import uuid from 'react-uuid';
@@ -13,8 +13,13 @@ const constructorIngredientsSlice = createSlice({
   name: SliceNamespace.ConstructorIngredients,
   initialState,
   reducers: {
-    addIngredientInConstructor: (state, { payload }: PayloadAction<IngredientType>) => {
-      state.ingredients.push({ uuid: uuid(), ingredient: payload });
+    addIngredientInConstructor: {
+      reducer: (state, { payload }: PayloadAction<IngredientConstructorSliceType>) => {
+        state.ingredients.push(payload);
+      },
+      prepare: (ingredient: IngredientType) => {
+        return { payload: { ingredient, uuid: uuid() }};
+      }
     },
     addBunInConstrucor: (state, { payload }: PayloadAction<IngredientType>) => {
       state.bun = payload;
