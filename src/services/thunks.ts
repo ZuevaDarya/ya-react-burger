@@ -4,10 +4,12 @@ import { SliceNamespace } from '../constants/slice-namespace';
 import { IngredientType } from '../types/types';
 import { OrderResponeType } from '../types/services-types';
 
-export const getIngredients = createAsyncThunk<{ data: IngredientType[]}>(
+export const getIngredients = createAsyncThunk<{ data: IngredientType[] }>(
   `${SliceNamespace.BurgerIngredients}/getIngredients`,
   async () => {
-    return await fetch(`${BASE_URL}${API_PATHS.ingredients}`).then(res => res.json());
+    return await fetch(`${BASE_URL}${API_PATHS.ingredients}`)
+      .then(res => res.json())
+      .catch(err => console.log(err));
   }
 );
 
@@ -24,6 +26,7 @@ export const createOrder = createAsyncThunk<OrderResponeType, string[]>(
           ingredients: ingredientsIds,
         }),
       })
-      .then(res => res.json());
+      .then(res => res.json())
+      .catch(err => console.log(err));
   }
 );

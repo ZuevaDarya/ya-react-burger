@@ -16,7 +16,7 @@ export type NavLinkPropsType = {
 
 export type ScrollTabsRefType = React.MutableRefObject<HTMLElement | null>;
 
-export type HashTableType = { 
+export type HashTableType = {
   [x: string]: number;
 };
 
@@ -109,3 +109,5 @@ export type BurgerTemplatePropsType = {
   type?: ConstructorElemType;
   isHover?: boolean;
 };
+
+export type FillHashTableFuncType = (x: IngredientType[], y: IngredientConstructorSliceType[], z?: IngredientType | null) => HashTableType;

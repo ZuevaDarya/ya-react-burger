@@ -2,17 +2,18 @@ import BurgerConstructorItem from "../burger-constructor-item/burger-constructor
 import Price from "../price/price";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import burgerConstructorStyles from "./burger-constructor.module.css";
-import { ConstructorElemType } from "../../constants/ingredients-type";
+import { ConstructorElemType, IngredientsType } from "../../constants/ingredients-type";
 import { useModal } from "../../hooks/useModal";
 import OrderDetails from "../order-details/order-details";
 import Modal from "../modal/modal";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import BurgerTemplate from "../burger-template/burger-template";
 import { useDrop } from "react-dnd";
-import { addIngredientInConstructor, clearConstructor} from "../../services/slices/constructor-ingredients-slice";
+import { addBunInConstrucor, addIngredientInConstructor, clearConstructor} from "../../services/slices/constructor-ingredients-slice";
 import { IngredientType } from "../../types/types";
 import { useMemo } from 'react';
 import { createOrder } from '../../services/thunks';
+import { clearOrder } from '../../services/slices/order-details-slice';
 
 function BurgerConstructor() {
   const { isModalOpen, openModal, closeModal } = useModal();
@@ -24,7 +25,11 @@ function BurgerConstructor() {
   const [{ isHover }, dropTarget] = useDrop({
     accept: "ingredient",
     drop(ingredient: IngredientType) {
-      dispatch(addIngredientInConstructor(ingredient));
+      if (ingredient.type === IngredientsType.Bun) {
+        dispatch(addBunInConstrucor(ingredient));
+      } else {
+        dispatch(addIngredientInConstructor(ingredient));
+      }
     },
     collect: (monitor) => ({
       isHover: monitor.isOver(),
@@ -34,6 +39,7 @@ function BurgerConstructor() {
   const onClose = () => {
     closeModal();
     dispatch(clearConstructor());
+    dispatch(clearOrder());
   }
 
   const ingredientsIds = useMemo(() => {

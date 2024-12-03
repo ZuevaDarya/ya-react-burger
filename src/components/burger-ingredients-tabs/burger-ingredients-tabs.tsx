@@ -14,7 +14,6 @@ const BurgerIngredientsTabs = forwardRef<HTMLDivElement, BurgerIngredientsTabsPr
   current,
   setCurrent
 }, ref) => {
-
   const handleClick = (value: IngredientsTabsValue | string) => {
     setCurrent(value);
 

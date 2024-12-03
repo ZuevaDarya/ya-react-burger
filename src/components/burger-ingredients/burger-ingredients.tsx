@@ -7,9 +7,9 @@ import {
 import ingredientsStyles from "./burger-ingredients.module.css";
 import { IngredientsType } from "../../constants/ingredients-type";
 import { useMemo, useRef, useState } from "react";
-import getSameIngredients from "../../utils/get-same-ingredients";
+import getSameIngredients from "../../utils/functions/get-same-ingredients";
 import { useAppSelector } from "../../services/store";
-import { fillHashTable } from "../../utils/functions/fill-hash-table";
+import fillHashTable from "../../utils/functions/fill-hash-table";
 
 function BurgerIngredients() {
   const tabsRef = useRef<HTMLDivElement | null>(null);
@@ -22,16 +22,29 @@ function BurgerIngredients() {
   );
 
   const allIngredients = useAppSelector((store) => store.burgerIngredients.ingredients);
-  const { ingredients, bun }  = useAppSelector((store) => store.constructorIngredients);
+  const { ingredients, bun } = useAppSelector((store) => store.constructorIngredients);
 
   const ingredientsCountHashTable = fillHashTable(allIngredients, ingredients, bun);
 
-  const buns = useMemo(() => getSameIngredients(allIngredients, IngredientsType.Bun), [allIngredients]);
-  const sauce = useMemo(() => getSameIngredients(allIngredients, IngredientsType.Sauce), [allIngredients]);
-  const topping = useMemo(() => getSameIngredients(allIngredients, IngredientsType.Main), [allIngredients]);
+  const buns = useMemo(
+    () => getSameIngredients(allIngredients, IngredientsType.Bun), 
+    [allIngredients]
+  );
+  const sauce = useMemo(
+    () => getSameIngredients(allIngredients, IngredientsType.Sauce), 
+    [allIngredients]
+  );
+  const topping = useMemo(
+    () => getSameIngredients(allIngredients, IngredientsType.Main), 
+    [allIngredients]
+  );
 
   const handleScroll = () => {
-    if (tabsRef.current && bunsRef.current && sauceRef.current && toppingRef.current) {
+    if (tabsRef.current &&
+      bunsRef.current &&
+      sauceRef.current &&
+      toppingRef.current
+    ) {
       const tabsBottomPos = tabsRef.current.getBoundingClientRect().bottom;
       const bunsTopPos = bunsRef.current.getBoundingClientRect().top;
       const sauceTopPos = sauceRef.current.getBoundingClientRect().top;
@@ -43,7 +56,10 @@ function BurgerIngredients() {
 
       if (bunsDistance < sauceDistance && bunsDistance < toppingDistance) {
         setCurrent(IngredientsTabsValue.One);
-      } else if (sauceDistance < bunsDistance && sauceDistance < toppingDistance) {
+      } else if (
+        sauceDistance < bunsDistance &&
+        sauceDistance < toppingDistance
+      ) {
         setCurrent(IngredientsTabsValue.Two);
       } else {
         setCurrent(IngredientsTabsValue.Three);
