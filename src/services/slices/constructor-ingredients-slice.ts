@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ConstructorIngredientsStateType } from '../../types/services-types';
+import { ConstructorIngredientsStateType, SwapIngredientActionType } from '../../types/services-types';
 import { SliceNamespace } from '../../constants/slice-namespace';
 import { IngredientsType } from '../../constants/ingredients-type';
 import { IngredientType } from '../../types/types';
@@ -27,6 +27,9 @@ const constructorIngredientsSlice = createSlice({
     clearConstructor: (state) => {
       state.ingredients = [];
       state.bun = null;
+    },
+    swapIngredients: (state, { payload }: PayloadAction<SwapIngredientActionType>) => {
+      state.ingredients.splice(payload.toIndex, 0, state.ingredients.splice(payload.fromIndex, 1)[0]);
     }
   }
 });
@@ -34,7 +37,8 @@ const constructorIngredientsSlice = createSlice({
 export const {
   addIngredientInConstructor,
   removeIngredientFromConstructor,
-  clearConstructor
+  clearConstructor,
+  swapIngredients
 } = constructorIngredientsSlice.actions;
 
 export default constructorIngredientsSlice.reducer;

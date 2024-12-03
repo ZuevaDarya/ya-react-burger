@@ -9,7 +9,7 @@ import Modal from "../modal/modal";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import BurgerTemplate from "../burger-template/burger-template";
 import { useDrop } from "react-dnd";
-import { addIngredientInConstructor, clearConstructor } from "../../services/slices/constructor-ingredients-slice";
+import { addIngredientInConstructor, clearConstructor} from "../../services/slices/constructor-ingredients-slice";
 import { IngredientType } from "../../types/types";
 import { useMemo } from 'react';
 import { createOrder } from '../../services/thunks';
@@ -17,6 +17,7 @@ import { createOrder } from '../../services/thunks';
 function BurgerConstructor() {
   const { isModalOpen, openModal, closeModal } = useModal();
   const dispatch = useAppDispatch();
+  
   const { ingredients, bun } = useAppSelector((store) => store.constructorIngredients);
   const order = useAppSelector((store) => store.orderDetails.order);
 
@@ -77,21 +78,22 @@ function BurgerConstructor() {
       >
         <div className={`${burgerConstructorStyles["burger-constructor-list"]}`}>
           {!bun && <BurgerTemplate text="булку" type={ConstructorElemType.Top} isHover={isHover} />}
-          {bun && <BurgerConstructorItem ingredient={bun} isLocked={true}  typePos={ConstructorElemType.Top} />}
+          {bun && <BurgerConstructorItem ingredient={bun} isLocked={true}  typePos={ConstructorElemType.Top} idx={-1} />}
     
           <div className={`${burgerConstructorStyles["burger-constructor-list"]}`}>
             {ingredients.length === 0 && <BurgerTemplate text="начинку" isHover={isHover} />}
             {ingredients.length !== 0 &&
-              ingredients.map(({ uuid, ingredient }) => (
+              ingredients.map(({ uuid, ingredient }, idx) => (
                 <BurgerConstructorItem
                   key={uuid}
                   uuid={uuid}
                   ingredient={ingredient}
+                  idx={idx}
                 />
               ))}
           </div>
           {!bun && <BurgerTemplate text="булку" type={ConstructorElemType.Bottom} isHover={isHover} /> }
-          {bun && <BurgerConstructorItem ingredient={bun} isLocked={true} typePos={ConstructorElemType.Bottom} />}
+          {bun && <BurgerConstructorItem ingredient={bun} isLocked={true} typePos={ConstructorElemType.Bottom} idx={-2} />}
         </div>
 
         <div className={burgerConstructorStyles["constructor-price-container"]}>

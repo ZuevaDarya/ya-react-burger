@@ -44,4 +44,9 @@ export type OrderResponeType = {
     number: number;
   }
   success: boolean;
-} 
+};
+
+export type SwapIngredientActionType = {
+  toIndex: number; 
+  fromIndex: number;
+};

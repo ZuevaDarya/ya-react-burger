@@ -1,5 +1,6 @@
 import { IngredientsTabsValue } from '../constants/ingredients-tabs';
 import { ConstructorElemType, IngredientsType } from '../constants/ingredients-type';
+import { IngredientConstructorSliceType } from './services-types';
 
 export type NavListPropsType = {
   children: React.ReactNode;
@@ -44,7 +45,12 @@ export type BurgerConstructorItemPropsType = {
   isLocked?: boolean;
   typePos?: ConstructorElemType;
   uuid?: string;
+  idx: number;
 };
+
+export type ConstructorElementDragType = IngredientConstructorSliceType & {
+  idx: number;
+}
 
 export type IngredientType = {
   _id: string;
