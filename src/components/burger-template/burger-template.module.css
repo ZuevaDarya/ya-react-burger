@@ -1,0 +1,10 @@
+.burger-template {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.burger-template_hovered {
+  border: 2px dotted var(--interface-accent);
+}

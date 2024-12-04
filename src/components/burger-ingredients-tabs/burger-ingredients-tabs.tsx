@@ -1,5 +1,5 @@
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useState } from "react";
+import { forwardRef } from "react";
 import {
   INGREDIENTS_TABS,
   IngredientsTabsValue,
@@ -7,15 +7,13 @@ import {
 import { BurgerIngredientsTabsPropsType } from "../../types/types";
 import tabsStyles from "./burger-ingredients-tabs.module.css";
 
-function BurgerIngredientsTabs({
+const BurgerIngredientsTabs = forwardRef<HTMLDivElement, BurgerIngredientsTabsPropsType>(({
   bunsRef,
   sauceRef,
   toppingRef,
-}: BurgerIngredientsTabsPropsType) {
-  const [current, setCurrent] = useState<IngredientsTabsValue | string>(
-    IngredientsTabsValue.One
-  );
-
+  current,
+  setCurrent
+}, ref) => {
   const handleClick = (value: IngredientsTabsValue | string) => {
     setCurrent(value);
 
@@ -36,7 +34,7 @@ function BurgerIngredientsTabs({
   };
 
   return (
-    <div className={`${tabsStyles["tabs-container"]} mb-10`}>
+    <div ref={ref} className={`${tabsStyles["tabs-container"]} mb-10`}>
       {INGREDIENTS_TABS.map((tab, idx) => (
         <Tab
           value={tab.value}
@@ -49,6 +47,6 @@ function BurgerIngredientsTabs({
       ))}
     </div>
   );
-}
+});
 
 export default BurgerIngredientsTabs;

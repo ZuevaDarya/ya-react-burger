@@ -1,4 +1,7 @@
+import { API_PATHS } from '../constants/api-constants';
+import { IngredientsTabsValue } from '../constants/ingredients-tabs';
 import { ConstructorElemType, IngredientsType } from '../constants/ingredients-type';
+import { IngredientConstructorSliceType } from './services-types';
 
 export type NavListPropsType = {
   children: React.ReactNode;
@@ -14,9 +17,14 @@ export type NavLinkPropsType = {
 
 export type ScrollTabsRefType = React.MutableRefObject<HTMLElement | null>;
 
+export type HashTableType = {
+  [x: string]: number;
+};
+
 export type BurgerIngredientsSectionPropsType = {
   title: string;
   ingredients: IngredientType[];
+  hashTable: HashTableType;
 };
 
 export type PricePropsType = Pick<IngredientType, "price"> & {
@@ -25,6 +33,7 @@ export type PricePropsType = Pick<IngredientType, "price"> & {
 
 export type IngredientCardPropsType = {
   ingredient: IngredientType;
+  count: number;
 };
 
 export type BurgerConstructorItemType = IngredientType & {
@@ -34,7 +43,15 @@ export type BurgerConstructorItemType = IngredientType & {
 
 export type BurgerConstructorItemPropsType = {
   ingredient: BurgerConstructorItemType;
+  isLocked?: boolean;
+  typePos?: ConstructorElemType;
+  uuid?: string;
+  idx: number;
 };
+
+export type ConstructorElementDragType = IngredientConstructorSliceType & {
+  idx: number;
+}
 
 export type IngredientType = {
   _id: string;
@@ -59,6 +76,8 @@ export type BurgerIngredientsTabsPropsType = {
   bunsRef: ScrollTabsRefType;
   sauceRef: ScrollTabsRefType;
   toppingRef: ScrollTabsRefType;
+  current: IngredientsTabsValue | string;
+  setCurrent: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type BurgerConstructorPropsType = {
@@ -75,13 +94,24 @@ export type ModalOverlayPropsType = Pick<ModalPropsType, "onClose">;
 
 export type IngredientDetailsPropsType = {
   ingredient: IngredientType;
-}
+};
 
 export type ColoriesItemPropsType = {
   nameCalories: string;
   numCalories: number;
-}
+};
 
 export type OrderDetailsPropsType = {
-  orderId: string;
-}
+  orderId: number;
+};
+
+export type BurgerTemplatePropsType = {
+  text: string;
+  type?: ConstructorElemType;
+  isHover?: boolean;
+};
+
+export type FillHashTableFuncType = (x: IngredientType[], y: IngredientConstructorSliceType[], z?: IngredientType | null) => HashTableType;
+
+type ApiPathsKeys = keyof typeof API_PATHS;
+export type  ApiPathsType = typeof API_PATHS[ApiPathsKeys];
