@@ -6,6 +6,7 @@ function NavListItem({
   linkHref,
   isActive,
   classes,
+  linkClasses,
   children,
 }: NavLinkPropsType) {
   const LINK_TYPES = {
@@ -22,7 +23,7 @@ function NavListItem({
     <li className={`${navItemStyles["nav-list-item"]} pt-4 pb-4 ${classes}`}>
       {children}
       <a
-        className={`text text_type_main-default ${linkActiveClass}`}
+        className={`text text_type_main-default ${linkClasses} ${linkActiveClass}`}
         href={linkHref}
       >
         {linkText}

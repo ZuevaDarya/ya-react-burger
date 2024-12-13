@@ -28,8 +28,6 @@ function RegistrationPage() {
             onChange={handleChangeInput}
             value={formData.name}
             name={InputName.UserName}
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
           />
           <EmailInput
             onChange={handleChangeInput}

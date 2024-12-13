@@ -33,8 +33,6 @@ function ResetpasswordPage() {
             onChange={handleChangeInput}
             value={formData.token}
             name={InputName.Token}
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
           />
           <Button type="primary" size="medium" htmlType="submit">
             Сохранить

@@ -13,6 +13,7 @@ export type NavLinkPropsType = {
   linkHref: string;
   isActive: boolean;
   classes?: string;
+  linkClasses?: string;
   children?: React.ReactNode;
 };
 
@@ -145,3 +146,5 @@ export type ResetPasswordFormType = {
   password: string;
   token: string;
 }
+
+export type ProfileFormType = RegistrationFormType;
