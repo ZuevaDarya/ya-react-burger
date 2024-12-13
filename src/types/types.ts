@@ -137,3 +137,6 @@ export type RegistrationFormType = LoginFormType & {
   name: string;
 };
 
+export type ForgotPasswordFormType = {
+  email: string;
+}
