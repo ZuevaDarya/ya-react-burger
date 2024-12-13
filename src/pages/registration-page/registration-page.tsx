@@ -10,7 +10,6 @@ import { AppRoute } from "../../constants/app-route";
 import { InputName } from "../../constants/input-name";
 import { useForm } from "../../hooks/useForm";
 import { RegistrationFormType } from "../../types/types";
-import loginStyles from "../login-page/login-page.module.css";
 
 function RegistrationPage() {
   const { formData, handleChangeInput } = useForm<RegistrationFormType>({
@@ -21,7 +20,7 @@ function RegistrationPage() {
 
   return (
     <main>
-      <div className={loginStyles.container}>
+      <div className="page-container page-container_gap">
         <Form title="Регистрация">
           <Input
             type="text"

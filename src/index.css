@@ -64,3 +64,17 @@ main {
   width: 100%;
   max-width: 27px;
 }
+
+.page-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-container_gap {
+  gap: 80px;
+}

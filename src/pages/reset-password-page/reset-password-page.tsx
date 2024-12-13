@@ -9,7 +9,6 @@ import { AppRoute } from "../../constants/app-route";
 import { InputName } from "../../constants/input-name";
 import { useForm } from "../../hooks/useForm";
 import { ResetPasswordFormType } from "../../types/types";
-import loginStyles from "../login-page/login-page.module.css";
 
 function ResetpasswordPage() {
   const { formData, handleChangeInput } = useForm<ResetPasswordFormType>({
@@ -19,7 +18,7 @@ function ResetpasswordPage() {
 
   return (
     <main>
-      <div className={loginStyles.container}>
+      <div className="page-container page-container_gap">
         <Form title="Восстановление пароля">
           <PasswordInput
             onChange={handleChangeInput}

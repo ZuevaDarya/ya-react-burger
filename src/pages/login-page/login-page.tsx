@@ -19,7 +19,7 @@ function LoginPage() {
 
   return (
     <main>
-      <div className={loginStyles.container}>
+      <div className="page-container page-container_gap">
         <Form title="Вход">
           <EmailInput
             onChange={handleChangeInput}
