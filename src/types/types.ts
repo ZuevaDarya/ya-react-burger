@@ -1,4 +1,5 @@
 import { API_PATHS } from '../constants/api-constants';
+import { AppRoute } from '../constants/app-route';
 import { IngredientsTabsValue } from '../constants/ingredients-tabs';
 import { ConstructorElemType, IngredientsType } from '../constants/ingredients-type';
 import { IngredientConstructorSliceType } from './services-types';
@@ -115,3 +116,19 @@ export type FillHashTableFuncType = (x: IngredientType[], y: IngredientConstruct
 
 type ApiPathsKeys = keyof typeof API_PATHS;
 export type  ApiPathsType = typeof API_PATHS[ApiPathsKeys];
+
+export type FormPropsType = {
+  title?: string;
+  children: React.ReactNode;
+};
+
+export type FormLinkPropsType = {
+  route: AppRoute;
+  preText?: string;
+  linkText: string;
+};
+
+export type LoginFormType = {
+  email: string;
+  password: string;
+}
