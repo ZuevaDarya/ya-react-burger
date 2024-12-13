@@ -131,4 +131,9 @@ export type FormLinkPropsType = {
 export type LoginFormType = {
   email: string;
   password: string;
-}
+};
+
+export type RegistrationFormType = LoginFormType & {
+  name: string;
+};
+
