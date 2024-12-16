@@ -9,12 +9,11 @@ export type NavListPropsType = {
 };
 
 export type NavLinkPropsType = {
-  linkText: string;
-  linkHref: string;
-  isActive: boolean;
+  route: AppRoute;
   classes?: string;
   linkClasses?: string;
   children?: React.ReactNode;
+  isProfileLink?: boolean;
 };
 
 export type ScrollTabsRefType = React.MutableRefObject<HTMLElement | null>;
@@ -116,7 +115,7 @@ export type BurgerTemplatePropsType = {
 export type FillHashTableFuncType = (x: IngredientType[], y: IngredientConstructorSliceType[], z?: IngredientType | null) => HashTableType;
 
 type ApiPathsKeys = keyof typeof API_PATHS;
-export type  ApiPathsType = typeof API_PATHS[ApiPathsKeys];
+export type ApiPathsType = typeof API_PATHS[ApiPathsKeys];
 
 export type FormPropsType = {
   title?: string;

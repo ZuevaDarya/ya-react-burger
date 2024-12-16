@@ -1,33 +1,30 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, NavLinkRenderProps } from "react-router-dom";
 import { NavLinkPropsType } from "../../types/types";
 import navItemStyles from "./nav-list-item.module.css";
 
 function NavListItem({
-  linkText,
-  linkHref,
-  isActive,
+  route,
   classes,
-  linkClasses,
+  isProfileLink,
   children,
 }: NavLinkPropsType) {
-  const LINK_TYPES = {
-    default: navItemStyles["nav-link_default"],
-    disabled: navItemStyles["nav-link_disabled"],
-  };
+  const getLinkClasses = ({ isActive }: NavLinkRenderProps) => {
+    const defaultClasses = `
+      text text_type_main-default 
+      ${navItemStyles["nav-link"]} 
+      ${isProfileLink && "text text_type_main-medium"}
+    `;
 
-  let linkActiveClass = LINK_TYPES.default;
-  if (!isActive) {
-    linkActiveClass = LINK_TYPES.disabled;
-  }
+    if (!isActive) {
+      return `${defaultClasses} ${navItemStyles["nav-link_disabled"]}`;
+    }
+    return `${defaultClasses} ${navItemStyles["nav-link_default"]}`;
+  };
 
   return (
     <li className={`${navItemStyles["nav-list-item"]} pt-4 pb-4 ${classes}`}>
-      <NavLink
-        className={`text text_type_main-default ${navItemStyles["nav-link"]} ${linkClasses} ${linkActiveClass}`}
-        to={linkHref}
-      >
+      <NavLink className={getLinkClasses} to={route}>
         {children}
-        {linkText}
       </NavLink>
     </li>
   );

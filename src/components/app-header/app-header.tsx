@@ -7,24 +7,35 @@ import {
 import NavList from "../nav-list/nav-list";
 import NavListItem from "../nav-list-item/nav-list-item";
 import headerStyles from "./app-header.module.css";
-import { AppRoute } from '../../constants/app-route';
+import { AppRoute } from "../../constants/app-route";
+import { useLocation } from "react-router-dom";
+import { useCallback } from "react";
 
 function AppHeader() {
+  const { pathname } = useLocation();
+
+  const getIconType = useCallback((pathname: string, currentRoute: AppRoute) => {
+      return pathname === currentRoute ? "primary" : "secondary";
+    }, [pathname]);
+
   return (
     <header className={`${headerStyles.header} pt-4 pb-4`}>
       <nav className={headerStyles.nav}>
         <NavList>
-          <NavListItem linkText="Конструктор" linkHref={AppRoute.Home} isActive={true} classes="pr-5">
-            <BurgerIcon type="primary" className="nav-icon_primary" />
+          <NavListItem route={AppRoute.Home} classes="pr-5">
+            <BurgerIcon type={getIconType(pathname, AppRoute.Home)} />
+            Конструктор
           </NavListItem>
-          <NavListItem linkText="Лента заказов" linkHref="#" isActive={false} classes="pl-5 pr-5">
-            <ListIcon type="disabled" className="nav-icon_disabled" />
+          <NavListItem route={AppRoute.Error} classes="pl-5 pr-5">
+            <ListIcon type={getIconType(pathname, AppRoute.Error)} />
+            Лента заказов
           </NavListItem>
         </NavList>
         <Logo className={headerStyles.logo} />
         <NavList>
-          <NavListItem linkText="Личный кабинет" linkHref={AppRoute.Profile} isActive={false} classes="pl-5">
-            <ProfileIcon type="disabled" className="nav-icon_disabled" />
+          <NavListItem route={AppRoute.Profile} classes="pl-5">
+            <ProfileIcon type={getIconType(pathname, AppRoute.Profile)} />
+            Личный кабинет
           </NavListItem>
         </NavList>
       </nav>

@@ -10,7 +10,7 @@ import { useForm } from "../../hooks/useForm";
 import { ProfileFormType } from "../../types/types";
 import NavListItem from "../../components/nav-list-item/nav-list-item";
 import profileStyles from "./profile-page.module.css";
-import { AppRoute } from '../../constants/app-route';
+import { AppRoute } from "../../constants/app-route";
 
 function ProfilePage() {
   const { formData, handleChangeInput, isChangedData, setIsChangedData } =
@@ -29,24 +29,15 @@ function ProfilePage() {
       <aside className={profileStyles.aside}>
         <nav>
           <ul>
-            <NavListItem
-              linkText="Профиль"
-              linkHref={AppRoute.Profile}
-              isActive={true}
-              linkClasses="text text_type_main-medium"
-            />
-            <NavListItem
-              linkText="История заказов"
-              linkHref="#"
-              isActive={false}
-              linkClasses="text text_type_main-medium"
-            />
-            <NavListItem
-              linkText="Выход"
-              linkHref="#"
-              isActive={false}
-              linkClasses="text text_type_main-medium"
-            />
+            <NavListItem route={AppRoute.Profile} isProfileLink={true}>
+              Профиль
+            </NavListItem>
+            <NavListItem route={AppRoute.Error} isProfileLink={true}>
+              История заказов
+            </NavListItem>
+            <NavListItem route={AppRoute.Error} isProfileLink={true}>
+              Выход
+            </NavListItem>
           </ul>
         </nav>
 
