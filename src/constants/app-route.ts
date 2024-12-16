@@ -7,4 +7,6 @@ export enum AppRoute {
   Profile = '/profile',
   Ingredient = '/ingredients/:id',
   Error = '*',
+  Orders = '/profile/orders',
+  Order = '/profile/orders/:id'
 };

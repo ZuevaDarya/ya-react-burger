@@ -32,7 +32,7 @@ function ProfilePage() {
             <NavListItem route={AppRoute.Profile} isProfileLink={true}>
               Профиль
             </NavListItem>
-            <NavListItem route={AppRoute.Error} isProfileLink={true}>
+            <NavListItem route={AppRoute.Orders} isProfileLink={true}>
               История заказов
             </NavListItem>
             <NavListItem route={AppRoute.Error} isProfileLink={true}>

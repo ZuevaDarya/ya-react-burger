@@ -30,6 +30,8 @@ function App() {
         <Route path={AppRoute.Registration} element={<RegistrationPage />} />
         <Route path={AppRoute.Profile} element={<ProfilePage />} />
         <Route path={AppRoute.Ingredient} element={<IngredientPage />} />
+        <Route path={AppRoute.Orders} element={<></>} />
+        <Route path={AppRoute.Order} element={<></>} />
       </Route>
       <Route path={AppRoute.Error} element={<ErrorPage />} />
     </Routes>
