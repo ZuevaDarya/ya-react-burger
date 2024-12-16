@@ -1,20 +1,21 @@
-.nav-list-item {
+
+.nav-list-item:hover {
+  cursor: pointer;
+}
+
+.nav-link {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 8px;
 }
 
-.nav-list-item:hover {
-  cursor: pointer;
-}
-
-.nav-list-item:hover > svg {
-  fill: var(--scroll-hover-color);
-}
-
-.nav-list-item:hover > a {
+.nav-link:hover {
   color: var(--scroll-hover-color);
+}
+
+.nav-link:hover > svg {
+  fill: var(--scroll-hover-color);
 }
 
 .nav-link_default {

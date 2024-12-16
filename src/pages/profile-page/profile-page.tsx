@@ -10,6 +10,7 @@ import { useForm } from "../../hooks/useForm";
 import { ProfileFormType } from "../../types/types";
 import NavListItem from "../../components/nav-list-item/nav-list-item";
 import profileStyles from "./profile-page.module.css";
+import { AppRoute } from '../../constants/app-route';
 
 function ProfilePage() {
   const { formData, handleChangeInput, isChangedData, setIsChangedData } =
@@ -30,7 +31,7 @@ function ProfilePage() {
           <ul>
             <NavListItem
               linkText="Профиль"
-              linkHref="#"
+              linkHref={AppRoute.Profile}
               isActive={true}
               linkClasses="text text_type_main-medium"
             />

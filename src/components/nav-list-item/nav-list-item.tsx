@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import { NavLinkPropsType } from "../../types/types";
 import navItemStyles from "./nav-list-item.module.css";
 
@@ -21,13 +22,13 @@ function NavListItem({
 
   return (
     <li className={`${navItemStyles["nav-list-item"]} pt-4 pb-4 ${classes}`}>
-      {children}
-      <a
-        className={`text text_type_main-default ${linkClasses} ${linkActiveClass}`}
-        href={linkHref}
+      <NavLink
+        className={`text text_type_main-default ${navItemStyles["nav-link"]} ${linkClasses} ${linkActiveClass}`}
+        to={linkHref}
       >
+        {children}
         {linkText}
-      </a>
+      </NavLink>
     </li>
   );
 }
