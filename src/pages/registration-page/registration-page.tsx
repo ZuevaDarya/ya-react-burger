@@ -22,6 +22,7 @@ function RegistrationPage() {
     <main>
       <div className="page-container page-container_gap">
         <Form title="Регистрация">
+           {/* @ts-expect-error: onPointerEnterCapture, onPointerLeaveCapture warnings otherwise */}
           <Input
             type="text"
             placeholder="Имя"

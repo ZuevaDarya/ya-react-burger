@@ -19,9 +19,9 @@ function ProfilePage() {
       password: "111",
     });
 
-    const handleBtnCancelClick = () => {
-      setIsChangedData(false);
-    }
+  const handleBtnCancelClick = () => {
+    setIsChangedData(false);
+  };
 
   return (
     <main className={profileStyles.main}>
@@ -55,6 +55,7 @@ function ProfilePage() {
       </aside>
 
       <Form>
+        {/* @ts-expect-error: onPointerEnterCapture, onPointerLeaveCapture warnings otherwise */}
         <Input
           type="text"
           placeholder="Имя"
@@ -83,7 +84,12 @@ function ProfilePage() {
 
         {isChangedData && (
           <div className={profileStyles["buttons-block"]}>
-            <Button htmlType="button" type="secondary" size="medium" onClick={handleBtnCancelClick}>
+            <Button
+              htmlType="button"
+              type="secondary"
+              size="medium"
+              onClick={handleBtnCancelClick}
+            >
               Отменить
             </Button>
             <Button htmlType="submit" type="primary" size="medium">

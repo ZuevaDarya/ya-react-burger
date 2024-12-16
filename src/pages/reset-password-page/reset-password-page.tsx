@@ -27,6 +27,7 @@ function ResetpasswordPage() {
             placeholder="Введите новый пароль"
             icon="ShowIcon"
           />
+           {/* @ts-expect-error: onPointerEnterCapture, onPointerLeaveCapture warnings otherwise */}
           <Input
             type="text"
             placeholder="Введите код из письма"
