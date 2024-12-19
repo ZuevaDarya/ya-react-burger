@@ -36,6 +36,7 @@ export type PreloadedStateType = {
   constructorIngredients: ConstructorIngredientsStateType;
   ingredientDetails: IngredientDetailsType;
   orderDetails: OrderdetailsStateType;
+  userInfo: UserStateType;
 };
 
 export type OrderResponeType = {
@@ -49,4 +50,48 @@ export type OrderResponeType = {
 export type SwapIngredientActionType = {
   toIndex: number; 
   fromIndex: number;
+};
+
+export type UserType = {
+  name: string;
+  email: string;
+};
+
+export type UserStateType = {
+  user: UserType | null;
+  isRequest: boolean;
+  isSuccess: boolean;
+  error: string | null;
+};
+
+export type RegisterResponseType = {
+  success: boolean;
+  user: UserType;
+  accessToken: string;
+  refreshToken: string;
+};
+
+export type LoginResponseType = RegisterResponseType;
+
+export type LogoutResponseType = {
+  success: boolean;
+  message: string;
+};
+
+export type UpdateTokenResponseType = {
+  success: boolean;
+  accessToken: string;
+  refreshToken: string;
+};
+
+export type UpdateUserResponseType = Omit<RegisterResponseType, "accessToken" | "refreshToken"> ;
+
+export type GetUserResponseType = {
+  user: UserType;
+  success: boolean;
+};
+
+export type ErrorResponseType = {
+  success: boolean;
+  message: string;
 };
