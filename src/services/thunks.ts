@@ -2,10 +2,12 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { API_PATHS } from '../constants/api-constants';
 import { SliceNamespace } from '../constants/slice-namespace';
 import {
+  ForgotPasswordFormType,
   IngredientType,
   LoginFormType,
   ProfileFormType,
-  RegistrationFormType
+  RegistrationFormType,
+  ResetPasswordFormType
 } from '../types/types';
 import {
   GetUserResponseType,
@@ -13,6 +15,7 @@ import {
   LogoutResponseType,
   OrderResponeType,
   RegisterResponseType,
+  ResetPasswordResponseType,
   UpdateTokenResponseType,
   UpdateUserResponseType
 } from '../types/services-types';
@@ -138,3 +141,34 @@ export const getUser = createAsyncThunk<GetUserResponseType>(
     return await request(API_PATHS.user, options);
   }
 );
+
+export const firstStepResetPassword = createAsyncThunk<ResetPasswordResponseType, ForgotPasswordFormType>(
+  `${SliceNamespace.User}/firstStepResetPassword`,
+  async (data) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    };
+
+    return await request(API_PATHS.passwordReset, options);
+  }
+);
+
+export const lastStepResetPassword = createAsyncThunk<ResetPasswordResponseType, ResetPasswordFormType>(
+  `${SliceNamespace.User}/lastStepResetPassword`,
+  async (data) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    };
+
+    return await request(API_PATHS.reset, options);
+  }
+);
+

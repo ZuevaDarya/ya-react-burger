@@ -3,5 +3,6 @@ export enum SliceNamespace {
   ConstructorIngredients = 'constructor-ingredients',
   IngredientDetails = 'ingredient-details',
   OrderDetails = 'order-details',
-  User = 'user'
+  User = 'user',
+  ResetPassword = 'reset-password'
 }

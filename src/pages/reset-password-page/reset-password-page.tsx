@@ -9,6 +9,9 @@ import { AppRoute } from "../../constants/app-route";
 import { InputName } from "../../constants/input-name";
 import { useForm } from "../../hooks/useForm";
 import { ResetPasswordFormType } from "../../types/types";
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../services/store';
+import { lastStepResetPassword } from '../../services/thunks';
 
 function ResetpasswordPage() {
   const { formData, handleChangeInput } = useForm<ResetPasswordFormType>({
@@ -16,16 +19,26 @@ function ResetpasswordPage() {
     token: "",
   });
 
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await dispatch(lastStepResetPassword(formData)).unwrap();
+    navigate(AppRoute.Login, {replace: true});
+  };
+
   return (
     <main>
       <div className="page-container page-container_gap">
-        <Form title="Восстановление пароля">
+        <Form title="Восстановление пароля" handleSubmit={handleSubmit}>
           <PasswordInput
             onChange={handleChangeInput}
             value={formData.password}
             name={InputName.Password}
             placeholder="Введите новый пароль"
             icon="ShowIcon"
+            required
           />
            {/* @ts-expect-error: onPointerEnterCapture, onPointerLeaveCapture warnings otherwise */}
           <Input
@@ -34,6 +47,7 @@ function ResetpasswordPage() {
             onChange={handleChangeInput}
             value={formData.token}
             name={InputName.Token}
+            required
           />
           <Button type="primary" size="medium" htmlType="submit">
             Сохранить

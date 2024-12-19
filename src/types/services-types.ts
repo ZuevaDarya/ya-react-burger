@@ -37,6 +37,7 @@ export type PreloadedStateType = {
   ingredientDetails: IngredientDetailsType;
   orderDetails: OrderdetailsStateType;
   userInfo: UserStateType;
+  resetPassword: ResetPasswordStateType;
 };
 
 export type OrderResponeType = {
@@ -95,3 +96,12 @@ export type ErrorResponseType = {
   success: boolean;
   message: string;
 };
+
+export type ResetPasswordStateType = {
+  message: string | null;
+  isRequest: boolean;
+  isSuccess: boolean;
+  error: string | null;
+};
+
+export type ResetPasswordResponseType = ErrorResponseType;
