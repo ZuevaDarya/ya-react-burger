@@ -2,20 +2,14 @@ import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import cardStyles from "./ingredient-card.module.css";
 import Price from "../price/price";
 import { IngredientCardPropsType, IngredientType } from "../../types/types";
-import IngredientDetails from "../ingredient-details.tsx/ingredient-details";
-import { useModal } from "../../hooks/useModal";
-import Modal from "../modal/modal";
 import { useAppDispatch } from "../../services/store";
-import {
-  addCurrentIngredient,
-  removeCurrentIngredient,
-} from "../../services/slices/ingredient-details-slice";
+import { addCurrentIngredient } from "../../services/slices/ingredient-details-slice";
 import { useDrag } from "react-dnd";
 import { memo } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 function IngredientCard({ ingredient, count }: IngredientCardPropsType) {
-  const { isModalOpen, openModal, closeModal } = useModal();
-
+  const location = useLocation();
   const dispatch = useAppDispatch();
 
   const [, dragRef] = useDrag<IngredientType>({
@@ -23,38 +17,25 @@ function IngredientCard({ ingredient, count }: IngredientCardPropsType) {
     item: { ...ingredient },
   });
 
-  const onClose = () => {
-    closeModal();
-    dispatch(removeCurrentIngredient());
-  };
-
-  const hadleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    e.stopPropagation();
-    openModal();
+  const hadleClick = () => {
     dispatch(addCurrentIngredient(ingredient));
   };
 
   return (
-    <>
-      {isModalOpen && (
-        <Modal isTitle={true} onClose={onClose}>
-          <IngredientDetails ingredient={ingredient} />
-        </Modal>
-      )}
-      <div
-        className={`pl-4 pr-4 ${cardStyles["ingredient-card"]}`}
-        onClick={hadleClick}
-        ref={dragRef}
-        draggable
-      >
-        <img src={ingredient.image} alt={ingredient.name} />
-        <Price price={ingredient.price} classes="text_type_digits-default" />
-        <p className={`text text_type_main-small ${cardStyles["ingredient-card-title"]}`}>
-          {ingredient.name}
-        </p>
-        {count !== 0 && <Counter count={count} size="default" extraClass="m-1" />}
-      </div>
-    </>
+    <Link to={`/ingredients/${ingredient._id}`}
+      className={`pl-4 pr-4 ${cardStyles["ingredient-card"]}`}
+      onClick={hadleClick}
+      state={{ background: location }}
+      ref={dragRef}
+      draggable
+    >
+      <img src={ingredient.image} alt={ingredient.name} />
+      <Price price={ingredient.price} classes="text_type_digits-default" />
+      <p className={`text text_type_main-small ${cardStyles["ingredient-card-title"]}`}>
+        {ingredient.name}
+      </p>
+      {count !== 0 && <Counter count={count} size="default" extraClass="m-1" />}
+    </Link>
   );
 }
 

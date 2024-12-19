@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { AppRoute } from "../../constants/app-route";
 import HomePage from "../../pages/home-page/home-page";
 import ErrorPage from "../../pages/error-page/error-page";
@@ -15,10 +15,12 @@ import { getIngredients, getUser, updateToken } from "../../services/thunks";
 import { localStorageKey } from "../../constants/local-storage-key";
 import ProtectedRoute from "../protected-route/protected-route";
 import ProfileForm from "../profile-form/profile-form";
+import ModalIngredientDetails from "../modal-ingredient-details/modal-ingredient-details";
 
 function App() {
   const dispatch = useAppDispatch();
-  const { error } = useAppSelector((state) => state.userInfo);
+  const location = useLocation();
+  const { error } = useAppSelector(store => store.userInfo);
 
   useEffect(() => {
     dispatch(getIngredients());
@@ -31,7 +33,7 @@ function App() {
 
       if (refreshToken && accessToken) {
         await dispatch(getUser());
-        console.log(error)
+
         if (error && error.includes("jwt expired")) {
           await dispatch(updateToken());
           await dispatch(getUser());
@@ -40,68 +42,78 @@ function App() {
     };
 
     authUser();
-  }, []);
+  }, [error]);
 
   return (
-    <Routes>
-      <Route path={AppRoute.Home} element={<AppLayout />}>
-        <Route path={AppRoute.Home} element={<HomePage />} />
-        <Route
-          path={AppRoute.Login}
-          element={
-            <ProtectedRoute withAuth={true}>
-              <LoginPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={AppRoute.ForgotPassword}
-          element={
-            <ProtectedRoute withAuth={true}>
-              <ForgotPasswordPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={AppRoute.ResetPassword}
-          element={
-            <ProtectedRoute withAuth={true}>
-              <ResetpasswordPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={AppRoute.Registration}
-          element={
-            <ProtectedRoute withAuth={true}>
-              <RegistrationPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={AppRoute.Profile}
-          element={
-            <ProtectedRoute withAuth={false}>
-              <ProfilePage />
-            </ProtectedRoute>
-          }
-        >
-          <Route index path={AppRoute.Profile} element={<ProfileForm />} />
-          <Route path={AppRoute.Orders} element={<p>Orders</p>} />
+    <>
+      <Routes location={location.state?.background || location}>
+        <Route path={AppRoute.Home} element={<AppLayout />}>
+          <Route path={AppRoute.Home} element={<HomePage />} />
+          <Route
+            path={AppRoute.Login}
+            element={
+              <ProtectedRoute withAuth={true}>
+                <LoginPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={AppRoute.ForgotPassword}
+            element={
+              <ProtectedRoute withAuth={true}>
+                <ForgotPasswordPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={AppRoute.ResetPassword}
+            element={
+              <ProtectedRoute withAuth={true}>
+                <ResetpasswordPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={AppRoute.Registration}
+            element={
+              <ProtectedRoute withAuth={true}>
+                <RegistrationPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={AppRoute.Profile}
+            element={
+              <ProtectedRoute withAuth={false}>
+                <ProfilePage />
+              </ProtectedRoute>
+            }
+          >
+            <Route index path={AppRoute.Profile} element={<ProfileForm />} />
+            <Route path={AppRoute.Orders} element={<p>Orders</p>} />
+          </Route>
+          <Route path={AppRoute.Ingredient} element={<IngredientPage />} />
+          <Route
+            path={AppRoute.Order}
+            element={
+              <ProtectedRoute withAuth={false}>
+                <p>Order</p>
+              </ProtectedRoute>
+            }
+          />
         </Route>
-        <Route path={AppRoute.Ingredient} element={<IngredientPage />} />
-        <Route
-          path={AppRoute.Order}
-          element={
-            <ProtectedRoute withAuth={false}>
-              <p>Order</p>
-            </ProtectedRoute>
-          }
-        />
-      </Route>
-      <Route path={AppRoute.Error} element={<ErrorPage />} />
-    </Routes>
+        <Route path={AppRoute.Error} element={<ErrorPage />} />
+      </Routes>
+
+      {location.state?.background ? (
+        <Routes>
+          <Route
+            path={AppRoute.Ingredient}
+            element={<ModalIngredientDetails />}
+          />
+        </Routes>
+      ) : null}
+    </>
   );
 }
-
 export default App;

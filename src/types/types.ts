@@ -93,10 +93,6 @@ export type ModalPropsType = {
 
 export type ModalOverlayPropsType = Pick<ModalPropsType, "onClose">;
 
-export type IngredientDetailsPropsType = {
-  ingredient: IngredientType;
-};
-
 export type ColoriesItemPropsType = {
   nameCalories: string;
   numCalories: number;
