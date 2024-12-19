@@ -10,7 +10,7 @@ import loginStyles from "./login-page.module.css";
 import FormLink from "../../components/form-link/form-link";
 import { LoginFormType } from "../../types/types";
 import { useForm } from "../../hooks/useForm";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../services/store';
 import { login } from '../../services/thunks';
 
@@ -22,11 +22,12 @@ function LoginPage() {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const location = useLocation();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await dispatch(login(formData)).unwrap();
-    navigate(AppRoute.Home);
+    navigate(location.search.split("=")[1], { replace: true });
   };
 
   return (
@@ -39,6 +40,7 @@ function LoginPage() {
             name={InputName.Email}
             placeholder="E-mail"
             isIcon={false}
+            required
           />
           <PasswordInput
             onChange={handleChangeInput}
@@ -46,6 +48,7 @@ function LoginPage() {
             name={InputName.Password}
             placeholder="Пароль"
             icon="ShowIcon"
+            required
           />
           <Button type="primary" size="medium" htmlType="submit">
             Войти

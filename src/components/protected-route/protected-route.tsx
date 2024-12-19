@@ -25,9 +25,15 @@ function ProtectedRoute({ withAuth, children }: ProtectedRoutePropsType) {
   }
 
   if (!withAuth && !user) {
-    return <Navigate to={AppRoute.Login} state={{ from: location }} replace />;
-  } 
-  
+    return (
+      <Navigate
+        to={`${AppRoute.Login}?redirect=${location.pathname}`}
+        state={{ from: location }}
+        replace
+      />
+    );
+  }
+
   if (withAuth && user) {
     return <Navigate to={AppRoute.Home} state={{ from: location }} replace />;
   }
