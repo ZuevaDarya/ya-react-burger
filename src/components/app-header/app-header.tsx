@@ -14,7 +14,7 @@ import { useAppSelector } from "../../services/store";
 
 function AppHeader() {
   const { pathname } = useLocation();
-  const { user } = useAppSelector((state) => state.userInfo);
+  const user = useAppSelector((state) => state.userInfo.user);
 
   const getIconType = useCallback(
     (pathname: string, currentRoute: AppRoute) => {

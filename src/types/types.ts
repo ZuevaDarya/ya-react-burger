@@ -148,3 +148,8 @@ export type ResetPasswordFormType = {
 };
 
 export type ProfileFormType = RegistrationFormType;
+
+export type ProtectedRoutePropsType = {
+  withAuth: boolean;
+  children: React.ReactNode;
+};
