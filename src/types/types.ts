@@ -120,6 +120,7 @@ export type ApiPathsType = typeof API_PATHS[ApiPathsKeys];
 export type FormPropsType = {
   title?: string;
   children: React.ReactNode;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
 export type FormLinkPropsType = {
@@ -139,11 +140,11 @@ export type RegistrationFormType = LoginFormType & {
 
 export type ForgotPasswordFormType = {
   email: string;
-}
+};
 
 export type ResetPasswordFormType = {
   password: string;
   token: string;
-}
+};
 
 export type ProfileFormType = RegistrationFormType;

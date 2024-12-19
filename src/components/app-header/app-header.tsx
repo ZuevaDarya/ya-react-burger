@@ -8,15 +8,20 @@ import NavList from "../nav-list/nav-list";
 import NavListItem from "../nav-list-item/nav-list-item";
 import headerStyles from "./app-header.module.css";
 import { AppRoute } from "../../constants/app-route";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useCallback } from "react";
+import { useAppSelector } from "../../services/store";
 
 function AppHeader() {
   const { pathname } = useLocation();
+  const { user } = useAppSelector((state) => state.userInfo);
 
-  const getIconType = useCallback((pathname: string, currentRoute: AppRoute) => {
+  const getIconType = useCallback(
+    (pathname: string, currentRoute: AppRoute) => {
       return pathname === currentRoute ? "primary" : "secondary";
-    }, [pathname]);
+    },
+    [pathname]
+  );
 
   return (
     <header className={`${headerStyles.header} pt-4 pb-4`}>
@@ -31,11 +36,13 @@ function AppHeader() {
             Лента заказов
           </NavListItem>
         </NavList>
-        <Logo className={headerStyles.logo} />
+        <Link to={AppRoute.Home} className={headerStyles.logo}>
+          <Logo />
+        </Link>
         <NavList>
           <NavListItem route={AppRoute.Profile} classes="pl-5">
             <ProfileIcon type={getIconType(pathname, AppRoute.Profile)} />
-            Личный кабинет
+            {!user ? 'Личный кабинет' : user.name}
           </NavListItem>
         </NavList>
       </nav>
