@@ -14,6 +14,7 @@ export const useForm = <T extends object>(defaultValue: T) => {
 
   return {
     formData,
+    setFormData,
     handleChangeInput,
     isChangedData, 
     setIsChangedData

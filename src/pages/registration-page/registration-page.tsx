@@ -41,6 +41,7 @@ function RegistrationPage() {
             onChange={handleChangeInput}
             value={formData.name}
             name={InputName.UserName}
+            required
           />
           <EmailInput
             onChange={handleChangeInput}
@@ -48,6 +49,7 @@ function RegistrationPage() {
             name={InputName.Email}
             placeholder="E-mail"
             isIcon={false}
+            required
           />
           <PasswordInput
             onChange={handleChangeInput}
@@ -55,6 +57,7 @@ function RegistrationPage() {
             name={InputName.Password}
             placeholder="Пароль"
             icon="ShowIcon"
+            required
           />
           <Button type="primary" size="medium" htmlType="submit">
             Зарегистрироваться
