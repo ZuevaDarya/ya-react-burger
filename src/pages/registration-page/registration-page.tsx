@@ -10,6 +10,9 @@ import { AppRoute } from "../../constants/app-route";
 import { InputName } from "../../constants/input-name";
 import { useForm } from "../../hooks/useForm";
 import { RegistrationFormType } from "../../types/types";
+import { useAppDispatch } from "../../services/store";
+import { register } from "../../services/thunks";
+import { useNavigate } from "react-router-dom";
 
 function RegistrationPage() {
   const { formData, handleChangeInput } = useForm<RegistrationFormType>({
@@ -18,11 +21,20 @@ function RegistrationPage() {
     password: "",
   });
 
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await dispatch(register(formData)).unwrap();
+    navigate(AppRoute.Home);
+  };
+
   return (
     <main>
       <div className="page-container page-container_gap">
-        <Form title="Регистрация">
-           {/* @ts-expect-error: onPointerEnterCapture, onPointerLeaveCapture warnings otherwise */}
+        <Form title="Регистрация" handleSubmit={handleSubmit}>
+          {/* @ts-expect-error: onPointerEnterCapture, onPointerLeaveCapture warnings otherwise */}
           <Input
             type="text"
             placeholder="Имя"

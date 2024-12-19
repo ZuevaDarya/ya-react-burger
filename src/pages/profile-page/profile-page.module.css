@@ -22,3 +22,15 @@
   align-self: end;
 }
 
+.button {
+  background: none;
+  color: var( --text-dark-grey-secondary-text);
+  transition: var(--common-transition);
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.button:hover {
+  cursor: pointer;
+  color: var(--text-primary-light-standart-text);
+}

@@ -11,16 +11,35 @@ import { ProfileFormType } from "../../types/types";
 import NavListItem from "../../components/nav-list-item/nav-list-item";
 import profileStyles from "./profile-page.module.css";
 import { AppRoute } from "../../constants/app-route";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../services/store";
+import { logout, updateUser } from "../../services/thunks";
 
 function ProfilePage() {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.userInfo);
+
   const { formData, handleChangeInput, isChangedData, setIsChangedData } =
     useForm<ProfileFormType>({
-      name: "Иван",
-      email: "ivan123@.ru",
-      password: "111",
+      name: user ? user.name : "",
+      email: user ? user.email : "",
+      password: "",
     });
 
-  const handleBtnCancelClick = () => {
+  const handleCancelBtnClick = () => {
+    setIsChangedData(false);
+  };
+
+  const handleLogoutBtnClick = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    await dispatch(logout());
+    navigate(AppRoute.Home);
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await dispatch(updateUser(formData));
     setIsChangedData(false);
   };
 
@@ -35,9 +54,13 @@ function ProfilePage() {
             <NavListItem route={AppRoute.Orders} isProfileLink={true}>
               История заказов
             </NavListItem>
-            <NavListItem route={AppRoute.Error} isProfileLink={true}>
+            <button
+              type="button"
+              className={`${profileStyles.button} text text_type_main-medium`}
+              onClick={handleLogoutBtnClick}
+            >
               Выход
-            </NavListItem>
+            </button>
           </ul>
         </nav>
 
@@ -46,7 +69,7 @@ function ProfilePage() {
         </p>
       </aside>
 
-      <Form>
+      <Form handleSubmit={handleSubmit}>
         {/* @ts-expect-error: onPointerEnterCapture, onPointerLeaveCapture warnings otherwise */}
         <Input
           type="text"
@@ -80,7 +103,7 @@ function ProfilePage() {
               htmlType="button"
               type="secondary"
               size="medium"
-              onClick={handleBtnCancelClick}
+              onClick={handleCancelBtnClick}
             >
               Отменить
             </Button>

@@ -10,6 +10,9 @@ import loginStyles from "./login-page.module.css";
 import FormLink from "../../components/form-link/form-link";
 import { LoginFormType } from "../../types/types";
 import { useForm } from "../../hooks/useForm";
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../services/store';
+import { login } from '../../services/thunks';
 
 function LoginPage() {
   const { formData, handleChangeInput } = useForm<LoginFormType>({
@@ -17,10 +20,19 @@ function LoginPage() {
     password: "",
   });
 
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await dispatch(login(formData)).unwrap();
+    navigate(AppRoute.Home);
+  };
+
   return (
     <main>
       <div className="page-container page-container_gap">
-        <Form title="Вход">
+        <Form title="Вход" handleSubmit={handleSubmit}>
           <EmailInput
             onChange={handleChangeInput}
             value={formData.email}
