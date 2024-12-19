@@ -14,13 +14,17 @@ import { IngredientType } from "../../types/types";
 import { useMemo } from 'react';
 import { createOrder } from '../../services/thunks';
 import { clearOrder } from '../../services/slices/order-details-slice';
+import { useNavigate } from 'react-router-dom';
+import { AppRoute } from '../../constants/app-route';
 
 function BurgerConstructor() {
   const { isModalOpen, openModal, closeModal } = useModal();
   const dispatch = useAppDispatch();
-  
-  const { ingredients, bun } = useAppSelector((store) => store.constructorIngredients);
-  const order = useAppSelector((store) => store.orderDetails.order);
+  const navigate = useNavigate();
+
+  const { ingredients, bun } = useAppSelector(store => store.constructorIngredients);
+  const order = useAppSelector(store => store.orderDetails.order);
+  const user = useAppSelector(store => store.userInfo.user);
 
   const [{ isHover }, dropTarget] = useDrop({
     accept: "ingredient",
@@ -54,9 +58,14 @@ function BurgerConstructor() {
     }
   }, [ingredients, bun]);
 
-  const hadleClick = (e: React.SyntheticEvent<Element, Event>) => {
+  const hadleClick = async (e: React.SyntheticEvent<Element, Event>) => {
     e.stopPropagation();
-    dispatch(createOrder(ingredientsIds));
+
+    if (!user) {
+      navigate(AppRoute.Login);
+    }
+
+    await dispatch(createOrder(ingredientsIds));
     openModal();
   };
 
@@ -109,6 +118,7 @@ function BurgerConstructor() {
             type="primary"
             size="large"
             onClick={hadleClick}
+            disabled={ingredients.length === 0 && !bun ? true : false}
           >
             Оформить заказ
           </Button>
