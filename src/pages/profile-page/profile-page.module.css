@@ -18,10 +18,6 @@
   opacity: .4;
 }
 
-.buttons-block {
-  align-self: end;
-}
-
 .button {
   background: none;
   color: var( --text-dark-grey-secondary-text);
