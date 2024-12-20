@@ -19,11 +19,13 @@ const resetPasswordSlice = createSlice({
       .addCase(firstStepResetPassword.pending, (state) => {
         state.isRequest = true;
         state.isSuccess = false;
+        state.error = null;
       })
       .addCase(firstStepResetPassword.fulfilled, (state, { payload }) => {
         state.message = payload.message;
         state.isRequest = false;
         state.isSuccess = true;
+        state.error = null;
       })
       .addCase(firstStepResetPassword.rejected, (state, action) => {
         state.isRequest = false;
@@ -33,11 +35,13 @@ const resetPasswordSlice = createSlice({
       .addCase(lastStepResetPassword.pending, (state) => {
         state.isRequest = true;
         state.isSuccess = false;
+        state.error = null;
       })
       .addCase(lastStepResetPassword.fulfilled, (state, { payload }) => {
         state.message = payload.message;
         state.isRequest = false;
         state.isSuccess = true;
+        state.error = null;
       })
       .addCase(lastStepResetPassword.rejected, (state, action) => {
         state.isRequest = false;
