@@ -10,9 +10,9 @@ import loginStyles from "./login-page.module.css";
 import FormLink from "../../components/form-link/form-link";
 import { LoginFormType } from "../../types/types";
 import { useForm } from "../../hooks/useForm";
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../services/store';
-import { login } from '../../services/thunks';
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../services/store";
+import { login } from "../../services/thunks";
 
 function LoginPage() {
   const { formData, handleChangeInput } = useForm<LoginFormType>({
@@ -23,6 +23,8 @@ function LoginPage() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const location = useLocation();
+
+  const error = useAppSelector((store) => store.userInfo.error);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -50,6 +52,11 @@ function LoginPage() {
             icon="ShowIcon"
             required
           />
+          {error && error.includes("email or password are incorrect") && (
+            <span className={`text text_type_main-default ${loginStyles.error}`}>
+              Ошибка! Проверьте корректность введенных данных!
+            </span>
+          )}
           <Button type="primary" size="medium" htmlType="submit">
             Войти
           </Button>

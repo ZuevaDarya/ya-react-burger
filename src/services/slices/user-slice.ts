@@ -22,11 +22,13 @@ const userSlice = createSlice({
       .addCase(register.pending, (state) => {
         state.isRequest = true;
         state.isSuccess = false;
+        state.error = null;
       })
       .addCase(register.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.isRequest = false;
         state.isSuccess = true;
+        state.error = null;
         localStorage.setItem(localStorageKey.AccessToken, getCorrectToken(payload.accessToken));
         localStorage.setItem(localStorageKey.RefreshToken, payload.refreshToken);
       })
@@ -38,11 +40,13 @@ const userSlice = createSlice({
       .addCase(login.pending, (state) => {
         state.isRequest = true;
         state.isSuccess = false;
+        state.error = null;
       })
       .addCase(login.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.isRequest = false;
         state.isSuccess = true;
+        state.error = null;
         localStorage.setItem(localStorageKey.AccessToken, getCorrectToken(payload.accessToken));
         localStorage.setItem(localStorageKey.RefreshToken, payload.refreshToken);
       })
@@ -54,11 +58,13 @@ const userSlice = createSlice({
       .addCase(logout.pending, (state) => {
         state.isLogoutRequest = true;
         state.isSuccess = false;
+        state.error = null;
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
         state.isLogoutRequest = false;
         state.isSuccess = false;
+        state.error = null;
         localStorage.removeItem(localStorageKey.AccessToken);
         localStorage.removeItem(localStorageKey.RefreshToken);
       })
@@ -70,10 +76,12 @@ const userSlice = createSlice({
       .addCase(updateToken.pending, (state) => {
         state.isRequest = true;
         state.isSuccess = false;
+        state.error = null;
       })
       .addCase(updateToken.fulfilled, (state, { payload }) => {
         state.isRequest = false;
         state.isSuccess = true;
+        state.error = null;
         localStorage.setItem(localStorageKey.AccessToken, getCorrectToken(payload.accessToken));
         localStorage.setItem(localStorageKey.RefreshToken, payload.refreshToken);
       })
@@ -85,11 +93,13 @@ const userSlice = createSlice({
       .addCase(getUser.pending, (state) => {
         state.isRequest = true;
         state.isSuccess = false;
+        state.error = null;
       })
       .addCase(getUser.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.isRequest = false;
         state.isSuccess = true;
+        state.error = null;
       })
       .addCase(getUser.rejected, (state, action) => {
         state.isRequest = false;
@@ -99,11 +109,13 @@ const userSlice = createSlice({
       .addCase(updateUser.pending, (state) => {
         state.isRequest = true;
         state.isSuccess = false;
+        state.error = null;
       })
       .addCase(updateUser.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.isRequest = false;
         state.isSuccess = true;
+        state.error = null;
       })
       .addCase(updateUser.rejected, (state, action) => {
         state.isRequest = false;
