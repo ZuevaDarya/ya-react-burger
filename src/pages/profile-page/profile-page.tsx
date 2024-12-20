@@ -10,7 +10,7 @@ function ProfilePage() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const { isRequest } = useAppSelector((store) => store.userInfo);
+  const { isLogoutRequest } = useAppSelector((store) => store.userInfo);
 
   const handleLogoutBtnClick = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -22,7 +22,7 @@ function ProfilePage() {
 
   return (
     <main className={profileStyles.main}>
-      {isRequest && (
+      {isLogoutRequest && (
         <div className={profileStyles["spinner-block"]}>
           <h1 className=" text text_type_main-medium">Выходим...</h1>
           <Spinner />

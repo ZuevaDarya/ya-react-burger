@@ -25,7 +25,8 @@ const preloadedState: PreloadedStateType = {
     user: null,
     isRequest: false,
     isSuccess: false,
-    error: null
+    error: null,
+    isLogoutRequest: false
   },
   resetPassword: {
     message: null,

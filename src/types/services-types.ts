@@ -63,6 +63,7 @@ export type UserStateType = {
   isRequest: boolean;
   isSuccess: boolean;
   error: string | null;
+  isLogoutRequest: boolean;
 };
 
 export type RegisterResponseType = {

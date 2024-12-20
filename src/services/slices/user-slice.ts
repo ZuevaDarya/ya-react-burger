@@ -9,6 +9,7 @@ const initialState: UserStateType = {
   user: null,
   isRequest: false,
   isSuccess: false,
+  isLogoutRequest: false,
   error: null
 };
 
@@ -51,18 +52,18 @@ const userSlice = createSlice({
         state.error = String(action.error.message);
       })
       .addCase(logout.pending, (state) => {
-        state.isRequest = true;
+        state.isLogoutRequest = true;
         state.isSuccess = false;
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
-        state.isRequest = false;
+        state.isLogoutRequest = false;
         state.isSuccess = false;
         localStorage.removeItem(localStorageKey.AccessToken);
         localStorage.removeItem(localStorageKey.RefreshToken);
       })
       .addCase(logout.rejected, (state, action) => {
-        state.isRequest = false;
+        state.isLogoutRequest = false;
         state.isSuccess = false;
         state.error = String(action.error.message);
       })
