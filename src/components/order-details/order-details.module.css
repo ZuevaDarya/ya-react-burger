@@ -1,4 +1,6 @@
-.order-details {
+.order-details, 
+.spinner-block,
+.error-block {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,4 +9,14 @@
 
 .order-id {
   text-shadow: 0 4px 32px var(--order-id-accent), 0 0 8px var(--order-id-accent), 0 0 16px var(--order-id-accent);
+}
+
+.spinner-block {
+  width:  100%;
+  height: auto;
+  gap: 30px;
+}
+
+.error-block {
+  gap: 20px;
 }

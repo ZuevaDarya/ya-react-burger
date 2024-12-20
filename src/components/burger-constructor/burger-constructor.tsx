@@ -23,7 +23,6 @@ function BurgerConstructor() {
   const navigate = useNavigate();
 
   const { ingredients, bun } = useAppSelector(store => store.constructorIngredients);
-  const order = useAppSelector(store => store.orderDetails.order);
   const user = useAppSelector(store => store.userInfo.user);
 
   const [{ isHover }, dropTarget] = useDrop({
@@ -58,14 +57,13 @@ function BurgerConstructor() {
     }
   }, [ingredients, bun]);
 
-  const hadleClick = async (e: React.SyntheticEvent<Element, Event>) => {
+  const hadleClick = (e: React.SyntheticEvent<Element, Event>) => {
     e.stopPropagation();
 
     if (!user) {
       navigate(AppRoute.Login);
     }
-
-    await dispatch(createOrder(ingredientsIds));
+    dispatch(createOrder(ingredientsIds));
     openModal();
   };
 
@@ -81,9 +79,9 @@ function BurgerConstructor() {
 
   return (
     <>
-      {isModalOpen && order && (
+      {isModalOpen && (
         <Modal isTitle={false} onClose={onClose}>
-          <OrderDetails orderId={order.number} />
+          <OrderDetails />
         </Modal>
       )}
 

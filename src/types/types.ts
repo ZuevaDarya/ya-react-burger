@@ -98,10 +98,6 @@ export type ColoriesItemPropsType = {
   numCalories: number;
 };
 
-export type OrderDetailsPropsType = {
-  orderId: number;
-};
-
 export type BurgerTemplatePropsType = {
   text: string;
   type?: ConstructorElemType;

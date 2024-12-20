@@ -2,14 +2,19 @@ import NavListItem from "../../components/nav-list-item/nav-list-item";
 import profileStyles from "./profile-page.module.css";
 import { AppRoute } from "../../constants/app-route";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../services/store";
+import { useAppDispatch, useAppSelector } from "../../services/store";
 import { logout } from "../../services/thunks";
+import Spinner from "../../components/spinner/spinner";
 
 function ProfilePage() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const handleLogoutBtnClick = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const { isRequest } = useAppSelector((store) => store.userInfo);
+
+  const handleLogoutBtnClick = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
     await dispatch(logout());
     navigate(AppRoute.Home);
@@ -17,6 +22,12 @@ function ProfilePage() {
 
   return (
     <main className={profileStyles.main}>
+      {isRequest && (
+        <div className={profileStyles["spinner-block"]}>
+          <h1 className=" text text_type_main-medium">Выходим...</h1>
+          <Spinner />
+        </div>
+      )}
       <aside className={profileStyles.aside}>
         <nav>
           <ul>
