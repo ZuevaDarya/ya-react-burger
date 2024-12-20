@@ -10,9 +10,8 @@ function NavListItem({
 }: NavLinkPropsType) {
   const getLinkClasses = ({ isActive }: NavLinkRenderProps) => {
     const defaultClasses = `
-      ${!isProfileLink && "text text_type_main-default"} 
+      ${!isProfileLink ? "text text_type_main-default": "text text_type_main-medium"} 
       ${navItemStyles["nav-link"]} 
-      ${isProfileLink && "text text_type_main-medium"}
     `;
 
     if (!isActive) {
@@ -28,7 +27,7 @@ function NavListItem({
         ${classes ? classes : ""}
       `}
     >
-      <NavLink className={getLinkClasses} to={route}>
+      <NavLink className={getLinkClasses} to={route} end>
         {children}
       </NavLink>
     </li>

@@ -89,7 +89,7 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route index path={AppRoute.Profile} element={<ProfileForm />} />
+            <Route path={AppRoute.Profile} element={<ProfileForm />} />
             <Route path={AppRoute.Orders} element={<p>Orders</p>} />
           </Route>
           <Route path={AppRoute.Ingredient} element={<IngredientPage />} />
