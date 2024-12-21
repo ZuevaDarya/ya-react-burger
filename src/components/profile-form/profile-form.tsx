@@ -11,10 +11,12 @@ import { updateUser } from "../../services/thunks";
 import { ProfileFormType } from "../../types/types";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import profileStyles from "./profile-form.module.css";
+import styles from "../../pages/profile-page/profile-page.module.css";
+import Spinner from "../spinner/spinner";
 
 function ProfileForm() {
   const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => state.userInfo);
+  const { user, isRequest } = useAppSelector((state) => state.userInfo);
 
   const {
     formData,
@@ -39,58 +41,67 @@ function ProfileForm() {
     e.preventDefault();
     await dispatch(updateUser(formData));
     setIsChangedData(false);
-    setFormData(prev => ({...prev, password: ""}));
+    setFormData((prev) => ({ ...prev, password: "" }));
   };
 
   return (
-    <Form handleSubmit={handleSubmit}>
-      {/* @ts-expect-error: onPointerEnterCapture, onPointerLeaveCapture warnings otherwise */}
-      <Input
-        type="text"
-        placeholder="Имя"
-        onChange={handleChangeInput}
-        value={formData.name}
-        name={InputName.UserName}
-        icon="EditIcon"
-        disabled={false}
-        required
-      />
-      <EmailInput
-        onChange={handleChangeInput}
-        value={formData.email}
-        name={InputName.Email}
-        placeholder="Логин"
-        isIcon={true}
-        disabled={false}
-        required
-      />
-      <PasswordInput
-        onChange={handleChangeInput}
-        value={formData.password}
-        name={InputName.Password}
-        placeholder="Пароль"
-        icon="EditIcon"
-        disabled={false}
-        autoComplete="new-password"
-        required
-      />
-
-      {isChangedData && (
-        <div className={profileStyles["buttons-block"]}>
-          <Button
-            htmlType="button"
-            type="secondary"
-            size="medium"
-            onClick={handleCancelBtnClick}
-          >
-            Отменить
-          </Button>
-          <Button htmlType="submit" type="primary" size="medium">
-            Сохранить
-          </Button>
+    <>
+      {isRequest && (
+        <div className={styles["spinner-block"]}>
+          <h1 className="text text_type_main-medium">Обновляем данные...</h1>
+          <Spinner />
         </div>
       )}
-    </Form>
+
+      <Form handleSubmit={handleSubmit}>
+        {/* @ts-expect-error: onPointerEnterCapture, onPointerLeaveCapture warnings otherwise */}
+        <Input
+          type="text"
+          placeholder="Имя"
+          onChange={handleChangeInput}
+          value={formData.name}
+          name={InputName.UserName}
+          icon="EditIcon"
+          disabled={false}
+          required
+        />
+        <EmailInput
+          onChange={handleChangeInput}
+          value={formData.email}
+          name={InputName.Email}
+          placeholder="Логин"
+          isIcon={true}
+          disabled={false}
+          required
+        />
+        <PasswordInput
+          onChange={handleChangeInput}
+          value={formData.password}
+          name={InputName.Password}
+          placeholder="Пароль"
+          icon="EditIcon"
+          disabled={false}
+          autoComplete="new-password"
+          required
+        />
+
+        {isChangedData && (
+          <div className={profileStyles["buttons-block"]}>
+            <Button
+              htmlType="button"
+              type="secondary"
+              size="medium"
+              onClick={handleCancelBtnClick}
+            >
+              Отменить
+            </Button>
+            <Button htmlType="submit" type="primary" size="medium">
+              Сохранить
+            </Button>
+          </div>
+        )}
+      </Form>
+    </>
   );
 }
 

@@ -10,17 +10,16 @@ import RegistrationPage from "../../pages/registration-page/registration-page";
 import ProfilePage from "../../pages/profile-page/profile-page";
 import IngredientPage from "../../pages/ingredient-page/ingredient-page";
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../services/store";
-import { getIngredients, getUser, updateToken } from "../../services/thunks";
-import { localStorageKey } from "../../constants/local-storage-key";
+import { useAppDispatch } from "../../services/store";
+import { getIngredients, getUser } from "../../services/thunks";
 import ProtectedRoute from "../protected-route/protected-route";
 import ProfileForm from "../profile-form/profile-form";
 import ModalIngredientDetails from "../modal-ingredient-details/modal-ingredient-details";
+import { localStorageKey } from '../../constants/local-storage-key';
 
 function App() {
   const dispatch = useAppDispatch();
   const location = useLocation();
-  const { error } = useAppSelector(store => store.userInfo);
 
   useEffect(() => {
     dispatch(getIngredients());
@@ -32,17 +31,12 @@ function App() {
       const accessToken = localStorage.getItem(localStorageKey.AccessToken);
 
       if (refreshToken && accessToken) {
-        await dispatch(getUser());
-
-        if (error && error.includes("jwt expired")) {
-          await dispatch(updateToken());
-          await dispatch(getUser());
-        }
+        await dispatch(getUser()).unwrap();
       }
     };
 
     authUser();
-  }, [error]);
+  }, []);
 
   return (
     <>

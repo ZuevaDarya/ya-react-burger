@@ -24,7 +24,7 @@ function ProfilePage() {
     <main className={profileStyles.main}>
       {isLogoutRequest && (
         <div className={profileStyles["spinner-block"]}>
-          <h1 className=" text text_type_main-medium">Выходим...</h1>
+          <h1 className="text text_type_main-medium">Выходим...</h1>
           <Spinner />
         </div>
       )}

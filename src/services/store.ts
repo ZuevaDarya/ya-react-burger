@@ -34,7 +34,7 @@ const preloadedState: PreloadedStateType = {
     isSuccess: false,
     error: null
   }
-}
+};
 
 export const store = configureStore({
   reducer: rootReducer,

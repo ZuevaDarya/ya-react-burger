@@ -4,6 +4,8 @@ import { ProtectedRoutePropsType } from "../../types/types";
 import { useEffect, useState } from "react";
 import { AppRoute } from "../../constants/app-route";
 import { getUser } from "../../services/thunks";
+import Spinner from "../spinner/spinner";
+import styles from "../spinner/spinner.module.css";
 
 function ProtectedRoute({ withAuth, children }: ProtectedRoutePropsType) {
   const location = useLocation();
@@ -14,7 +16,7 @@ function ProtectedRoute({ withAuth, children }: ProtectedRoutePropsType) {
 
   useEffect(() => {
     const preloadUser = async () => {
-      await dispatch(getUser());
+      await dispatch(getUser()).unwrap();
       setIsUserLoaded(true);
     };
 
@@ -22,7 +24,11 @@ function ProtectedRoute({ withAuth, children }: ProtectedRoutePropsType) {
   }, []);
 
   if (!isUserLoaded) {
-    return null;
+    return (
+      <div className={styles["spinner-block"]}>
+        <Spinner />
+      </div>
+    );
   }
 
   if (location.pathname === AppRoute.ResetPassword && message !== "Reset email sent") {

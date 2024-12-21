@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { SliceNamespace } from '../../constants/slice-namespace';
 import { UserStateType } from '../../types/services-types';
-import { getUser, login, logout, register, updateToken, updateUser } from '../thunks';
+import { getUser, login, logout, register, updateUser } from '../thunks';
 import { localStorageKey } from '../../constants/local-storage-key';
 import getCorrectToken from '../../utils/functions/get-correct-token';
 
@@ -70,23 +70,6 @@ const userSlice = createSlice({
       })
       .addCase(logout.rejected, (state, action) => {
         state.isLogoutRequest = false;
-        state.isSuccess = false;
-        state.error = String(action.error.message);
-      })
-      .addCase(updateToken.pending, (state) => {
-        state.isRequest = true;
-        state.isSuccess = false;
-        state.error = null;
-      })
-      .addCase(updateToken.fulfilled, (state, { payload }) => {
-        state.isRequest = false;
-        state.isSuccess = true;
-        state.error = null;
-        localStorage.setItem(localStorageKey.AccessToken, getCorrectToken(payload.accessToken));
-        localStorage.setItem(localStorageKey.RefreshToken, payload.refreshToken);
-      })
-      .addCase(updateToken.rejected, (state, action) => {
-        state.isRequest = false;
         state.isSuccess = false;
         state.error = String(action.error.message);
       })

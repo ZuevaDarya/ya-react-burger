@@ -16,10 +16,9 @@ import {
   OrderResponeType,
   RegisterResponseType,
   ResetPasswordResponseType,
-  UpdateTokenResponseType,
   UpdateUserResponseType
 } from '../types/services-types';
-import request from '../utils/functions/request';
+import { request, requestWithRefresh } from '../utils/functions/request';
 import { localStorageKey } from '../constants/local-storage-key';
 
 export const getIngredients = createAsyncThunk<{ data: IngredientType[] }>(
@@ -93,23 +92,6 @@ export const logout = createAsyncThunk<LogoutResponseType>(
   }
 );
 
-export const updateToken = createAsyncThunk<UpdateTokenResponseType>(
-  `${SliceNamespace.User}/updateToken`,
-  async () => {
-    const refreshToken = localStorage.getItem(localStorageKey.RefreshToken);
-
-    const options = {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify({ token: refreshToken }),
-    };
-
-    return await request(API_PATHS.token, options);
-  }
-);
-
 export const updateUser = createAsyncThunk<UpdateUserResponseType, ProfileFormType>(
   `${SliceNamespace.User}/updateUser`,
   async (data) => {
@@ -124,7 +106,7 @@ export const updateUser = createAsyncThunk<UpdateUserResponseType, ProfileFormTy
       body: JSON.stringify(data),
     };
 
-    return await request(API_PATHS.user, options);
+    return await requestWithRefresh(API_PATHS.user, options);
   }
 );
 
@@ -138,7 +120,7 @@ export const getUser = createAsyncThunk<GetUserResponseType>(
       },
     };
 
-    return await request(API_PATHS.user, options);
+    return await requestWithRefresh(API_PATHS.user, options);
   }
 );
 
