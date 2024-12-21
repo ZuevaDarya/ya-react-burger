@@ -1,0 +1,9 @@
+.link {
+  color: var(--interface-accent);
+}
+
+.link:hover {
+  cursor: pointer;
+  color: var(--text-primary-light-standart-text);
+  transition: var(--common-transition);
+}

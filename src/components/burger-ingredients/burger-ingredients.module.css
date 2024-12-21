@@ -25,3 +25,10 @@
   cursor: pointer;
   background: var(--scroll-hover-color);
 }
+
+.spinner-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 36px;
+}

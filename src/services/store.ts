@@ -20,8 +20,21 @@ const preloadedState: PreloadedStateType = {
     order: null,
     isRequest: false,
     isSuccess: false
+  },
+  userInfo: {
+    user: null,
+    isRequest: false,
+    isSuccess: false,
+    error: null,
+    isLogoutRequest: false
+  },
+  resetPassword: {
+    message: null,
+    isRequest: false,
+    isSuccess: false,
+    error: null
   }
-}
+};
 
 export const store = configureStore({
   reducer: rootReducer,

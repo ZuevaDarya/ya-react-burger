@@ -10,6 +10,7 @@ import { useMemo, useRef, useState } from "react";
 import getSameIngredients from "../../utils/functions/get-same-ingredients";
 import { useAppSelector } from "../../services/store";
 import fillHashTable from "../../utils/functions/fill-hash-table";
+import Spinner from "../spinner/spinner";
 
 function BurgerIngredients() {
   const tabsRef = useRef<HTMLDivElement | null>(null);
@@ -21,26 +22,32 @@ function BurgerIngredients() {
     IngredientsTabsValue.One
   );
 
+  const { isRequest, isSuccess } = useAppSelector((store) => store.burgerIngredients);
   const allIngredients = useAppSelector((store) => store.burgerIngredients.ingredients);
   const { ingredients, bun } = useAppSelector((store) => store.constructorIngredients);
 
-  const ingredientsCountHashTable = fillHashTable(allIngredients, ingredients, bun);
+  const ingredientsCountHashTable = fillHashTable(
+    allIngredients,
+    ingredients,
+    bun
+  );
 
   const buns = useMemo(
-    () => getSameIngredients(allIngredients, IngredientsType.Bun), 
+    () => getSameIngredients(allIngredients, IngredientsType.Bun),
     [allIngredients]
   );
   const sauce = useMemo(
-    () => getSameIngredients(allIngredients, IngredientsType.Sauce), 
+    () => getSameIngredients(allIngredients, IngredientsType.Sauce),
     [allIngredients]
   );
   const topping = useMemo(
-    () => getSameIngredients(allIngredients, IngredientsType.Main), 
+    () => getSameIngredients(allIngredients, IngredientsType.Main),
     [allIngredients]
   );
 
   const handleScroll = () => {
-    if (tabsRef.current &&
+    if (
+      tabsRef.current &&
       bunsRef.current &&
       sauceRef.current &&
       toppingRef.current
@@ -78,29 +85,36 @@ function BurgerIngredients() {
         current={current}
         setCurrent={setCurrent}
       />
-      <div
-        className={ingredientsStyles["ingredients-section"]}
-        onScroll={handleScroll}
-      >
-        <BurgerIngredientsSection
-          ref={bunsRef}
-          title={TabValue.Bun}
-          ingredients={buns}
-          hashTable={ingredientsCountHashTable}
-        />
-        <BurgerIngredientsSection
-          ref={sauceRef}
-          title={TabValue.Sauce}
-          ingredients={sauce}
-          hashTable={ingredientsCountHashTable}
-        />
-        <BurgerIngredientsSection
-          ref={toppingRef}
-          title={TabValue.Topping}
-          ingredients={topping}
-          hashTable={ingredientsCountHashTable}
-        />
-      </div>
+      {isRequest && (
+        <div className={ingredientsStyles["spinner-block"]}>
+          <Spinner />
+        </div>
+      )}
+      {isSuccess && (
+        <div
+          className={ingredientsStyles["ingredients-section"]}
+          onScroll={handleScroll}
+        >
+          <BurgerIngredientsSection
+            ref={bunsRef}
+            title={TabValue.Bun}
+            ingredients={buns}
+            hashTable={ingredientsCountHashTable}
+          />
+          <BurgerIngredientsSection
+            ref={sauceRef}
+            title={TabValue.Sauce}
+            ingredients={sauce}
+            hashTable={ingredientsCountHashTable}
+          />
+          <BurgerIngredientsSection
+            ref={toppingRef}
+            title={TabValue.Topping}
+            ingredients={topping}
+            hashTable={ingredientsCountHashTable}
+          />
+        </div>
+      )}
     </div>
   );
 }
