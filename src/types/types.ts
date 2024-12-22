@@ -1,4 +1,5 @@
 import { API_PATHS } from '../constants/api-constants';
+import { AppRoute } from '../constants/app-route';
 import { IngredientsTabsValue } from '../constants/ingredients-tabs';
 import { ConstructorElemType, IngredientsType } from '../constants/ingredients-type';
 import { IngredientConstructorSliceType } from './services-types';
@@ -8,11 +9,11 @@ export type NavListPropsType = {
 };
 
 export type NavLinkPropsType = {
-  linkText: string;
-  linkHref: string;
-  isActive: boolean;
+  route: AppRoute;
   classes?: string;
+  linkClasses?: string;
   children?: React.ReactNode;
+  isProfileLink?: boolean;
 };
 
 export type ScrollTabsRefType = React.MutableRefObject<HTMLElement | null>;
@@ -92,17 +93,9 @@ export type ModalPropsType = {
 
 export type ModalOverlayPropsType = Pick<ModalPropsType, "onClose">;
 
-export type IngredientDetailsPropsType = {
-  ingredient: IngredientType;
-};
-
 export type ColoriesItemPropsType = {
   nameCalories: string;
   numCalories: number;
-};
-
-export type OrderDetailsPropsType = {
-  orderId: number;
 };
 
 export type BurgerTemplatePropsType = {
@@ -114,4 +107,41 @@ export type BurgerTemplatePropsType = {
 export type FillHashTableFuncType = (x: IngredientType[], y: IngredientConstructorSliceType[], z?: IngredientType | null) => HashTableType;
 
 type ApiPathsKeys = keyof typeof API_PATHS;
-export type  ApiPathsType = typeof API_PATHS[ApiPathsKeys];
+export type ApiPathsType = typeof API_PATHS[ApiPathsKeys];
+
+export type FormPropsType = {
+  title?: string;
+  children: React.ReactNode;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+};
+
+export type FormLinkPropsType = {
+  route: AppRoute;
+  preText?: string;
+  linkText: string;
+};
+
+export type LoginFormType = {
+  email: string;
+  password: string;
+};
+
+export type RegistrationFormType = LoginFormType & {
+  name: string;
+};
+
+export type ForgotPasswordFormType = {
+  email: string;
+};
+
+export type ResetPasswordFormType = {
+  password: string;
+  token: string;
+};
+
+export type ProfileFormType = RegistrationFormType;
+
+export type ProtectedRoutePropsType = {
+  withAuth: boolean;
+  children: React.ReactNode;
+};

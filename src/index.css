@@ -42,6 +42,15 @@ html {
   height: inherit;
 }
 
+main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  max-width: var(--max-content-width);
+  max-height: calc(100vh - 88px);
+}
+
 .constructor-element__image {
   margin-right: 2px !important;
 }
@@ -54,4 +63,18 @@ html {
 .constructor-element__action {
   width: 100%;
   max-width: 27px;
+}
+
+.page-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-container_gap {
+  gap: 80px;
 }

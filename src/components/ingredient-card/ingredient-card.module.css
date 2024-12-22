@@ -3,6 +3,7 @@
   position: relative;
   max-width: var(--max-ingredient-card-width);
   min-height: 208px;
+  color: var(--text-primary-light-standart-text);
 }
 
 .ingredient-card:hover {
