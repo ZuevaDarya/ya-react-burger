@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ResetPasswordStateType } from '../../types/services-types';
+import { TResetPasswordState } from '../../types/services-types';
 import { SliceNamespace } from '../../constants/slice-namespace';
 import { firstStepResetPassword, lastStepResetPassword } from '../thunks';
 
-const initialState: ResetPasswordStateType = {
+const initialState: TResetPasswordState = {
   message: null,
   isRequest: false,
   isSuccess: false,

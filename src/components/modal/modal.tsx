@@ -1,13 +1,13 @@
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import modalStyles from "./modal.module.css";
-import { ModalPropsType } from "../../types/types";
-import ModalOverlay from '../modal-overlay/modal-overlay';
-import { useEffect } from 'react';
-import { createPortal } from 'react-dom';
+import { TModalProps } from "../../types/types";
+import ModalOverlay from "../modal-overlay/modal-overlay";
+import { useEffect } from "react";
+import { createPortal } from "react-dom";
 
 const modalRoot = document.getElementById("modals") as HTMLElement;
 
-function Modal({ isTitle, onClose, children }: ModalPropsType) {
+function Modal({ isTitle, onClose, children }: TModalProps) {
   useEffect(() => {
     const handleKeydown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -20,27 +20,34 @@ function Modal({ isTitle, onClose, children }: ModalPropsType) {
       document.removeEventListener("keydown", handleKeydown);
     };
   }, []);
-  
+
   const modalHeaderStyle = isTitle
     ? { justifyContent: "space-between" }
     : { justifyContent: "end" };
-  
-  const modalPaddingClasses = isTitle 
-    ? "pt-10 pb-15 pl-10 pr-10" 
+
+  const modalPaddingClasses = isTitle
+    ? "pt-10 pb-15 pl-10 pr-10"
     : "pt-10 pb-30 pl-10 pr-10";
 
-  return createPortal((
+  return createPortal(
     <>
-      <ModalOverlay  onClose={onClose} />   
+      <ModalOverlay onClose={onClose} />
       <div className={`${modalStyles.modal} ${modalPaddingClasses}`}>
         <div className={modalStyles["modal-header"]} style={modalHeaderStyle}>
-          {isTitle && <h1 className="text text_type_main-large">Детали ингредиента</h1>}
-          <CloseIcon type="primary" className={modalStyles["close-icon"]} onClick={onClose}/>
+          {isTitle && (
+            <h1 className="text text_type_main-large">Детали ингредиента</h1>
+          )}
+          <CloseIcon
+            type="primary"
+            className={modalStyles["close-icon"]}
+            onClick={onClose}
+          />
         </div>
-        { children }
+        {children}
       </div>
-    </>
-  ), modalRoot);
+    </>,
+    modalRoot
+  );
 }
 
 export default Modal;

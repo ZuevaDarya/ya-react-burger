@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { OrderdetailsStateType } from '../../types/services-types';
+import { TOrderdetailsState } from '../../types/services-types';
 import { SliceNamespace } from '../../constants/slice-namespace';
 import { createOrder } from '../thunks';
 
-const initialState: OrderdetailsStateType = {
+const initialState: TOrderdetailsState = {
   order: null,
   isRequest: false,
   isSuccess: false
@@ -26,7 +26,7 @@ const orderDetailsSlice = createSlice({
         state.isSuccess = false;
       })
       .addCase(createOrder.fulfilled, (state, { payload }) => {
-        state.order = { number: payload.order.number, name: payload.name};
+        state.order = { number: payload.order.number, name: payload.name };
         state.isRequest = false;
         state.isSuccess = true;
       })

@@ -8,13 +8,13 @@ import FormLink from "../../components/form-link/form-link";
 import { AppRoute } from "../../constants/app-route";
 import { InputName } from "../../constants/input-name";
 import { useForm } from "../../hooks/useForm";
-import { ResetPasswordFormType } from "../../types/types";
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../services/store';
-import { lastStepResetPassword } from '../../services/thunks';
+import { TResetPasswordForm } from "../../types/types";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../services/store";
+import { lastStepResetPassword } from "../../services/thunks";
 
 function ResetpasswordPage() {
-  const { formData, handleChangeInput } = useForm<ResetPasswordFormType>({
+  const { formData, handleChangeInput } = useForm<TResetPasswordForm>({
     password: "",
     token: "",
   });
@@ -25,7 +25,7 @@ function ResetpasswordPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await dispatch(lastStepResetPassword(formData)).unwrap();
-    navigate(AppRoute.Login, {replace: true});
+    navigate(AppRoute.Login, { replace: true });
   };
 
   return (
@@ -40,7 +40,7 @@ function ResetpasswordPage() {
             icon="ShowIcon"
             required
           />
-           {/* @ts-expect-error: onPointerEnterCapture, onPointerLeaveCapture warnings otherwise */}
+          {/* @ts-expect-error: onPointerEnterCapture, onPointerLeaveCapture warnings otherwise */}
           <Input
             type="text"
             placeholder="Введите код из письма"

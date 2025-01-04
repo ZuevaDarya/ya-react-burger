@@ -7,13 +7,13 @@ import FormLink from "../../components/form-link/form-link";
 import { AppRoute } from "../../constants/app-route";
 import { InputName } from "../../constants/input-name";
 import { useForm } from "../../hooks/useForm";
-import { ForgotPasswordFormType } from "../../types/types";
-import { useAppDispatch } from '../../services/store';
-import { firstStepResetPassword } from '../../services/thunks';
-import { useNavigate } from 'react-router-dom';
+import { TForgotPasswordForm } from "../../types/types";
+import { useAppDispatch } from "../../services/store";
+import { firstStepResetPassword } from "../../services/thunks";
+import { useNavigate } from "react-router-dom";
 
 function ForgotPasswordPage() {
-  const { formData, handleChangeInput } = useForm<ForgotPasswordFormType>({
+  const { formData, handleChangeInput } = useForm<TForgotPasswordForm>({
     email: "",
   });
 

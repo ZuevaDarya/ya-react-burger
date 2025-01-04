@@ -1,7 +1,7 @@
 import { IngredientsType } from '../../constants/ingredients-type';
-import { BurgerConstructorItemType } from '../../types/types';
+import { TIngredient } from '../../types/types';
 
-const getSameIngredients = (ingredients: BurgerConstructorItemType[], type: IngredientsType) => {
+const getSameIngredients = (ingredients: TIngredient[], type: IngredientsType) => {
   return ingredients.filter(ingredient => ingredient.type === type);
 };
 

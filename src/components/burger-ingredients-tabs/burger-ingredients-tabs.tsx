@@ -4,10 +4,10 @@ import {
   INGREDIENTS_TABS,
   IngredientsTabsValue,
 } from "../../constants/ingredients-tabs";
-import { BurgerIngredientsTabsPropsType } from "../../types/types";
+import { TBurgerIngredientsTabsProps } from "../../types/types";
 import tabsStyles from "./burger-ingredients-tabs.module.css";
 
-const BurgerIngredientsTabs = forwardRef<HTMLDivElement, BurgerIngredientsTabsPropsType>(({
+const BurgerIngredientsTabs = forwardRef<HTMLDivElement, TBurgerIngredientsTabsProps>(({ 
   bunsRef,
   sauceRef,
   toppingRef,

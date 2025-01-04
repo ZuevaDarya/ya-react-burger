@@ -1,17 +1,17 @@
 import { API_PATHS, BASE_URL } from '../../constants/api-constants';
 import { localStorageKey } from '../../constants/local-storage-key';
-import { ErrorResponseType } from '../../types/services-types';
-import { ApiPathsType } from '../../types/types';
+import { TErrorResponse } from '../../types/services-types';
+import { TApiPaths } from '../../types/types';
 import getCorrectToken from './get-correct-token';
 
 const checkResponse = async (res: Response) => {
   if (res.ok) {
     return await res.json();
   }
-  return await res.json().then((error: ErrorResponseType) => Promise.reject(`Ошибка: ${error.message}`));
+  return await res.json().then((error: TErrorResponse) => Promise.reject(`Ошибка: ${error.message}`));
 };
 
-export const request = async (path: ApiPathsType, options?: RequestInit) => {
+export const request = async (path: TApiPaths, options?: RequestInit) => {
   return await fetch(`${BASE_URL}${path}`, options).then(checkResponse);
 };
 
@@ -29,7 +29,7 @@ const updateToken = async () => {
   return await request(API_PATHS.token, options);
 };
 
-export const requestWithRefresh = async (path: ApiPathsType, options?: RequestInit) => {
+export const requestWithRefresh = async (path: TApiPaths, options?: RequestInit) => {
   try {
     return await request(path, options);
   } catch (error) {

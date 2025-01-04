@@ -3,8 +3,8 @@ import {
   ConstructorElement,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import {
-  BurgerConstructorItemPropsType,
-  ConstructorElementDragType,
+  TBurgerConstructorItemProps,
+  TConstructorElementDrag,
 } from "../../types/types";
 import constructorItemStyles from "./burger-constructor-item.module.css";
 import { memo, useRef } from "react";
@@ -22,7 +22,7 @@ function BurgerConstructorItem({
   isLocked,
   typePos,
   idx,
-}: BurgerConstructorItemPropsType) {
+}: TBurgerConstructorItemProps) {
   const dispatch = useAppDispatch();
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -31,20 +31,20 @@ function BurgerConstructorItem({
     item: { uuid, ingredient, idx },
     collect: (monitor) => ({
       isDrag: monitor.isDragging(),
-      handlerId: monitor.getHandlerId()
+      handlerId: monitor.getHandlerId(),
     }),
   });
 
-  const [, dropRef] = useDrop<ConstructorElementDragType,void>({
+  const [, dropRef] = useDrop<TConstructorElementDrag, void>({
     accept: "constructor-ingredient",
-    hover: (item: ConstructorElementDragType, monitor) => {
+    hover: (item: TConstructorElementDrag, monitor) => {
       if (!ref.current) return;
 
       const dragIndex = item.idx;
       const hoverIndex = idx;
 
       if (dragIndex === hoverIndex) return;
-      
+
       const hoverBoundingRect = ref.current.getBoundingClientRect();
       const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
       const clientOffset = monitor.getClientOffset();
@@ -52,10 +52,10 @@ function BurgerConstructorItem({
 
       if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) return;
       if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) return;
-      
+
       dispatch(swapIngredients({ toIndex: dragIndex, fromIndex: hoverIndex }));
       item.idx = hoverIndex;
-    }
+    },
   });
 
   const handleClose = () => {
@@ -65,36 +65,36 @@ function BurgerConstructorItem({
   dragRef(dropRef(ref));
 
   const opacity = isDrag ? 0 : 1;
-  
+
   return (
-      <div
-        className={`
+    <div
+      className={`
           ${constructorItemStyles["burger-constructor-item"]} 
           ${!isLocked && "pr-4"} 
           ${isLocked && "ml-8"}
         `}
-        style={{opacity}}
-        ref={ref}
-        data-handler-id={handlerId}
-      >
-        {!typePos && (
-          <DragIcon type="primary" className={constructorItemStyles.icon} />
-        )}
-        <ConstructorElement
-          type={typePos}
-          isLocked={isLocked}
-          text={
-            typePos === ConstructorElemType.Bottom
-              ? ingredient.name + " (низ)"
-              : typePos === ConstructorElemType.Top
-              ? ingredient.name + " (верх)"
-              : ingredient.name
-          }
-          price={ingredient.price}
-          thumbnail={ingredient.image}
-          handleClose={handleClose}
-        />
-      </div>
+      style={{ opacity }}
+      ref={ref}
+      data-handler-id={handlerId}
+    >
+      {!typePos && (
+        <DragIcon type="primary" className={constructorItemStyles.icon} />
+      )}
+      <ConstructorElement
+        type={typePos}
+        isLocked={isLocked}
+        text={
+          typePos === ConstructorElemType.Bottom
+            ? ingredient.name + " (низ)"
+            : typePos === ConstructorElemType.Top
+            ? ingredient.name + " (верх)"
+            : ingredient.name
+        }
+        price={ingredient.price}
+        thumbnail={ingredient.image}
+        handleClose={handleClose}
+      />
+    </div>
   );
 }
 

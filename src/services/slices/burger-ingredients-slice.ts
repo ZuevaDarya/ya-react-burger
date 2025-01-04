@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { SliceNamespace } from '../../constants/slice-namespace';
-import { BurgerIngredientsStateType } from '../../types/services-types';
+import { TBurgerIngredientsState } from '../../types/services-types';
 import { getIngredients } from '../thunks';
 
-const initialState: BurgerIngredientsStateType = {
+const initialState: TBurgerIngredientsState = {
   ingredients: [],
   isRequest: false,
   isSuccess: false

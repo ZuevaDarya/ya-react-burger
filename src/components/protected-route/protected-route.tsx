@@ -1,13 +1,13 @@
 import { Navigate, useLocation } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../services/store";
-import { ProtectedRoutePropsType } from "../../types/types";
+import { TProtectedRouteProps } from "../../types/types";
 import { useEffect, useState } from "react";
 import { AppRoute } from "../../constants/app-route";
 import { getUser } from "../../services/thunks";
 import Spinner from "../spinner/spinner";
 import styles from "../spinner/spinner.module.css";
 
-function ProtectedRoute({ withAuth, children }: ProtectedRoutePropsType) {
+function ProtectedRoute({ withAuth, children }: TProtectedRouteProps) {
   const location = useLocation();
   const dispatch = useAppDispatch();
   const [isUserLoaded, setIsUserLoaded] = useState(false);

@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from "../../services/store";
 import BurgerTemplate from "../burger-template/burger-template";
 import { useDrop } from "react-dnd";
 import { addBunInConstrucor, addIngredientInConstructor, clearConstructor} from "../../services/slices/constructor-ingredients-slice";
-import { IngredientType } from "../../types/types";
+import { TIngredient } from "../../types/types";
 import { useMemo } from 'react';
 import { createOrder } from '../../services/thunks';
 import { clearOrder } from '../../services/slices/order-details-slice';
@@ -27,7 +27,7 @@ function BurgerConstructor() {
 
   const [{ isHover }, dropTarget] = useDrop({
     accept: "ingredient",
-    drop(ingredient: IngredientType) {
+    drop(ingredient: TIngredient) {
       if (ingredient.type === IngredientsType.Bun) {
         dispatch(addBunInConstrucor(ingredient));
       } else {
