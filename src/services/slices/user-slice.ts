@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { SliceNamespace } from '../../constants/slice-namespace';
-import { UserStateType } from '../../types/services-types';
+import { TUserState } from '../../types/services-types';
 import { getUser, login, logout, register, updateUser } from '../thunks';
 import { localStorageKey } from '../../constants/local-storage-key';
 import getCorrectToken from '../../utils/functions/get-correct-token';
 
-const initialState: UserStateType = {
+const initialState: TUserState = {
   user: null,
   isRequest: false,
   isSuccess: false,

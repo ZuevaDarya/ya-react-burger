@@ -9,13 +9,13 @@ import FormLink from "../../components/form-link/form-link";
 import { AppRoute } from "../../constants/app-route";
 import { InputName } from "../../constants/input-name";
 import { useForm } from "../../hooks/useForm";
-import { RegistrationFormType } from "../../types/types";
+import { TRegistrationForm } from "../../types/types";
 import { useAppDispatch } from "../../services/store";
 import { register } from "../../services/thunks";
 import { useNavigate } from "react-router-dom";
 
 function RegistrationPage() {
-  const { formData, handleChangeInput } = useForm<RegistrationFormType>({
+  const { formData, handleChangeInput } = useForm<TRegistrationForm>({
     name: "",
     email: "",
     password: "",

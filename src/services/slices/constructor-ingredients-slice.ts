@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ConstructorIngredientsStateType, IngredientConstructorSliceType, SwapIngredientActionType } from '../../types/services-types';
+import { TConstructorIngredientsState, TIngredientConstructorSlice, TSwapIngredientAction } from '../../types/services-types';
 import { SliceNamespace } from '../../constants/slice-namespace';
-import { IngredientType } from '../../types/types';
+import { TIngredient } from '../../types/types';
 import uuid from 'react-uuid';
 
-const initialState: ConstructorIngredientsStateType = {
+const initialState: TConstructorIngredientsState = {
   ingredients: [],
   bun: null
 };
@@ -14,14 +14,14 @@ const constructorIngredientsSlice = createSlice({
   initialState,
   reducers: {
     addIngredientInConstructor: {
-      reducer: (state, { payload }: PayloadAction<IngredientConstructorSliceType>) => {
+      reducer: (state, { payload }: PayloadAction<TIngredientConstructorSlice>) => {
         state.ingredients.push(payload);
       },
-      prepare: (ingredient: IngredientType) => {
-        return { payload: { ingredient, uuid: uuid() }};
+      prepare: (ingredient: TIngredient) => {
+        return { payload: { ingredient, uuid: uuid() } };
       }
     },
-    addBunInConstrucor: (state, { payload }: PayloadAction<IngredientType>) => {
+    addBunInConstrucor: (state, { payload }: PayloadAction<TIngredient>) => {
       state.bun = payload;
     },
     removeIngredientFromConstructor: (state, { payload }: PayloadAction<string>) => {
@@ -31,7 +31,7 @@ const constructorIngredientsSlice = createSlice({
       state.ingredients = [];
       state.bun = null;
     },
-    swapIngredients: (state, { payload }: PayloadAction<SwapIngredientActionType>) => {
+    swapIngredients: (state, { payload }: PayloadAction<TSwapIngredientAction>) => {
       const [movedIngredients] = state.ingredients.splice(payload.fromIndex, 1);
       state.ingredients.splice(payload.toIndex, 0, movedIngredients);
     }

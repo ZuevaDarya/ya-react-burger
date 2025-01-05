@@ -1,10 +1,10 @@
 import modalOverlayStyles from "./modal-overlay.module.css";
-import { ModalOverlayPropsType } from "../../types/types";
+import { TModalOverlayProps } from "../../types/types";
 
-function ModalOverlay({ onClose }: ModalOverlayPropsType) {
+function ModalOverlay({ onClose }: TModalOverlayProps) {
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
-    
+
     if (e.currentTarget === e.target) {
       onClose();
     }

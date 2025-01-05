@@ -1,5 +1,5 @@
 import { NavLink, NavLinkRenderProps } from "react-router-dom";
-import { NavLinkPropsType } from "../../types/types";
+import { TNavLinkProps } from "../../types/types";
 import navItemStyles from "./nav-list-item.module.css";
 
 function NavListItem({
@@ -7,10 +7,10 @@ function NavListItem({
   classes,
   isProfileLink,
   children,
-}: NavLinkPropsType) {
+}: TNavLinkProps) {
   const getLinkClasses = ({ isActive }: NavLinkRenderProps) => {
     const defaultClasses = `
-      ${!isProfileLink ? "text text_type_main-default": "text text_type_main-medium"} 
+      ${!isProfileLink ? "text text_type_main-default" : "text text_type_main-medium"} 
       ${navItemStyles["nav-link"]} 
     `;
 

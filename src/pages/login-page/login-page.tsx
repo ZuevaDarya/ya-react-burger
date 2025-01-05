@@ -8,14 +8,14 @@ import { InputName } from "../../constants/input-name";
 import { AppRoute } from "../../constants/app-route";
 import loginStyles from "./login-page.module.css";
 import FormLink from "../../components/form-link/form-link";
-import { LoginFormType } from "../../types/types";
+import { TLoginForm } from "../../types/types";
 import { useForm } from "../../hooks/useForm";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import { login } from "../../services/thunks";
 
 function LoginPage() {
-  const { formData, handleChangeInput } = useForm<LoginFormType>({
+  const { formData, handleChangeInput } = useForm<TLoginForm>({
     email: "",
     password: "",
   });

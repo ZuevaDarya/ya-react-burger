@@ -2,33 +2,33 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { API_PATHS } from '../constants/api-constants';
 import { SliceNamespace } from '../constants/slice-namespace';
 import {
-  ForgotPasswordFormType,
-  IngredientType,
-  LoginFormType,
-  ProfileFormType,
-  RegistrationFormType,
-  ResetPasswordFormType
+  TForgotPasswordForm,
+  TIngredient,
+  TLoginForm,
+  TProfileForm,
+  TRegistrationForm,
+  TResetPasswordForm
 } from '../types/types';
 import {
-  GetUserResponseType,
-  LoginResponseType,
-  LogoutResponseType,
-  OrderResponeType,
-  RegisterResponseType,
-  ResetPasswordResponseType,
-  UpdateUserResponseType
+  TGetUserResponse,
+  TLoginResponse,
+  TLogoutResponse,
+  TOrderRespone,
+  TRegisterResponse,
+  TResetPasswordResponse,
+  TUpdateUserResponse
 } from '../types/services-types';
 import { request, requestWithRefresh } from '../utils/functions/request';
 import { localStorageKey } from '../constants/local-storage-key';
 
-export const getIngredients = createAsyncThunk<{ data: IngredientType[] }>(
+export const getIngredients = createAsyncThunk<{ data: TIngredient[] }>(
   `${SliceNamespace.BurgerIngredients}/getIngredients`,
   async () => {
     return await request(API_PATHS.ingredients);
   }
 );
 
-export const createOrder = createAsyncThunk<OrderResponeType, string[]>(
+export const createOrder = createAsyncThunk<TOrderRespone, string[]>(
   `${SliceNamespace.OrderDetails}/createOrder`,
   async (ingredientsIds) => {
     const options = {
@@ -45,7 +45,7 @@ export const createOrder = createAsyncThunk<OrderResponeType, string[]>(
   }
 );
 
-export const register = createAsyncThunk<RegisterResponseType, RegistrationFormType>(
+export const register = createAsyncThunk<TRegisterResponse, TRegistrationForm>(
   `${SliceNamespace.User}/register`,
   async (data) => {
     const options = {
@@ -60,7 +60,7 @@ export const register = createAsyncThunk<RegisterResponseType, RegistrationFormT
   }
 );
 
-export const login = createAsyncThunk<LoginResponseType, LoginFormType>(
+export const login = createAsyncThunk<TLoginResponse, TLoginForm>(
   `${SliceNamespace.User}/login`,
   async (data) => {
     const options = {
@@ -75,7 +75,7 @@ export const login = createAsyncThunk<LoginResponseType, LoginFormType>(
   }
 );
 
-export const logout = createAsyncThunk<LogoutResponseType>(
+export const logout = createAsyncThunk<TLogoutResponse>(
   `${SliceNamespace.User}/logout`,
   async () => {
     const refreshToken = localStorage.getItem(localStorageKey.RefreshToken);
@@ -92,7 +92,7 @@ export const logout = createAsyncThunk<LogoutResponseType>(
   }
 );
 
-export const updateUser = createAsyncThunk<UpdateUserResponseType, ProfileFormType>(
+export const updateUser = createAsyncThunk<TUpdateUserResponse, TProfileForm>(
   `${SliceNamespace.User}/updateUser`,
   async (data) => {
     const accessToken = localStorage.getItem(localStorageKey.AccessToken);
@@ -110,7 +110,7 @@ export const updateUser = createAsyncThunk<UpdateUserResponseType, ProfileFormTy
   }
 );
 
-export const getUser = createAsyncThunk<GetUserResponseType>(
+export const getUser = createAsyncThunk<TGetUserResponse>(
   `${SliceNamespace.User}/getUser`,
   async () => {
     const accessToken = localStorage.getItem(localStorageKey.AccessToken);
@@ -124,7 +124,7 @@ export const getUser = createAsyncThunk<GetUserResponseType>(
   }
 );
 
-export const firstStepResetPassword = createAsyncThunk<ResetPasswordResponseType, ForgotPasswordFormType>(
+export const firstStepResetPassword = createAsyncThunk<TResetPasswordResponse, TForgotPasswordForm>(
   `${SliceNamespace.User}/firstStepResetPassword`,
   async (data) => {
     const options = {
@@ -139,7 +139,7 @@ export const firstStepResetPassword = createAsyncThunk<ResetPasswordResponseType
   }
 );
 
-export const lastStepResetPassword = createAsyncThunk<ResetPasswordResponseType, ResetPasswordFormType>(
+export const lastStepResetPassword = createAsyncThunk<TResetPasswordResponse, TResetPasswordForm>(
   `${SliceNamespace.User}/lastStepResetPassword`,
   async (data) => {
     const options = {

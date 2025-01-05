@@ -2,13 +2,13 @@ import { API_PATHS } from '../constants/api-constants';
 import { AppRoute } from '../constants/app-route';
 import { IngredientsTabsValue } from '../constants/ingredients-tabs';
 import { ConstructorElemType, IngredientsType } from '../constants/ingredients-type';
-import { IngredientConstructorSliceType } from './services-types';
+import { TIngredientConstructorSlice } from './services-types';
 
-export type NavListPropsType = {
+export type TNavListProps = {
   children: React.ReactNode;
 };
 
-export type NavLinkPropsType = {
+export type TNavLinkProps = {
   route: AppRoute;
   classes?: string;
   linkClasses?: string;
@@ -16,45 +16,40 @@ export type NavLinkPropsType = {
   isProfileLink?: boolean;
 };
 
-export type ScrollTabsRefType = React.MutableRefObject<HTMLElement | null>;
+export type TScrollTabsRef = React.MutableRefObject<HTMLElement | null>;
 
-export type HashTableType = {
+export type THashTable = {
   [x: string]: number;
 };
 
-export type BurgerIngredientsSectionPropsType = {
+export type TBurgerIngredientsSectionProps = {
   title: string;
-  ingredients: IngredientType[];
-  hashTable: HashTableType;
+  ingredients: TIngredient[];
+  hashTable: THashTable;
 };
 
-export type PricePropsType = Pick<IngredientType, "price"> & {
+export type TPriceProps = Pick<TIngredient, "price"> & {
   classes?: string;
 };
 
-export type IngredientCardPropsType = {
-  ingredient: IngredientType;
+export type TIngredientCardProps = {
+  ingredient: TIngredient;
   count: number;
 };
 
-export type BurgerConstructorItemType = IngredientType & {
-  typePos?: ConstructorElemType;
-  isLocked?: boolean;
-};
-
-export type BurgerConstructorItemPropsType = {
-  ingredient: BurgerConstructorItemType;
+export type TBurgerConstructorItemProps = {
+  ingredient: TIngredient;
   isLocked?: boolean;
   typePos?: ConstructorElemType;
   uuid?: string;
   idx: number;
 };
 
-export type ConstructorElementDragType = IngredientConstructorSliceType & {
+export type TConstructorElementDrag = TIngredientConstructorSlice & {
   idx: number;
-}
+};
 
-export type IngredientType = {
+export type TIngredient = {
   _id: string;
   name: string;
   type: IngredientsType | string;
@@ -69,79 +64,79 @@ export type IngredientType = {
   __v: number;
 };
 
-export type BurgerIngredientsPropsType = {
-  ingredients: IngredientType[];
+export type TBurgerIngredientsProps = {
+  ingredients: TIngredient[];
 };
 
-export type BurgerIngredientsTabsPropsType = {
-  bunsRef: ScrollTabsRefType;
-  sauceRef: ScrollTabsRefType;
-  toppingRef: ScrollTabsRefType;
+export type TBurgerIngredientsTabsProps = {
+  bunsRef: TScrollTabsRef;
+  sauceRef: TScrollTabsRef;
+  toppingRef: TScrollTabsRef;
   current: IngredientsTabsValue | string;
   setCurrent: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export type BurgerConstructorPropsType = {
-  ingredients: BurgerConstructorItemType[];
-}
+export type TBurgerConstructorProps = {
+  ingredients: TIngredient[];
+};
 
-export type ModalPropsType = {
+export type TModalProps = {
   isTitle: boolean;
   onClose: () => void;
   children: React.ReactNode;
 };
 
-export type ModalOverlayPropsType = Pick<ModalPropsType, "onClose">;
+export type TModalOverlayProps = Pick<TModalProps, "onClose">;
 
-export type ColoriesItemPropsType = {
-  nameCalories: string;
-  numCalories: number;
+export type TColoriesItemProps = {
+  name: string;
+  count: number;
 };
 
-export type BurgerTemplatePropsType = {
+export type TBurgerTemplateProps = {
   text: string;
   type?: ConstructorElemType;
   isHover?: boolean;
 };
 
-export type FillHashTableFuncType = (x: IngredientType[], y: IngredientConstructorSliceType[], z?: IngredientType | null) => HashTableType;
+export type TFillHashTableFunc = (x: TIngredient[], y: TIngredientConstructorSlice[], z?: TIngredient | null) => THashTable;
 
 type ApiPathsKeys = keyof typeof API_PATHS;
-export type ApiPathsType = typeof API_PATHS[ApiPathsKeys];
+export type TApiPaths = typeof API_PATHS[ApiPathsKeys];
 
-export type FormPropsType = {
+export type TFormProps = {
   title?: string;
   children: React.ReactNode;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
-export type FormLinkPropsType = {
+export type TFormLinkProps = {
   route: AppRoute;
   preText?: string;
   linkText: string;
 };
 
-export type LoginFormType = {
+export type TLoginForm = {
   email: string;
   password: string;
 };
 
-export type RegistrationFormType = LoginFormType & {
+export type TRegistrationForm = TLoginForm & {
   name: string;
 };
 
-export type ForgotPasswordFormType = {
+export type TForgotPasswordForm = {
   email: string;
 };
 
-export type ResetPasswordFormType = {
+export type TResetPasswordForm = {
   password: string;
   token: string;
 };
 
-export type ProfileFormType = RegistrationFormType;
+export type TProfileForm = TRegistrationForm;
 
-export type ProtectedRoutePropsType = {
+export type TProtectedRouteProps = {
   withAuth: boolean;
   children: React.ReactNode;
 };

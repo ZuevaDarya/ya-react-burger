@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
-import { PreloadedStateType } from '../types/services-types';
+import { TPreloadedState } from '../types/services-types';
 import { rootReducer } from './root-reducer';
 
-const preloadedState: PreloadedStateType = {
+const preloadedState: TPreloadedState = {
   burgerIngredients: {
     ingredients: [],
     isRequest: false,

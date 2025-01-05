@@ -1,46 +1,47 @@
-import { IngredientType } from './types';
+import { TIngredient } from './types';
 
-export type BurgerIngredientsStateType = {
-  ingredients: IngredientType[],
-  isRequest: boolean,
-  isSuccess: boolean
-}
+export type TProcessRequest = {
+  isRequest: boolean;
+  isSuccess: boolean;
+};
 
-export type IngredientConstructorSliceType = {
+export type TBurgerIngredientsState = TProcessRequest & {
+  ingredients: TIngredient[];
+};
+
+export type TIngredientConstructorSlice = {
   uuid: string;
-  ingredient: IngredientType;
-}
+  ingredient: TIngredient;
+};
 
-export type ConstructorIngredientsStateType = {
-  ingredients: IngredientConstructorSliceType[];
-  bun: IngredientType | null;
-}
+export type TConstructorIngredientsState = {
+  ingredients: TIngredientConstructorSlice[];
+  bun: TIngredient | null;
+};
 
-export type IngredientDetailsType = {
-  currentIngredient: IngredientType | null;
-}
+export type TIngredientDetailsState = {
+  currentIngredient: TIngredient | null;
+};
 
-export type OrderType = {
+export type TOrder = {
   name: string;
   number: number;
 };
 
-export type OrderdetailsStateType = {
-  order: OrderType | null;
-  isRequest: boolean;
-  isSuccess: boolean;
-}
-
-export type PreloadedStateType = {
-  burgerIngredients: BurgerIngredientsStateType;
-  constructorIngredients: ConstructorIngredientsStateType;
-  ingredientDetails: IngredientDetailsType;
-  orderDetails: OrderdetailsStateType;
-  userInfo: UserStateType;
-  resetPassword: ResetPasswordStateType;
+export type TOrderdetailsState = TProcessRequest & {
+  order: TOrder | null;
 };
 
-export type OrderResponeType = {
+export type TPreloadedState = {
+  burgerIngredients: TBurgerIngredientsState;
+  constructorIngredients: TConstructorIngredientsState;
+  ingredientDetails: TIngredientDetailsState;
+  orderDetails: TOrderdetailsState;
+  userInfo: TUserState;
+  resetPassword: TResetPasswordState;
+};
+
+export type TOrderRespone = {
   name: string;
   order: {
     number: number;
@@ -48,61 +49,56 @@ export type OrderResponeType = {
   success: boolean;
 };
 
-export type SwapIngredientActionType = {
-  toIndex: number; 
+export type TSwapIngredientAction = {
+  toIndex: number;
   fromIndex: number;
 };
 
-export type UserType = {
+export type TUser = {
   name: string;
   email: string;
 };
 
-export type UserStateType = {
-  user: UserType | null;
-  isRequest: boolean;
-  isSuccess: boolean;
+export type TUserState = TProcessRequest & {
+  user: TUser | null;
   error: string | null;
   isLogoutRequest: boolean;
 };
 
-export type RegisterResponseType = {
-  success: boolean;
-  user: UserType;
-  accessToken: string;
-  refreshToken: string;
-};
-
-export type LoginResponseType = RegisterResponseType;
-
-export type LogoutResponseType = {
-  success: boolean;
-  message: string;
-};
-
-export type UpdateTokenResponseType = {
+export type TResponseWithTokens = {
   success: boolean;
   accessToken: string;
   refreshToken: string;
 };
 
-export type UpdateUserResponseType = Omit<RegisterResponseType, "accessToken" | "refreshToken"> ;
-
-export type GetUserResponseType = {
-  user: UserType;
-  success: boolean;
+export type TRegisterResponse = TResponseWithTokens & {
+  user: TUser;
 };
 
-export type ErrorResponseType = {
+export type TLoginResponse = TRegisterResponse;
+
+export type TLogoutResponse = {
   success: boolean;
   message: string;
 };
 
-export type ResetPasswordStateType = {
+export type TUpdateTokenResponse = TResponseWithTokens;
+
+export type TUpdateUserResponse = {
+  user: TUser;
+  success: boolean;
+};
+
+export type TGetUserResponse = TUpdateUserResponse;
+
+export type TErrorResponse = {
+  success: boolean;
+  message: string;
+};
+
+export type TResetPasswordState = TProcessRequest & {
   message: string | null;
-  isRequest: boolean;
-  isSuccess: boolean;
   error: string | null;
 };
 
-export type ResetPasswordResponseType = ErrorResponseType;
+export type TResetPasswordResponse = TErrorResponse;

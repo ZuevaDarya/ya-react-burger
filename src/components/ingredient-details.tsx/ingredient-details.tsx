@@ -18,10 +18,10 @@ function IngredientDetails() {
           <p className="text text_type_main-medium mb-8">{currentIngredient.name}</p>
 
           <div className={detailStyles["calories-info"]}>
-            <ColoriesItem nameCalories="Калории,ккал" numCalories={currentIngredient.calories} />
-            <ColoriesItem nameCalories="Белки,г" numCalories={currentIngredient.proteins} />
-            <ColoriesItem nameCalories="Жиры,г" numCalories={currentIngredient.fat} />
-            <ColoriesItem nameCalories="Углеводы,г" numCalories={currentIngredient.carbohydrates} />
+            <ColoriesItem name="Калории,ккал" count={currentIngredient.calories} />
+            <ColoriesItem name="Белки,г" count={currentIngredient.proteins} />
+            <ColoriesItem name="Жиры,г" count={currentIngredient.fat} />
+            <ColoriesItem name="Углеводы,г" count={currentIngredient.carbohydrates} />
           </div>
         </div>
       }

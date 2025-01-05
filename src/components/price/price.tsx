@@ -1,8 +1,8 @@
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import priceStyles from "./price.module.css";
-import { PricePropsType } from "../../types/types";
+import { TPriceProps } from "../../types/types";
 
-function Price({ price, classes }: PricePropsType) {
+function Price({ price, classes }: TPriceProps) {
   return (
     <div className={`pt-1 pb-1 ${priceStyles.price}`}>
       <span className={`text ${classes}`}>{price}</span>

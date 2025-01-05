@@ -1,18 +1,18 @@
 import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import cardStyles from "./ingredient-card.module.css";
 import Price from "../price/price";
-import { IngredientCardPropsType, IngredientType } from "../../types/types";
+import { TIngredientCardProps, TIngredient } from "../../types/types";
 import { useAppDispatch } from "../../services/store";
 import { addCurrentIngredient } from "../../services/slices/ingredient-details-slice";
 import { useDrag } from "react-dnd";
-import { memo } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { memo } from "react";
+import { Link, useLocation } from "react-router-dom";
 
-function IngredientCard({ ingredient, count }: IngredientCardPropsType) {
+function IngredientCard({ ingredient, count }: TIngredientCardProps) {
   const location = useLocation();
   const dispatch = useAppDispatch();
 
-  const [, dragRef] = useDrag<IngredientType>({
+  const [, dragRef] = useDrag<TIngredient>({
     type: "ingredient",
     item: { ...ingredient },
   });
@@ -22,7 +22,8 @@ function IngredientCard({ ingredient, count }: IngredientCardPropsType) {
   };
 
   return (
-    <Link to={`/ingredients/${ingredient._id}`}
+    <Link
+      to={`/ingredients/${ingredient._id}`}
       className={`pl-4 pr-4 ${cardStyles["ingredient-card"]}`}
       onClick={hadleClick}
       state={{ background: location }}

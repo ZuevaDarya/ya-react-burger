@@ -1,8 +1,8 @@
 import { ConstructorElemType } from "../../constants/ingredients-type";
-import { BurgerTemplatePropsType } from "../../types/types";
+import { TBurgerTemplateProps } from "../../types/types";
 import templateStyles from "./burger-template.module.css";
 
-function BurgerTemplate({ text, type, isHover }: BurgerTemplatePropsType) {
+function BurgerTemplate({ text, type, isHover }: TBurgerTemplateProps) {
   return (
     <div
       className={`
@@ -11,7 +11,7 @@ function BurgerTemplate({ text, type, isHover }: BurgerTemplatePropsType) {
       ${type === ConstructorElemType.Bottom && "constructor-element_pos_bottom"}
       ${!type && "constructor-element_pos"}
       ${templateStyles["burger-template"]}
-      ${ isHover && templateStyles["burger-template_hovered"]}
+      ${isHover && templateStyles["burger-template_hovered"]}
     `}
     >
       <p>Перетащите сюда {text}</p>

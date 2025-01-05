@@ -8,7 +8,7 @@ import Form from "../form/form";
 import { InputName } from "../../constants/input-name";
 import { useForm } from "../../hooks/useForm";
 import { updateUser } from "../../services/thunks";
-import { ProfileFormType } from "../../types/types";
+import { TProfileForm } from "../../types/types";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import profileStyles from "./profile-form.module.css";
 import styles from "../../pages/profile-page/profile-page.module.css";
@@ -24,7 +24,7 @@ function ProfileForm() {
     handleChangeInput,
     isChangedData,
     setIsChangedData,
-  } = useForm<ProfileFormType>({
+  } = useForm<TProfileForm>({
     name: user ? user.name : "",
     email: user ? user.email : "",
     password: "",

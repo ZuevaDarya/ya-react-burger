@@ -1,10 +1,10 @@
-import { FillHashTableFuncType, HashTableType, IngredientType } from '../../types/types';
+import { TFillHashTableFunc, THashTable, TIngredient } from '../../types/types';
 
-const createHashTable = (arr: IngredientType[]): HashTableType => {
+const createHashTable = (arr: TIngredient[]): THashTable => {
   return arr.reduce((table, item) => ({ ...table, [item._id]: 0 }), {});
 }
 
-const fillHashTable: FillHashTableFuncType = (allIngredients, ingredientsInConstructor, bun) => {
+const fillHashTable: TFillHashTableFunc = (allIngredients, ingredientsInConstructor, bun) => {
   const hashTable = createHashTable(allIngredients);
 
   const result = ingredientsInConstructor.reduce((hashTable, item) =>
