@@ -1,8 +1,11 @@
-import { API_PATHS } from '../constants/api-constants';
-import { AppRoute } from '../constants/app-route';
-import { IngredientsTabsValue } from '../constants/ingredients-tabs';
-import { ConstructorElemType, IngredientsType } from '../constants/ingredients-type';
-import { TIngredientConstructorSlice } from './services-types';
+import { API_PATHS } from "../constants/api-constants";
+import { AppRoute } from "../constants/app-route";
+import { IngredientsTabsValue } from "../constants/ingredients-tabs";
+import {
+  ConstructorElemType,
+  IngredientsType,
+} from "../constants/ingredients-type";
+import { TIngredientConstructorSlice } from "./services-types";
 
 export type TNavListProps = {
   children: React.ReactNode;
@@ -99,10 +102,14 @@ export type TBurgerTemplateProps = {
   isHover?: boolean;
 };
 
-export type TFillHashTableFunc = (x: TIngredient[], y: TIngredientConstructorSlice[], z?: TIngredient | null) => THashTable;
+export type TFillHashTableFunc = (
+  x: TIngredient[],
+  y: TIngredientConstructorSlice[],
+  z?: TIngredient | null
+) => THashTable;
 
 type ApiPathsKeys = keyof typeof API_PATHS;
-export type TApiPaths = typeof API_PATHS[ApiPathsKeys];
+export type TApiPaths = (typeof API_PATHS)[ApiPathsKeys];
 
 export type TFormProps = {
   title?: string;
@@ -139,4 +146,18 @@ export type TProfileForm = TRegistrationForm;
 export type TProtectedRouteProps = {
   withAuth: boolean;
   children: React.ReactNode;
+};
+
+export type TFeedDetailsProps = {
+  title: string;
+  count: string;
+};
+
+export type TFeedOrdersListProps = {
+  orders: string[];
+};
+
+export type TFeedOrdersBlockProps = TFeedOrdersListProps & {
+  title: string;
+  isDone: boolean;
 };

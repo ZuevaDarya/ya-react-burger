@@ -1,21 +1,22 @@
+import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AppRoute } from "../../constants/app-route";
-import HomePage from "../../pages/home-page/home-page";
+import { localStorageKey } from "../../constants/local-storage-key";
 import ErrorPage from "../../pages/error-page/error-page";
-import AppLayout from "../app-layout/app-layout";
-import LoginPage from "../../pages/login-page/login-page";
 import ForgotPasswordPage from "../../pages/forgot-password-page/forgot-password-page";
-import ResetpasswordPage from "../../pages/reset-password-page/reset-password-page";
-import RegistrationPage from "../../pages/registration-page/registration-page";
-import ProfilePage from "../../pages/profile-page/profile-page";
+import HomePage from "../../pages/home-page/home-page";
 import IngredientPage from "../../pages/ingredient-page/ingredient-page";
-import { useEffect } from "react";
+import LoginPage from "../../pages/login-page/login-page";
+import OrdersFeedPage from "../../pages/orders-feed-page/orders-feed-page";
+import ProfilePage from "../../pages/profile-page/profile-page";
+import RegistrationPage from "../../pages/registration-page/registration-page";
+import ResetpasswordPage from "../../pages/reset-password-page/reset-password-page";
 import { useAppDispatch } from "../../services/store";
 import { getIngredients, getUser } from "../../services/thunks";
-import ProtectedRoute from "../protected-route/protected-route";
-import ProfileForm from "../profile-form/profile-form";
+import AppLayout from "../app-layout/app-layout";
 import ModalIngredientDetails from "../modal-ingredient-details/modal-ingredient-details";
-import { localStorageKey } from '../../constants/local-storage-key';
+import ProfileForm from "../profile-form/profile-form";
+import ProtectedRoute from "../protected-route/protected-route";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -95,6 +96,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path={AppRoute.OrdersFeed} element={<OrdersFeedPage />} />
         </Route>
         <Route path={AppRoute.Error} element={<ErrorPage />} />
       </Routes>

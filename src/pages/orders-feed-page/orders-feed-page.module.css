@@ -1,0 +1,40 @@
+.main {
+  padding-top: 30px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 60px;
+  height: 100%;
+}
+
+.feed-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 608px;
+  width: 100%;
+  height: inherit;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.feed-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  align-items: flex-start;
+}
+
+.orders-info {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 36px;
+  width: inherit;
+}

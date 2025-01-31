@@ -1,0 +1,67 @@
+.ingredient-preview {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 100%;
+  margin-left: -15px;
+  z-index: 1;
+}
+
+.ingredient-preview:first-child {
+  margin-left: 0;
+  z-index: 6;
+}
+
+.ingredient-preview:nth-child(2) {
+  z-index: 5;
+}
+
+.ingredient-preview:nth-child(3) {
+  z-index: 4;
+}
+
+.ingredient-preview:nth-child(4) {
+  z-index: 3;
+}
+
+.ingredient-preview:nth-child(5) {
+  z-index: 2;
+}
+
+.ingredient-preview:nth-child(6)::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  background: var(--interface-bg);
+  opacity: 0.6;
+}
+
+.ingredient-preview::before {
+  position: absolute;
+  content: "";
+  inset: -2.5px;
+  border-radius: inherit;
+  background: var(--border-gradient);
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--interface-bg);
+  border-radius: inherit;
+}
+
+.count {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 7;
+}
