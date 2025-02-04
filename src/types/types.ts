@@ -5,6 +5,7 @@ import {
   ConstructorElemType,
   IngredientsType,
 } from "../constants/ingredients-type";
+import { Status } from "../constants/order-status";
 import { TIngredientConstructorSlice } from "./services-types";
 
 export type TNavListProps = {
@@ -153,11 +154,24 @@ export type TFeedDetailsProps = {
   count: string;
 };
 
-export type TFeedOrdersListProps = {
+export type TFeedOrdersIdListProps = {
   orders: string[];
 };
 
-export type TFeedOrdersBlockProps = TFeedOrdersListProps & {
+export type TFeedOrdersIdBlockProps = TFeedOrdersIdListProps & {
   title: string;
   isDone: boolean;
+};
+
+export type TFeedOrdersBlockProps = {
+  classes?: string;
+  children: React.ReactNode;
+};
+
+export type TOrderStatusProps = {
+  status: Status;
+};
+
+export type TFeedCardProps = {
+  orderStatus?: Status;
 };

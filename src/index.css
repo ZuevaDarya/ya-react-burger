@@ -19,6 +19,7 @@
   --modal-border-radius: 40px;
   --order-id-accent: rgba(76, 76, 255, .5);
   --border-gradient: linear-gradient(#801AB2, #4C4CFF);
+  --feed-card-hover-color: rgba(58, 58, 85, .2);
 
   background-color: var(--interface-bg);
 

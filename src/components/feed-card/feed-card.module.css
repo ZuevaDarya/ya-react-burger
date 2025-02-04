@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  max-width: 584px;
   width: 100%;
   border-radius: 40px;
   padding: 24px;
@@ -29,4 +28,21 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+}
+
+.link {
+  position: relative;
+  color: var(--text-primary-light-standart-text);
+}
+
+.link:hover.link::after{
+  content: "";
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 10;
+  background-color: rgba(58, 58, 85, .2);
+  width: 100%;
+  height: 100%;
+  border-radius: 40px;
 }

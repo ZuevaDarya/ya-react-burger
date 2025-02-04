@@ -17,6 +17,7 @@ import AppLayout from "../app-layout/app-layout";
 import ModalIngredientDetails from "../modal-ingredient-details/modal-ingredient-details";
 import ProfileForm from "../profile-form/profile-form";
 import ProtectedRoute from "../protected-route/protected-route";
+import ProfileOrders from '../profile-orders/profile-orders';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -85,7 +86,7 @@ function App() {
             }
           >
             <Route path={AppRoute.Profile} element={<ProfileForm />} />
-            <Route path={AppRoute.Orders} element={<p>Orders</p>} />
+            <Route path={AppRoute.Orders} element={<ProfileOrders />} />
           </Route>
           <Route path={AppRoute.Ingredient} element={<IngredientPage />} />
           <Route
@@ -96,7 +97,9 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path={AppRoute.OrdersFeed} element={<OrdersFeedPage />} />
+          <Route path={AppRoute.OrdersFeed} element={<OrdersFeedPage />}>
+            <Route path={AppRoute.OrderFeed} element={""} />
+          </Route>
         </Route>
         <Route path={AppRoute.Error} element={<ErrorPage />} />
       </Routes>

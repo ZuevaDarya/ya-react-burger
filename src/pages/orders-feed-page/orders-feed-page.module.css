@@ -12,14 +12,8 @@
 }
 
 .feed-container {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
   max-width: 608px;
-  width: 100%;
-  height: inherit;
-  overflow-y: auto;
-  padding-right: 8px;
+  height: 75vh;
 }
 
 .feed-info {
