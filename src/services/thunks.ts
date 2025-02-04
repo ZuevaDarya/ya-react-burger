@@ -31,17 +31,20 @@ export const getIngredients = createAsyncThunk<{ data: TIngredient[] }>(
 export const createOrder = createAsyncThunk<TOrderRespone, string[]>(
   `${SliceNamespace.OrderDetails}/createOrder`,
   async (ingredientsIds) => {
+    const accessToken = localStorage.getItem(localStorageKey.AccessToken);
+
     const options = {
       method: 'POST',
       headers: {
         "Content-Type": "application/json;charset=utf-8",
+        "Authorization": "Bearer " + accessToken || "",
       },
       body: JSON.stringify({
         ingredients: ingredientsIds,
       }),
     };
 
-    return await request(API_PATHS.orders, options);
+    return await requestWithRefresh(API_PATHS.orders, options);
   }
 );
 
