@@ -16,6 +16,7 @@ import { createOrder } from '../../services/thunks';
 import { clearOrder } from '../../services/slices/order-details-slice';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../constants/app-route';
+import { ModalType } from '../../constants/modal-type';
 
 function BurgerConstructor() {
   const { isModalOpen, openModal, closeModal } = useModal();
@@ -80,7 +81,7 @@ function BurgerConstructor() {
   return (
     <>
       {isModalOpen && (
-        <Modal isTitle={false} onClose={onClose}>
+        <Modal onClose={onClose} type={ModalType.CreateOrder}>
           <OrderDetails />
         </Modal>
       )}
@@ -92,7 +93,7 @@ function BurgerConstructor() {
         <div className={`${burgerConstructorStyles["burger-constructor-list"]}`}>
           {!bun && <BurgerTemplate text="булку" type={ConstructorElemType.Top} isHover={isHover} />}
           {bun && <BurgerConstructorItem ingredient={bun} isLocked={true}  typePos={ConstructorElemType.Top} idx={-1} />}
-    
+
           <div className={`${burgerConstructorStyles["burger-constructor-list"]}`}>
             {ingredients.length === 0 && <BurgerTemplate text="начинку" isHover={isHover} />}
             {ingredients.length !== 0 &&

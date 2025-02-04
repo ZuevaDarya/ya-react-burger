@@ -13,7 +13,7 @@
 
 .feed-container {
   max-width: 608px;
-  height: 75vh;
+  max-height: 75vh;
 }
 
 .feed-info {

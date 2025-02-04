@@ -10,5 +10,5 @@ export enum AppRoute {
   Orders = "/profile/orders",
   Order = "/profile/orders/:id",
   OrdersFeed = "/feed",
-  OrderFeed = "feed/:id",
+  OrderFeed = "/feed/:id",
 }

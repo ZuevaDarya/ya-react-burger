@@ -1,6 +1,6 @@
-import { TFeedDetailsProps } from '../../types/types';
+import { TFeedStatisticProps } from "../../types/types";
 
-function FeedDetails({ title, count }: TFeedDetailsProps) {
+function FeedStatistic({ title, count }: TFeedStatisticProps) {
   return (
     <div>
       <h2 className="text text_type_main-medium">{title}</h2>
@@ -9,4 +9,4 @@ function FeedDetails({ title, count }: TFeedDetailsProps) {
   );
 }
 
-export default FeedDetails;
+export default FeedStatistic;

@@ -5,6 +5,7 @@ import {
   ConstructorElemType,
   IngredientsType,
 } from "../constants/ingredients-type";
+import { ModalType } from '../constants/modal-type';
 import { Status } from "../constants/order-status";
 import { TIngredientConstructorSlice } from "./services-types";
 
@@ -85,9 +86,10 @@ export type TBurgerConstructorProps = {
 };
 
 export type TModalProps = {
-  isTitle: boolean;
+  title?: string;
   onClose: () => void;
   children: React.ReactNode;
+  type: ModalType;
 };
 
 export type TModalOverlayProps = Pick<TModalProps, "onClose">;
@@ -149,7 +151,7 @@ export type TProtectedRouteProps = {
   children: React.ReactNode;
 };
 
-export type TFeedDetailsProps = {
+export type TFeedStatisticProps = {
   title: string;
   count: string;
 };
@@ -174,4 +176,5 @@ export type TOrderStatusProps = {
 
 export type TFeedCardProps = {
   orderStatus?: Status;
+  route: AppRoute;
 };
