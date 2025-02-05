@@ -91,7 +91,14 @@ function App() {
             <Route path={AppRoute.Orders} element={<ProfileOrders />} />
           </Route>
           <Route path={AppRoute.Ingredient} element={<IngredientPage />} />
-          <Route path={AppRoute.Order} element={<OrderDetailsPage />} />
+          <Route
+            path={AppRoute.Order}
+            element={
+              <ProtectedRoute withAuth={false}>
+                <OrderDetailsPage />
+              </ProtectedRoute>
+            }
+          />
           <Route path={AppRoute.OrdersFeed} element={<OrdersFeedPage />} />
           <Route path={AppRoute.OrderFeed} element={<OrderDetailsPage />} />
         </Route>
