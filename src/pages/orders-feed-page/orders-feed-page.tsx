@@ -4,11 +4,13 @@ import FeedOrdersBlock from "../../components/feed-orders-block/feed-orders-bloc
 import FeedOrdersIdBlock from "../../components/feed-orders-id-block/feed-orders-id-block";
 import { AppRoute } from "../../constants/app-route";
 import feedStyles from "./orders-feed-page.module.css";
+import Title from '../../components/title/title';
+import { TextCssType } from '../../constants/text-css-type';
 
 function OrdersFeedPage() {
   return (
     <main className={feedStyles.main}>
-      <h1 className="text text_type_main-large mb-5">Лента заказов</h1>
+      <Title type={TextCssType.TextLarge} classes="mb-5">Лента заказов</Title>
       <div className={feedStyles.container}>
         <FeedOrdersBlock classes={feedStyles["feed-container"]}>
           <FeedCard route={AppRoute.OrdersFeed} />

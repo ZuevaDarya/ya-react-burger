@@ -1,12 +1,15 @@
+import { TextCssType } from '../../constants/text-css-type';
 import { TColoriesItemProps } from "../../types/types";
+import Span from '../span/Span';
+import Text from '../text/text';
 import caloriesStyles from "./calories-item.module.css";
 
 function ColoriesItem({ name, count }: TColoriesItemProps) {
   return (
-    <p className={`${caloriesStyles["calories-item"]} text text_type_main-default text_color_inactive`}>
+    <Text type={TextCssType.TextInactive} classes={`${caloriesStyles["calories-item"]}`}>
       {name}
-      <span className="text_type_digits-default">{count}</span>
-    </p>
+      <Span type={TextCssType.DigitsDefault}>{count}</Span>
+    </Text>
   );
 }
 

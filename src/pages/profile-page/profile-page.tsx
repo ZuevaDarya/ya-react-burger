@@ -1,10 +1,13 @@
-import NavListItem from "../../components/nav-list-item/nav-list-item";
-import profileStyles from "./profile-page.module.css";
-import { AppRoute } from "../../constants/app-route";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import NavListItem from "../../components/nav-list-item/nav-list-item";
+import Spinner from "../../components/spinner/spinner";
+import Title from "../../components/title/title";
+import { AppRoute } from "../../constants/app-route";
+import { TextCssType } from "../../constants/text-css-type";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import { logout } from "../../services/thunks";
-import Spinner from "../../components/spinner/spinner";
+import profileStyles from "./profile-page.module.css";
+import Text from '../../components/text/text';
 
 function ProfilePage() {
   const navigate = useNavigate();
@@ -24,7 +27,7 @@ function ProfilePage() {
     <main className={profileStyles.main}>
       {isLogoutRequest && (
         <div className={profileStyles["spinner-block"]}>
-          <h1 className="text text_type_main-medium">Выходим...</h1>
+          <Title type={TextCssType.TextMedium}>Выходим...</Title>
           <Spinner />
         </div>
       )}
@@ -48,15 +51,15 @@ function ProfilePage() {
         </nav>
 
         {pathname === AppRoute.Profile && (
-          <p className={`${profileStyles.p} text text_type_main-default`}>
+          <Text type={TextCssType.TextDefault} classes={`${profileStyles.p}`}>
             В этом разделе вы можете изменить свои персональные данные
-          </p>
+          </Text>
         )}
 
         {pathname === AppRoute.Orders && (
-          <p className={`${profileStyles.p} text text_type_main-default`}>
+          <Text type={TextCssType.TextDefault} classes={`${profileStyles.p}`}>
             В этом разделе вы можете просмотреть свою историю заказов
-          </p>
+          </Text>
         )}
       </aside>
 

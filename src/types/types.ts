@@ -5,8 +5,9 @@ import {
   ConstructorElemType,
   IngredientsType,
 } from "../constants/ingredients-type";
-import { ModalType } from '../constants/modal-type';
+import { ModalType } from "../constants/modal-type";
 import { Status } from "../constants/order-status";
+import { TextCssType } from "../constants/text-css-type";
 import { TIngredientConstructorSlice } from "./services-types";
 
 export type TNavListProps = {
@@ -177,4 +178,18 @@ export type TOrderStatusProps = {
 export type TFeedCardProps = {
   orderStatus?: Status;
   route: AppRoute;
+};
+
+export type TTitleProps = {
+  children: React.ReactNode;
+  type: TextCssType;
+  classes?: string;
+};
+
+export type TSubtitleProps = TTitleProps;
+
+export type TTextProps = TTitleProps;
+
+export type TSpanProps = Omit<TTitleProps, "children"> & {
+  children?: React.ReactNode;
 };

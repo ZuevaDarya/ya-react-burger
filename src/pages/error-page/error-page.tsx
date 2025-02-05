@@ -1,7 +1,10 @@
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import errorStyles from "./error-page.module.css";
 import { useNavigate } from "react-router-dom";
+import Text from "../../components/text/text";
+import Title from "../../components/title/title";
 import { AppRoute } from "../../constants/app-route";
+import { TextCssType } from "../../constants/text-css-type";
+import errorStyles from "./error-page.module.css";
 
 function ErrorPage() {
   const navigate = useNavigate();
@@ -12,14 +15,14 @@ function ErrorPage() {
   return (
     <main id="error-page">
       <div className={errorStyles.container}>
-        <h1 className="text text_type_digits-large">404</h1>
-        <p className="text text_type_main-medium">
+        <Title type={TextCssType.DigitsLarge}>404</Title>
+        <Text type={TextCssType.TextMedium}>
           Упсс... Такая страница не найдена
-        </p>
-        <p className="text text_type_main-default">
+        </Text>
+        <Text type={TextCssType.TextDefault}>
           Вы можете вернуться на страницу с конструтором и собрать лучший
           галактический бургер
-        </p>
+        </Text>
         <Button htmlType="button" onClick={handleClick}>
           На главную
         </Button>

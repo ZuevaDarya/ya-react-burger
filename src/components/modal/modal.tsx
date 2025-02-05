@@ -2,8 +2,10 @@ import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { ModalType } from "../../constants/modal-type";
+import { TextCssType } from "../../constants/text-css-type";
 import { TModalProps } from "../../types/types";
 import ModalOverlay from "../modal-overlay/modal-overlay";
+import Title from "../title/title";
 import modalStyles from "./modal.module.css";
 
 const modalRoot = document.getElementById("modals") as HTMLElement;
@@ -38,7 +40,7 @@ function Modal({ title, onClose, children, type }: TModalProps) {
       <ModalOverlay onClose={onClose} />
       <div className={`${modalStyles.modal} ${modalPaddingClasses}`}>
         <div className={modalStyles["modal-header"]} style={modalHeaderStyle}>
-          {title && <h1 className="text text_type_main-large">{title}</h1>}
+          {title && <Title type={TextCssType.TextLarge}>{title}</Title>}
           <CloseIcon
             type="primary"
             className={modalStyles["close-icon"]}

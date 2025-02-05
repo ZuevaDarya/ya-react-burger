@@ -1,8 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
+import { TEXT_CSS, TextCssType } from "../../constants/text-css-type";
 import { TFeedCardProps } from "../../types/types";
 import FeedIngredient from "../feed-ingredient/feed-ingredient";
 import OrderStatus from "../order-status/order-status";
 import Price from "../price/price";
+import Span from "../span/Span";
+import Subtitle from "../subtitle/subtitle";
 import cardStyles from "./feed-card.module.css";
 
 function FeedCard({ orderStatus, route }: TFeedCardProps) {
@@ -16,15 +19,13 @@ function FeedCard({ orderStatus, route }: TFeedCardProps) {
     >
       <div className={cardStyles.card}>
         <div className={cardStyles["card-info"]}>
-          <span className="text text_type_digits-default">#034535</span>
-          <span className="text text_type_main-default text_color_inactive">
-            Сегодня, 16:20
-          </span>
+          <Span type={TextCssType.DigitsDefault}>#034535</Span>
+          <Span type={TextCssType.TextInactive}>Сегодня, 16:20</Span>
         </div>
         <div>
-          <h2 className="text text_type_main-medium">
+          <Subtitle type={TextCssType.TextMedium}>
             Death Star Starship Main бургер
-          </h2>
+          </Subtitle>
           {orderStatus && <OrderStatus status={orderStatus} />}
         </div>
 
@@ -37,7 +38,7 @@ function FeedCard({ orderStatus, route }: TFeedCardProps) {
             <FeedIngredient />
             <FeedIngredient />
           </div>
-          <Price price={480} classes="text_type_digits-default" />
+          <Price price={480} classes={`${TEXT_CSS[TextCssType.DigitsDefault]}`} />
         </div>
       </div>
     </Link>

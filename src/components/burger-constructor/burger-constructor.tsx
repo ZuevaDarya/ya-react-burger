@@ -17,6 +17,7 @@ import { clearOrder } from '../../services/slices/order-details-slice';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../constants/app-route';
 import { ModalType } from '../../constants/modal-type';
+import { TEXT_CSS, TextCssType } from "../../constants/text-css-type";
 
 function BurgerConstructor() {
   const { isModalOpen, openModal, closeModal } = useModal();
@@ -111,7 +112,7 @@ function BurgerConstructor() {
         </div>
 
         <div className={burgerConstructorStyles["constructor-price-container"]}>
-          <Price price={totalPrice} classes="text_type_digits-medium" />
+          <Price price={totalPrice} classes={`${TEXT_CSS[TextCssType.DigitsMedium]}`} />
           <Button
             htmlType="button"
             type="primary"

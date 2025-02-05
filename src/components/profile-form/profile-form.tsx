@@ -13,6 +13,8 @@ import { useAppDispatch, useAppSelector } from "../../services/store";
 import profileStyles from "./profile-form.module.css";
 import styles from "../../pages/profile-page/profile-page.module.css";
 import Spinner from "../spinner/spinner";
+import Title from '../title/title';
+import { TextCssType } from '../../constants/text-css-type';
 
 function ProfileForm() {
   const dispatch = useAppDispatch();
@@ -48,7 +50,7 @@ function ProfileForm() {
     <>
       {isRequest && (
         <div className={styles["spinner-block"]}>
-          <h1 className="text text_type_main-medium">Обновляем данные...</h1>
+          <Title type={TextCssType.TextMedium}>Обновляем данные...</Title>
           <Spinner />
         </div>
       )}
@@ -82,7 +84,6 @@ function ProfileForm() {
           icon="EditIcon"
           disabled={false}
           autoComplete="new-password"
-          required
         />
 
         {isChangedData && (
