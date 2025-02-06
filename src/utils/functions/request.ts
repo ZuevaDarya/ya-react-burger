@@ -15,7 +15,7 @@ export const request = async (path: TApiPaths, options?: RequestInit) => {
   return await fetch(`${BASE_URL}${path}`, options).then(checkResponse);
 };
 
-const updateToken = async () => {
+export const updateToken = async () => {
   const refreshToken = localStorage.getItem(localStorageKey.RefreshToken);
 
   const options = {

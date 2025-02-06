@@ -1,4 +1,5 @@
-import { TIngredient } from './types';
+import { WSStatus } from "../constants/ws-status";
+import { TIngredient } from "./types";
 
 export type TProcessRequest = {
   isRequest: boolean;
@@ -39,13 +40,15 @@ export type TPreloadedState = {
   orderDetails: TOrderdetailsState;
   userInfo: TUserState;
   resetPassword: TResetPasswordState;
+  feedOrders: TFeedOrdersState;
+  profileOrders: TProfileOrdersState;
 };
 
 export type TOrderRespone = {
   name: string;
   order: {
     number: number;
-  }
+  };
   success: boolean;
 };
 
@@ -102,3 +105,27 @@ export type TResetPasswordState = TProcessRequest & {
 };
 
 export type TResetPasswordResponse = TErrorResponse;
+
+export type TFeedOrder = {
+  ingredients: string[];
+  _id: string;
+  status: string;
+  number: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type TFeedOrdersState = {
+  orders: TFeedOrder[];
+  status: WSStatus;
+  connectionError: string | null;
+};
+
+export type TWSGetMessage = {
+  success: boolean;
+  orders: TFeedOrder[];
+  total: number;
+  totalToday: number;
+};
+
+export type TProfileOrdersState = TFeedOrdersState;
