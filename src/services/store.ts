@@ -10,6 +10,7 @@ import { profileOrdersActions } from "./slices/profile-orders-slice";
 const preloadedState: TPreloadedState = {
   burgerIngredients: {
     ingredients: [],
+    mapIngredients: new Map(),
     isRequest: false,
     isSuccess: false,
   },
@@ -24,6 +25,7 @@ const preloadedState: TPreloadedState = {
     order: null,
     isRequest: false,
     isSuccess: false,
+    orderCard: null,
   },
   userInfo: {
     user: null,
@@ -42,6 +44,8 @@ const preloadedState: TPreloadedState = {
     orders: [],
     connectionError: null,
     status: WSStatus.Disconnect,
+    total: 0,
+    totalToday: 0,
   },
   profileOrders: {
     orders: [],

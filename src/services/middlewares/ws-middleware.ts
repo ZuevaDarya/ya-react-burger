@@ -43,7 +43,6 @@ export function createWSMiddleware<TMessage>(
     (next: Dispatch<UnknownAction>) =>
     (action: UnknownAction) => {
       if (connect.match(action)) {
-        console.log("connect")
         if (ws !== null) {
           console.warn("WebSocket is already connected");
           return;
@@ -54,12 +53,10 @@ export function createWSMiddleware<TMessage>(
         isConnected = true;
 
         ws.onopen = (event: Event) => {
-          console.log("onopen")
           dispatch(onConnected(event));
         };
 
         ws.onclose = (event: CloseEvent) => {
-          console.log("onclose")
           dispatch(onDisconnected(event));
           ws = null;
 
@@ -71,22 +68,17 @@ export function createWSMiddleware<TMessage>(
         };
 
         ws.onerror = (_event: Event) => {
-          console.log("onerror")
           dispatch(onError("Error connection"));
         };
 
         ws.onmessage = (event: MessageEvent) => {
-          console.log("onmessage")
           const data = JSON.parse(event.data);
           dispatch(onMessageRecived(data));
 
           if (withTokenRefresh && data.message === "Invalid or missing token") {
             updateToken().then((refreshData) => {
               const wssUrl = new URL(url);
-              wssUrl.searchParams.set(
-                "token",
-                refreshData.accessToken.replace("Bearer ", "")
-              );
+              wssUrl.searchParams.set("token", refreshData.accessToken.replace("Bearer ", ""));
               dispatch(connect(wssUrl.toString()));
             });
 
@@ -96,7 +88,6 @@ export function createWSMiddleware<TMessage>(
       }
 
       if (disconnect.match(action)) {
-        console.log("disconnect")
         if (ws !== null) {
           ws.close();
         }

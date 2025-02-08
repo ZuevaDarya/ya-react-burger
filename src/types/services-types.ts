@@ -6,9 +6,16 @@ export type TProcessRequest = {
   isSuccess: boolean;
 };
 
-export type TBurgerIngredientsState = TProcessRequest & {
-  ingredients: TIngredient[];
+export type TMapIngredient = Omit<TIngredient, "_id">;
+
+export type TMapIngredients = {
+  mapIngredients: Map<string, TMapIngredient>;
 };
+
+export type TBurgerIngredientsState = TProcessRequest &
+  TMapIngredients & {
+    ingredients: TIngredient[];
+  };
 
 export type TIngredientConstructorSlice = {
   uuid: string;
@@ -31,6 +38,7 @@ export type TOrder = {
 
 export type TOrderdetailsState = TProcessRequest & {
   order: TOrder | null;
+  orderCard: TFeedOrder | null;
 };
 
 export type TPreloadedState = {
@@ -113,10 +121,10 @@ export type TFeedOrder = {
   number: number;
   createdAt: string;
   updatedAt: string;
+  name: string;
 };
 
-export type TFeedOrdersState = {
-  orders: TFeedOrder[];
+export type TFeedOrdersState = Omit<TWSGetMessage, "success"> & {
   status: WSStatus;
   connectionError: string | null;
 };
@@ -128,4 +136,9 @@ export type TWSGetMessage = {
   totalToday: number;
 };
 
-export type TProfileOrdersState = TFeedOrdersState;
+export type TProfileOrdersState = Pick<
+  TFeedOrdersState,
+  "orders" | "status" | "connectionError"
+>;
+
+export type TGetOrderResponse = Pick<TWSGetMessage, "success" | "orders">;

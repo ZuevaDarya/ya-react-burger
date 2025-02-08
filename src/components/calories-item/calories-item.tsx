@@ -1,6 +1,6 @@
 import { TextCssType } from '../../constants/text-css-type';
 import { TColoriesItemProps } from "../../types/types";
-import Span from '../span/Span';
+import Span from '../span/span';
 import Text from '../text/text';
 import caloriesStyles from "./calories-item.module.css";
 

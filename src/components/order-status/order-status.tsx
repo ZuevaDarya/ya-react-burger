@@ -1,4 +1,4 @@
-import { Status, STATUS_TEXT } from "../../constants/order-status";
+import { STATUS, STATUS_TEXT } from "../../constants/order-status";
 import { TextCssType } from '../../constants/text-css-type';
 import { TOrderStatusProps } from "../../types/types";
 import Text from '../text/text';
@@ -10,9 +10,9 @@ function OrderStatus({ status }: TOrderStatusProps) {
       type={TextCssType.TextDefault}
       classes={`
         ${styles.status}
-        ${status === Status.Done ? styles.done : ""}
-        ${status === Status.Pending ? styles.pending : ""}
-        ${status === Status.Created ? styles.created : ""}
+        ${status === STATUS.done ? styles.done : ""}
+        ${status === STATUS.pending ? styles.pending : ""}
+        ${status === STATUS.created ? styles.created : ""}
       `}
     >
       {STATUS_TEXT[status]}

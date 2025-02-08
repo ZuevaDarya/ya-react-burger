@@ -23,5 +23,17 @@ const fillHashTable: TFillHashTableFunc = (allIngredients, ingredientsInConstruc
   return result;
 };
 
+export const fillOrderHashTable = (allIngredients: TIngredient[], orderIngredientIds: string[]) => {
+  const hashTable = createHashTable(allIngredients);
+
+  const result = orderIngredientIds.reduce((hashTable, id) =>
+    ({
+      ...hashTable,
+      [id]: hashTable[id] += 1
+    }), hashTable);
+
+    return result;
+}
+
 export default fillHashTable;
 

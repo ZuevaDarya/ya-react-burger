@@ -1,5 +1,5 @@
 import { TextCssType } from "../../constants/text-css-type";
-import Span from "../span/Span";
+import Span from "../span/span";
 import styles from "./spinner.module.css";
 
 function Spinner() {

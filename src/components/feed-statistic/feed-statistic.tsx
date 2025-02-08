@@ -1,6 +1,6 @@
 import { TextCssType } from "../../constants/text-css-type";
 import { TFeedStatisticProps } from "../../types/types";
-import Span from "../span/Span";
+import Span from "../span/span";
 import Subtitle from "../subtitle/subtitle";
 
 function FeedStatistic({ title, count }: TFeedStatisticProps) {

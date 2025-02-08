@@ -18,14 +18,14 @@
 .content {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 40px;
 }
 
 .orders-block {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  max-height: 350px;
+  max-height: 300px;
 }
 
 .footer {

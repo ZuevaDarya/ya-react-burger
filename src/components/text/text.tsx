@@ -1,5 +1,5 @@
 import { TTextProps } from "../../types/types";
-import getStylesByType from "../../utils/functions/getStylesByType";
+import getStylesByType from "../../utils/functions/get-styles-by-type";
 
 function Text({ children, type, classes }: TTextProps) {
   return (

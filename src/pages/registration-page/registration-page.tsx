@@ -1,18 +1,18 @@
 import {
-  EmailInput,
-  PasswordInput,
   Button,
+  EmailInput,
   Input,
+  PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import Form from "../../components/form/form";
+import { useNavigate } from "react-router-dom";
 import FormLink from "../../components/form-link/form-link";
+import Form from "../../components/form/form";
 import { AppRoute } from "../../constants/app-route";
 import { InputName } from "../../constants/input-name";
-import { useForm } from "../../hooks/useForm";
-import { TRegistrationForm } from "../../types/types";
+import { useForm } from "../../hooks/use-form";
 import { useAppDispatch } from "../../services/store";
 import { register } from "../../services/thunks";
-import { useNavigate } from "react-router-dom";
+import { TRegistrationForm } from "../../types/types";
 
 function RegistrationPage() {
   const { formData, handleChangeInput } = useForm<TRegistrationForm>({

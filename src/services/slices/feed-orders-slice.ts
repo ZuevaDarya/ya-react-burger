@@ -5,6 +5,8 @@ import { TFeedOrdersState, TWSGetMessage } from "../../types/services-types";
 
 const initialState: TFeedOrdersState = {
   orders: [],
+  total: 0,
+  totalToday: 0,
   status: WSStatus.Disconnect,
   connectionError: null,
 };
@@ -32,6 +34,8 @@ const feedOrdersSlice = createSlice({
     },
     onMessageRecived: (state, { payload }: PayloadAction<TWSGetMessage>) => {
       state.orders = payload.orders;
+      state.total = payload.total;
+      state.totalToday = payload.totalToday;
       state.status = WSStatus.OnMessageRecived;
     },
   },

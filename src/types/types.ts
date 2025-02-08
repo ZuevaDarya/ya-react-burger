@@ -6,9 +6,8 @@ import {
   IngredientsType,
 } from "../constants/ingredients-type";
 import { ModalType } from "../constants/modal-type";
-import { Status } from "../constants/order-status";
 import { TextCssType } from "../constants/text-css-type";
-import { TIngredientConstructorSlice } from "./services-types";
+import { TFeedOrder, TIngredientConstructorSlice } from "./services-types";
 
 export type TNavListProps = {
   children: React.ReactNode;
@@ -154,11 +153,11 @@ export type TProtectedRouteProps = {
 
 export type TFeedStatisticProps = {
   title: string;
-  count: string;
+  count: number;
 };
 
 export type TFeedOrdersIdListProps = {
-  orders: string[];
+  orders: number[];
 };
 
 export type TFeedOrdersIdBlockProps = TFeedOrdersIdListProps & {
@@ -172,12 +171,13 @@ export type TFeedOrdersBlockProps = {
 };
 
 export type TOrderStatusProps = {
-  status: Status;
+  status: string;
 };
 
 export type TFeedCardProps = {
-  orderStatus?: Status;
+  orderStatus?: string;
   route: AppRoute;
+  order: TFeedOrder;
 };
 
 export type TTitleProps = {
@@ -192,4 +192,14 @@ export type TTextProps = TTitleProps;
 
 export type TSpanProps = Omit<TTitleProps, "children"> & {
   children?: React.ReactNode;
+};
+
+export type TFeedIngredientProps = {
+  ingredient: Omit<TIngredient, "_id">;
+  count?: number;
+};
+
+export type TModalFeedCardProps = {
+  ingredientId: string;
+  count: number;
 };

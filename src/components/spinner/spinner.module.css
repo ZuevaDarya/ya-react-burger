@@ -10,7 +10,7 @@
 }
 
 .spinner::after {
-  content: '';  
+  content: '';
   box-sizing: border-box;
   position: absolute;
   left: 50%;
@@ -30,11 +30,12 @@
   100% {
     transform: rotate(360deg);
   }
-} 
+}
 
 .spinner-block {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 20;
 }

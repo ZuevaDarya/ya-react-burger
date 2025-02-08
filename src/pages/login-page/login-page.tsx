@@ -6,11 +6,11 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import FormLink from "../../components/form-link/form-link";
 import Form from "../../components/form/form";
-import Span from '../../components/span/Span';
+import Span from "../../components/span/span";
 import { AppRoute } from "../../constants/app-route";
 import { InputName } from "../../constants/input-name";
-import { TextCssType } from '../../constants/text-css-type';
-import { useForm } from "../../hooks/useForm";
+import { TextCssType } from "../../constants/text-css-type";
+import { useForm } from "../../hooks/use-form";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import { login } from "../../services/thunks";
 import { TLoginForm } from "../../types/types";
@@ -55,7 +55,10 @@ function LoginPage() {
             required
           />
           {error && error.includes("email or password are incorrect") && (
-            <Span type={TextCssType.TextDefault} classes={`${loginStyles.error}`}>
+            <Span
+              type={TextCssType.TextDefault}
+              classes={`${loginStyles.error}`}
+            >
               Ошибка! Проверьте корректность введенных данных!
             </Span>
           )}

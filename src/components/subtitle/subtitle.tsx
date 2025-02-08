@@ -1,5 +1,5 @@
 import { TSubtitleProps } from "../../types/types";
-import getStylesByType from "../../utils/functions/getStylesByType";
+import getStylesByType from "../../utils/functions/get-styles-by-type";
 
 function Subtitle({ children, type, classes }: TSubtitleProps) {
   return (

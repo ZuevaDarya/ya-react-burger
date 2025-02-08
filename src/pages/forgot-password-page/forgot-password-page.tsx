@@ -1,16 +1,16 @@
 import {
-  EmailInput,
   Button,
+  EmailInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import Form from "../../components/form/form";
+import { useNavigate } from "react-router-dom";
 import FormLink from "../../components/form-link/form-link";
+import Form from "../../components/form/form";
 import { AppRoute } from "../../constants/app-route";
 import { InputName } from "../../constants/input-name";
-import { useForm } from "../../hooks/useForm";
-import { TForgotPasswordForm } from "../../types/types";
+import { useForm } from "../../hooks/use-form";
 import { useAppDispatch } from "../../services/store";
 import { firstStepResetPassword } from "../../services/thunks";
-import { useNavigate } from "react-router-dom";
+import { TForgotPasswordForm } from "../../types/types";
 
 function ForgotPasswordPage() {
   const { formData, handleChangeInput } = useForm<TForgotPasswordForm>({

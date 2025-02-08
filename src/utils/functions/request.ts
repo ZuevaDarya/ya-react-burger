@@ -11,7 +11,7 @@ const checkResponse = async (res: Response) => {
   return await res.json().then((error: TErrorResponse) => Promise.reject(`Ошибка: ${error.message}`));
 };
 
-export const request = async (path: TApiPaths, options?: RequestInit) => {
+export const request = async (path: TApiPaths | string, options?: RequestInit) => {
   return await fetch(`${BASE_URL}${path}`, options).then(checkResponse);
 };
 

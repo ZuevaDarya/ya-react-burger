@@ -3,16 +3,16 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { AppRoute } from "../../constants/app-route";
 import { localStorageKey } from "../../constants/local-storage-key";
 import ErrorPage from "../../pages/error-page/error-page";
+import FeedOrdersPage from "../../pages/feed-orders-page/feed-orders-page";
 import ForgotPasswordPage from "../../pages/forgot-password-page/forgot-password-page";
 import HomePage from "../../pages/home-page/home-page";
 import IngredientPage from "../../pages/ingredient-page/ingredient-page";
 import LoginPage from "../../pages/login-page/login-page";
 import OrderDetailsPage from "../../pages/order-details-page/order-details-page";
-import OrdersFeedPage from "../../pages/orders-feed-page/orders-feed-page";
 import ProfilePage from "../../pages/profile-page/profile-page";
 import RegistrationPage from "../../pages/registration-page/registration-page";
 import ResetpasswordPage from "../../pages/reset-password-page/reset-password-page";
-import { useAppDispatch } from "../../services/store";
+import { useAppDispatch, useAppSelector } from "../../services/store";
 import { getIngredients, getUser } from "../../services/thunks";
 import AppLayout from "../app-layout/app-layout";
 import ModalFeedOrder from "../modal-feed-order/modal-feed-order";
@@ -20,14 +20,20 @@ import ModalIngredientDetails from "../modal-ingredient-details/modal-ingredient
 import ProfileForm from "../profile-form/profile-form";
 import ProfileOrders from "../profile-orders/profile-orders";
 import ProtectedRoute from "../protected-route/protected-route";
+import { addMapIngredients } from '../../services/slices/burger-ingredients-slice';
 
 function App() {
   const dispatch = useAppDispatch();
   const location = useLocation();
+  const ingredients = useAppSelector((state) => state.burgerIngredients.ingredients);
 
   useEffect(() => {
     dispatch(getIngredients());
   }, []);
+
+  useEffect(() => {
+    dispatch(addMapIngredients(ingredients));
+  }, [ingredients]);
 
   useEffect(() => {
     const authUser = async () => {
@@ -99,7 +105,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path={AppRoute.OrdersFeed} element={<OrdersFeedPage />} />
+          <Route path={AppRoute.OrdersFeed} element={<FeedOrdersPage />} />
           <Route path={AppRoute.OrderFeed} element={<OrderDetailsPage />} />
         </Route>
         <Route path={AppRoute.Error} element={<ErrorPage />} />

@@ -1,20 +1,20 @@
 import {
-  Input,
-  EmailInput,
-  PasswordInput,
   Button,
+  EmailInput,
+  Input,
+  PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import Form from "../form/form";
 import { InputName } from "../../constants/input-name";
-import { useForm } from "../../hooks/useForm";
+import { TextCssType } from "../../constants/text-css-type";
+import { useForm } from "../../hooks/use-form";
+import styles from "../../pages/profile-page/profile-page.module.css";
+import { useAppDispatch, useAppSelector } from "../../services/store";
 import { updateUser } from "../../services/thunks";
 import { TProfileForm } from "../../types/types";
-import { useAppDispatch, useAppSelector } from "../../services/store";
-import profileStyles from "./profile-form.module.css";
-import styles from "../../pages/profile-page/profile-page.module.css";
+import Form from "../form/form";
 import Spinner from "../spinner/spinner";
-import Title from '../title/title';
-import { TextCssType } from '../../constants/text-css-type';
+import Title from "../title/title";
+import profileStyles from "./profile-form.module.css";
 
 function ProfileForm() {
   const dispatch = useAppDispatch();

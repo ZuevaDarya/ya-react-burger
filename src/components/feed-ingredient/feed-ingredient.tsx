@@ -1,15 +1,17 @@
 import { TextCssType } from "../../constants/text-css-type";
-import bun from "../../images/bun-01.svg";
-import Span from "../span/Span";
+import { TFeedIngredientProps } from "../../types/types";
+import Span from "../span/span";
 import styles from "./feed-ingredient.module.css";
 
-function FeedIngredient() {
+function FeedIngredient({ ingredient, count }: TFeedIngredientProps) {
   return (
-    <div className={styles["ingredient-preview"]}>
-      <img className={styles.image} src={bun} />
-      <Span type={TextCssType.TextDefault} classes={`${styles.count}`}>
-        +3
-      </Span>
+    <div className={`${styles["ingredient-preview"]} ${count && styles["with-count"]}`}>
+      <img className={styles.image} src={ingredient.image} />
+      {count && (
+        <Span type={TextCssType.TextDefault} classes={`${styles.count}`}>
+          +{count}
+        </Span>
+      )}
     </div>
   );
 }

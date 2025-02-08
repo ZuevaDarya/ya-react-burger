@@ -1,11 +1,11 @@
-export enum Status {
-  Pending = "pending",
-  Done = "done",
-  Created = "created",
+export const STATUS = {
+  pending: "pending",
+  done: "done",
+  created: "created",
 };
 
 export const STATUS_TEXT = {
-  [Status.Pending]: "Готовится",
-  [Status.Done]: "Выполнен",
-  [Status.Created]: "Создан",
+  [STATUS.pending]: "Готовится",
+  [STATUS.done]: "Выполнен",
+  [STATUS.created]: "Создан",
 };
