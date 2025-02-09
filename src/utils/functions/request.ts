@@ -33,7 +33,7 @@ export const requestWithRefresh = async (path: TApiPaths, options?: RequestInit)
   try {
     return await request(path, options);
   } catch (error) {
-    if (!String(error).includes("jwt expired")) {
+    if (!String(error).includes("jwt expired") || !String(error).includes("invalid")) {
       return error;
     }
 

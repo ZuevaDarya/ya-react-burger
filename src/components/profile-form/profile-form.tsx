@@ -47,7 +47,7 @@ function ProfileForm() {
   };
 
   return (
-    <>
+    <div className="mt-20">
       {isRequest && (
         <div className={styles["spinner-block"]}>
           <Title type={TextCssType.TextMedium}>Обновляем данные...</Title>
@@ -102,7 +102,7 @@ function ProfileForm() {
           </div>
         )}
       </Form>
-    </>
+    </div>
   );
 }
 

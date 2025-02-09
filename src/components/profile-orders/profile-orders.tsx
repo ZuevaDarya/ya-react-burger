@@ -23,7 +23,7 @@ function ProfileOrders() {
 
   return (
     <FeedOrdersBlock>
-      {orders.slice(0).reverse().map((order) => {
+      {orders?.slice(0).reverse().map((order) => {
         if (!isOrderDataCorrect(order.ingredients)) {
           return null;
         }
