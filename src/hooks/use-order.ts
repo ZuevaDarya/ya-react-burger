@@ -36,7 +36,7 @@ const useOrder = () => {
   }, [id, orderFromState]);
 
   return {
-    order: orderFromState ? orderFromState : orderCard,
+    order: orderFromState || orderCard,
     isSuccess,
   };
 };
