@@ -1,10 +1,12 @@
-import IngredientDetails from '../../components/ingredient-details.tsx/ingredient-details';
+import IngredientDetails from "../../components/ingredient-details.tsx/ingredient-details";
+import Title from "../../components/title/title";
+import { TextCssType } from "../../constants/text-css-type";
 
 function IngredientPage() {
   return (
     <main>
       <div className="page-container">
-        <h1 className="text text_type_main-large">Детали ингредиента</h1>
+        <Title type={TextCssType.TextLarge}>Детали ингредиента</Title>
         <IngredientDetails />
       </div>
     </main>

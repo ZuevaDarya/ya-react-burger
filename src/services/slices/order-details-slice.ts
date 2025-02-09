@@ -1,12 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { TOrderdetailsState } from '../../types/services-types';
-import { SliceNamespace } from '../../constants/slice-namespace';
-import { createOrder } from '../thunks';
+import { createSlice } from "@reduxjs/toolkit";
+import { SliceNamespace } from "../../constants/slice-namespace";
+import { TOrderdetailsState } from "../../types/services-types";
+import { createOrder, getOrder } from "../thunks";
 
 const initialState: TOrderdetailsState = {
   order: null,
   isRequest: false,
-  isSuccess: false
+  isSuccess: false,
+  orderCard: null,
 };
 
 const orderDetailsSlice = createSlice({
@@ -17,7 +18,7 @@ const orderDetailsSlice = createSlice({
       state.order = null;
       state.isRequest = false;
       state.isSuccess = false;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -34,7 +35,20 @@ const orderDetailsSlice = createSlice({
         state.isRequest = false;
         state.isSuccess = false;
       })
-  }
+      .addCase(getOrder.pending, (state) => {
+        state.isRequest = true;
+        state.isSuccess = false;
+      })
+      .addCase(getOrder.fulfilled, (state, { payload }) => {
+        state.orderCard = payload.orders[0];
+        state.isRequest = false;
+        state.isSuccess = true;
+      })
+      .addCase(getOrder.rejected, (state) => {
+        state.isRequest = false;
+        state.isSuccess = false;
+      });
+  },
 });
 
 export const { clearOrder } = orderDetailsSlice.actions;

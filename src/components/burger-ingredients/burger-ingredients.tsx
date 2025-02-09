@@ -1,16 +1,18 @@
-import BurgerIngredientsSection from "../burger-ingredients-section/burger-ingredients-section";
-import BurgerIngredientsTabs from "../burger-ingredients-tabs/burger-ingredients-tabs";
+import { useMemo, useRef, useState } from "react";
 import {
   IngredientsTabsValue,
   TabValue,
 } from "../../constants/ingredients-tabs";
-import ingredientsStyles from "./burger-ingredients.module.css";
 import { IngredientsType } from "../../constants/ingredients-type";
-import { useMemo, useRef, useState } from "react";
-import getSameIngredients from "../../utils/functions/get-same-ingredients";
+import { TextCssType } from '../../constants/text-css-type';
 import { useAppSelector } from "../../services/store";
 import fillHashTable from "../../utils/functions/fill-hash-table";
+import getSameIngredients from "../../utils/functions/get-same-ingredients";
+import BurgerIngredientsSection from "../burger-ingredients-section/burger-ingredients-section";
+import BurgerIngredientsTabs from "../burger-ingredients-tabs/burger-ingredients-tabs";
 import Spinner from "../spinner/spinner";
+import Title from '../title/title';
+import ingredientsStyles from "./burger-ingredients.module.css";
 
 function BurgerIngredients() {
   const tabsRef = useRef<HTMLDivElement | null>(null);
@@ -76,7 +78,7 @@ function BurgerIngredients() {
 
   return (
     <div className={ingredientsStyles["burger-ingredients"]}>
-      <h1 className="text text_type_main-large mt-10 mb-5">Соберите бургер</h1>
+      <Title type={TextCssType.TextLarge} classes="mt-10 mb-5">Соберите бургер</Title>
       <BurgerIngredientsTabs
         ref={tabsRef}
         bunsRef={bunsRef}

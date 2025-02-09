@@ -1,8 +1,10 @@
 import { Navigate, useParams } from 'react-router-dom';
-import ColoriesItem from '../calories-item/calories-item';
-import detailStyles from "./ingredient-details.module.css";
-import { useAppSelector } from '../../services/store';
 import { AppRoute } from '../../constants/app-route';
+import { TextCssType } from '../../constants/text-css-type';
+import { useAppSelector } from '../../services/store';
+import ColoriesItem from '../calories-item/calories-item';
+import Text from '../text/text';
+import detailStyles from "./ingredient-details.module.css";
 
 function IngredientDetails() {
   const { id } = useParams();
@@ -15,7 +17,7 @@ function IngredientDetails() {
       {isSuccess && currentIngredient &&
         <div className={detailStyles["ingredient-details"]}>
           <img className={`${detailStyles["ingredient-img"]} mb-4`} src={currentIngredient.image_large} alt={currentIngredient.name} />
-          <p className="text text_type_main-medium mb-8">{currentIngredient.name}</p>
+          <Text type={TextCssType.TextMedium} classes="mb-8">{currentIngredient.name}</Text>
 
           <div className={detailStyles["calories-info"]}>
             <ColoriesItem name="Калории,ккал" count={currentIngredient.calories} />

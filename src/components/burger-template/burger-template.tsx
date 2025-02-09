@@ -1,5 +1,7 @@
 import { ConstructorElemType } from "../../constants/ingredients-type";
+import { TextCssType } from '../../constants/text-css-type';
 import { TBurgerTemplateProps } from "../../types/types";
+import Text from '../text/text';
 import templateStyles from "./burger-template.module.css";
 
 function BurgerTemplate({ text, type, isHover }: TBurgerTemplateProps) {
@@ -14,7 +16,7 @@ function BurgerTemplate({ text, type, isHover }: TBurgerTemplateProps) {
       ${isHover && templateStyles["burger-template_hovered"]}
     `}
     >
-      <p>Перетащите сюда {text}</p>
+      <Text type={TextCssType.TextSmall}>Перетащите сюда {text}</Text>
     </div>
   );
 }

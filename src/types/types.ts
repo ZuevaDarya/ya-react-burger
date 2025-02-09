@@ -1,8 +1,13 @@
-import { API_PATHS } from '../constants/api-constants';
-import { AppRoute } from '../constants/app-route';
-import { IngredientsTabsValue } from '../constants/ingredients-tabs';
-import { ConstructorElemType, IngredientsType } from '../constants/ingredients-type';
-import { TIngredientConstructorSlice } from './services-types';
+import { API_PATHS } from "../constants/api-constants";
+import { AppRoute } from "../constants/app-route";
+import { IngredientsTabsValue } from "../constants/ingredients-tabs";
+import {
+  ConstructorElemType,
+  IngredientsType,
+} from "../constants/ingredients-type";
+import { ModalType } from "../constants/modal-type";
+import { TextCssType } from "../constants/text-css-type";
+import { TFeedOrder, TIngredientConstructorSlice } from "./services-types";
 
 export type TNavListProps = {
   children: React.ReactNode;
@@ -81,9 +86,10 @@ export type TBurgerConstructorProps = {
 };
 
 export type TModalProps = {
-  isTitle: boolean;
+  title?: string;
   onClose: () => void;
   children: React.ReactNode;
+  type: ModalType;
 };
 
 export type TModalOverlayProps = Pick<TModalProps, "onClose">;
@@ -99,10 +105,14 @@ export type TBurgerTemplateProps = {
   isHover?: boolean;
 };
 
-export type TFillHashTableFunc = (x: TIngredient[], y: TIngredientConstructorSlice[], z?: TIngredient | null) => THashTable;
+export type TFillHashTableFunc = (
+  x: TIngredient[],
+  y: TIngredientConstructorSlice[],
+  z?: TIngredient | null
+) => THashTable;
 
 type ApiPathsKeys = keyof typeof API_PATHS;
-export type TApiPaths = typeof API_PATHS[ApiPathsKeys];
+export type TApiPaths = (typeof API_PATHS)[ApiPathsKeys];
 
 export type TFormProps = {
   title?: string;
@@ -139,4 +149,57 @@ export type TProfileForm = TRegistrationForm;
 export type TProtectedRouteProps = {
   withAuth: boolean;
   children: React.ReactNode;
+};
+
+export type TFeedStatisticProps = {
+  title: string;
+  count: number;
+};
+
+export type TFeedOrdersIdListProps = {
+  orders: number[];
+};
+
+export type TFeedOrdersIdBlockProps = TFeedOrdersIdListProps & {
+  title: string;
+  isDone: boolean;
+};
+
+export type TFeedOrdersBlockProps = {
+  classes?: string;
+  children: React.ReactNode;
+};
+
+export type TOrderStatusProps = {
+  status: string;
+};
+
+export type TFeedCardProps = {
+  orderStatus?: string;
+  route: AppRoute;
+  order: TFeedOrder;
+};
+
+export type TTitleProps = {
+  children: React.ReactNode;
+  type: TextCssType;
+  classes?: string;
+};
+
+export type TSubtitleProps = TTitleProps;
+
+export type TTextProps = TTitleProps;
+
+export type TSpanProps = Omit<TTitleProps, "children"> & {
+  children?: React.ReactNode;
+};
+
+export type TFeedIngredientProps = {
+  ingredient: Omit<TIngredient, "_id">;
+  count?: number;
+};
+
+export type TModalFeedCardProps = {
+  ingredientId: string;
+  count: number;
 };

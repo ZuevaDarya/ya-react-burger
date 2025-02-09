@@ -1,12 +1,14 @@
 import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
-import cardStyles from "./ingredient-card.module.css";
-import Price from "../price/price";
-import { TIngredientCardProps, TIngredient } from "../../types/types";
-import { useAppDispatch } from "../../services/store";
-import { addCurrentIngredient } from "../../services/slices/ingredient-details-slice";
-import { useDrag } from "react-dnd";
 import { memo } from "react";
+import { useDrag } from "react-dnd";
 import { Link, useLocation } from "react-router-dom";
+import { TEXT_CSS, TextCssType } from "../../constants/text-css-type";
+import { addCurrentIngredient } from "../../services/slices/ingredient-details-slice";
+import { useAppDispatch } from "../../services/store";
+import { TIngredient, TIngredientCardProps } from "../../types/types";
+import Price from "../price/price";
+import Text from '../text/text';
+import cardStyles from "./ingredient-card.module.css";
 
 function IngredientCard({ ingredient, count }: TIngredientCardProps) {
   const location = useLocation();
@@ -31,10 +33,10 @@ function IngredientCard({ ingredient, count }: TIngredientCardProps) {
       draggable
     >
       <img src={ingredient.image} alt={ingredient.name} />
-      <Price price={ingredient.price} classes="text_type_digits-default" />
-      <p className={`text text_type_main-small ${cardStyles["ingredient-card-title"]}`}>
+      <Price price={ingredient.price} classes={`${TEXT_CSS[TextCssType.DigitsDefault]}`} />
+      <Text type={TextCssType.TextSmall} classes={`${cardStyles["ingredient-card-title"]}`}>
         {ingredient.name}
-      </p>
+      </Text>
       {count !== 0 && <Counter count={count} size="default" extraClass="m-1" />}
     </Link>
   );

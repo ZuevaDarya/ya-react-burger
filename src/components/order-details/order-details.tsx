@@ -1,48 +1,52 @@
-import orderStyles from "./order-details.module.css";
+import { TextCssType } from "../../constants/text-css-type";
 import doneImg from "../../images/done.svg";
 import { useAppSelector } from "../../services/store";
 import Spinner from "../spinner/spinner";
+import Text from '../text/text';
+import Title from "../title/title";
+import orderStyles from "./order-details.module.css";
 
 function OrderDetails() {
-  const { isRequest, isSuccess, order } = useAppSelector(store => store.orderDetails);
+  const { isRequest, isSuccess, order } = useAppSelector(
+    (store) => store.orderDetails
+  );
 
   return (
     <>
       {isRequest && (
         <div className={orderStyles["spinner-block"]}>
-          <h1 className="text text_type_main-large">Оформляем заказ...</h1>
+          <Title type={TextCssType.TextLarge}>Оформляем заказ...</Title>
           <Spinner />
         </div>
       )}
 
       {isSuccess && order && (
         <div className={orderStyles["order-details"]}>
-          <h1
-            className={`${orderStyles["order-id"]} text text_type_digits-large mb-8`}
+          <Title
+            type={TextCssType.DigitsLarge}
+            classes={`${orderStyles["order-id"]} mb-8`}
           >
             {order.number}
-          </h1>
-          <p className="text text_type_main-medium">идентификатор заказа</p>
+          </Title>
+          <Text type={TextCssType.TextMedium}>идентификатор заказа</Text>
           <img className="mt-15 mb-15" src={doneImg} alt="заказ оформлен" />
-          <p className="text text_type_main-default mb-2">
+          <Text type={TextCssType.TextDefault} classes="mb-2">
             Ваш заказ начали готовить
-          </p>
-          <p className="text text_type_main-default text_color_inactive">
+          </Text>
+          <Text type={TextCssType.TextInactive}>
             Дождитесь готовности на орбитальной станции
-          </p>
+          </Text>
         </div>
       )}
 
       {!isSuccess && !isRequest && (
         <div className={orderStyles["error-block"]}>
-          <h1 className="text text_type_main-large">
-            Ошибка оформления заказа
-          </h1>
-          <p className="text text_type_main-default text_color_inactive">
+          <Title type={TextCssType.TextLarge}>Ошибка оформления заказа</Title>
+          <Text type={TextCssType.TextInactive}>
             Кажется, на орбитальной станции произошла авараия...
             <br />
             Попробуйте оформить заказ еще раз!
-          </p>
+          </Text>
         </div>
       )}
     </>

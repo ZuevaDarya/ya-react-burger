@@ -1,0 +1,11 @@
+.done {
+  color: var(--interface-success);
+}
+
+.pending, .created {
+  color: var(--text-primary-light-standart-text);
+}
+
+.status {
+  margin-top: 8px;
+}

@@ -4,7 +4,7 @@
   --interface-accent: #4c4cff;
   --interface-active: #4c4cff;
   --interface-input: #2f2f37;
-  --interface-success: #0cc;
+  --interface-success: #00cccc;
   --interface-error: #e52b1a;
   --interface-modal-edge: rgba(76, 76, 255, 0.2);
   --text-primary-light-standart-text: #f2f2f3;
@@ -18,6 +18,8 @@
   --modal-overlay-color: rgba(0, 0, 0, .6);
   --modal-border-radius: 40px;
   --order-id-accent: rgba(76, 76, 255, .5);
+  --border-gradient: linear-gradient(#801AB2, #4C4CFF);
+  --feed-card-hover-color: rgba(58, 58, 85, .2);
 
   background-color: var(--interface-bg);
 
@@ -77,4 +79,21 @@ main {
 
 .page-container_gap {
   gap: 80px;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--interface-input);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--text-dark-grey-secondary-text);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  cursor: pointer;
+  background: var(--scroll-hover-color);
 }

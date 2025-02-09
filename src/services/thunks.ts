@@ -1,25 +1,26 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { API_PATHS } from '../constants/api-constants';
-import { SliceNamespace } from '../constants/slice-namespace';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { API_PATHS } from "../constants/api-constants";
+import { localStorageKey } from "../constants/local-storage-key";
+import { SliceNamespace } from "../constants/slice-namespace";
 import {
-  TForgotPasswordForm,
-  TIngredient,
-  TLoginForm,
-  TProfileForm,
-  TRegistrationForm,
-  TResetPasswordForm
-} from '../types/types';
-import {
+  TGetOrderResponse,
   TGetUserResponse,
   TLoginResponse,
   TLogoutResponse,
   TOrderRespone,
   TRegisterResponse,
   TResetPasswordResponse,
-  TUpdateUserResponse
-} from '../types/services-types';
-import { request, requestWithRefresh } from '../utils/functions/request';
-import { localStorageKey } from '../constants/local-storage-key';
+  TUpdateUserResponse,
+} from "../types/services-types";
+import {
+  TForgotPasswordForm,
+  TIngredient,
+  TLoginForm,
+  TProfileForm,
+  TRegistrationForm,
+  TResetPasswordForm,
+} from "../types/types";
+import { request, requestWithRefresh } from "../utils/functions/request";
 
 export const getIngredients = createAsyncThunk<{ data: TIngredient[] }>(
   `${SliceNamespace.BurgerIngredients}/getIngredients`,
@@ -31,17 +32,20 @@ export const getIngredients = createAsyncThunk<{ data: TIngredient[] }>(
 export const createOrder = createAsyncThunk<TOrderRespone, string[]>(
   `${SliceNamespace.OrderDetails}/createOrder`,
   async (ingredientsIds) => {
+    const accessToken = localStorage.getItem(localStorageKey.AccessToken);
+
     const options = {
-      method: 'POST',
+      method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
+        "Authorization": "Bearer " + accessToken || "",
       },
       body: JSON.stringify({
         ingredients: ingredientsIds,
       }),
     };
 
-    return await request(API_PATHS.orders, options);
+    return await requestWithRefresh(API_PATHS.orders, options);
   }
 );
 
@@ -49,7 +53,7 @@ export const register = createAsyncThunk<TRegisterResponse, TRegistrationForm>(
   `${SliceNamespace.User}/register`,
   async (data) => {
     const options = {
-      method: 'POST',
+      method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
       },
@@ -64,7 +68,7 @@ export const login = createAsyncThunk<TLoginResponse, TLoginForm>(
   `${SliceNamespace.User}/login`,
   async (data) => {
     const options = {
-      method: 'POST',
+      method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
       },
@@ -81,7 +85,7 @@ export const logout = createAsyncThunk<TLogoutResponse>(
     const refreshToken = localStorage.getItem(localStorageKey.RefreshToken);
 
     const options = {
-      method: 'POST',
+      method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
       },
@@ -98,7 +102,7 @@ export const updateUser = createAsyncThunk<TUpdateUserResponse, TProfileForm>(
     const accessToken = localStorage.getItem(localStorageKey.AccessToken);
 
     const options = {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
         "Authorization": "Bearer " + accessToken || "",
@@ -128,7 +132,7 @@ export const firstStepResetPassword = createAsyncThunk<TResetPasswordResponse, T
   `${SliceNamespace.User}/firstStepResetPassword`,
   async (data) => {
     const options = {
-      method: 'POST',
+      method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
       },
@@ -143,7 +147,7 @@ export const lastStepResetPassword = createAsyncThunk<TResetPasswordResponse, TR
   `${SliceNamespace.User}/lastStepResetPassword`,
   async (data) => {
     const options = {
-      method: 'POST',
+      method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
       },
@@ -154,3 +158,9 @@ export const lastStepResetPassword = createAsyncThunk<TResetPasswordResponse, TR
   }
 );
 
+export const getOrder = createAsyncThunk<TGetOrderResponse, { number: string }>(
+  `${SliceNamespace.OrderDetails}/getOrder`,
+  async ({ number }) => {
+    return await request(`${API_PATHS.orders}/${number}`);
+  }
+);

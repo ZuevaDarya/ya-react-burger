@@ -11,11 +11,11 @@ const checkResponse = async (res: Response) => {
   return await res.json().then((error: TErrorResponse) => Promise.reject(`Ошибка: ${error.message}`));
 };
 
-export const request = async (path: TApiPaths, options?: RequestInit) => {
+export const request = async (path: TApiPaths | string, options?: RequestInit) => {
   return await fetch(`${BASE_URL}${path}`, options).then(checkResponse);
 };
 
-const updateToken = async () => {
+export const updateToken = async () => {
   const refreshToken = localStorage.getItem(localStorageKey.RefreshToken);
 
   const options = {
@@ -33,7 +33,7 @@ export const requestWithRefresh = async (path: TApiPaths, options?: RequestInit)
   try {
     return await request(path, options);
   } catch (error) {
-    if (!String(error).includes("jwt expired")) {
+    if (!String(error).includes("jwt expired") || !String(error).includes("invalid")) {
       return error;
     }
 

@@ -4,13 +4,13 @@ import {
   Logo,
   ProfileIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import NavList from "../nav-list/nav-list";
-import NavListItem from "../nav-list-item/nav-list-item";
-import headerStyles from "./app-header.module.css";
-import { AppRoute } from "../../constants/app-route";
-import { Link, useLocation } from "react-router-dom";
 import { useCallback } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { AppRoute } from "../../constants/app-route";
 import { useAppSelector } from "../../services/store";
+import NavListItem from "../nav-list-item/nav-list-item";
+import NavList from "../nav-list/nav-list";
+import headerStyles from "./app-header.module.css";
 
 function AppHeader() {
   const { pathname } = useLocation();
@@ -31,8 +31,8 @@ function AppHeader() {
             <BurgerIcon type={getIconType(pathname, AppRoute.Home)} />
             Конструктор
           </NavListItem>
-          <NavListItem route={AppRoute.Error} classes="pl-5 pr-5">
-            <ListIcon type={getIconType(pathname, AppRoute.Error)} />
+          <NavListItem route={AppRoute.OrdersFeed} classes="pl-5 pr-5">
+            <ListIcon type={getIconType(pathname, AppRoute.OrdersFeed)} />
             Лента заказов
           </NavListItem>
         </NavList>
@@ -42,7 +42,7 @@ function AppHeader() {
         <NavList>
           <NavListItem route={AppRoute.Profile} classes="pl-5">
             <ProfileIcon type={getIconType(pathname, AppRoute.Profile)} />
-            {!user ? 'Личный кабинет' : user.name}
+            {!user ? "Личный кабинет" : user.name}
           </NavListItem>
         </NavList>
       </nav>

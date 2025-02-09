@@ -1,18 +1,20 @@
 import {
-  Input,
-  EmailInput,
-  PasswordInput,
   Button,
+  EmailInput,
+  Input,
+  PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import Form from "../form/form";
 import { InputName } from "../../constants/input-name";
-import { useForm } from "../../hooks/useForm";
+import { TextCssType } from "../../constants/text-css-type";
+import { useForm } from "../../hooks/use-form";
+import styles from "../../pages/profile-page/profile-page.module.css";
+import { useAppDispatch, useAppSelector } from "../../services/store";
 import { updateUser } from "../../services/thunks";
 import { TProfileForm } from "../../types/types";
-import { useAppDispatch, useAppSelector } from "../../services/store";
-import profileStyles from "./profile-form.module.css";
-import styles from "../../pages/profile-page/profile-page.module.css";
+import Form from "../form/form";
 import Spinner from "../spinner/spinner";
+import Title from "../title/title";
+import profileStyles from "./profile-form.module.css";
 
 function ProfileForm() {
   const dispatch = useAppDispatch();
@@ -45,10 +47,10 @@ function ProfileForm() {
   };
 
   return (
-    <>
+    <div className="mt-20">
       {isRequest && (
         <div className={styles["spinner-block"]}>
-          <h1 className="text text_type_main-medium">Обновляем данные...</h1>
+          <Title type={TextCssType.TextMedium}>Обновляем данные...</Title>
           <Spinner />
         </div>
       )}
@@ -82,7 +84,6 @@ function ProfileForm() {
           icon="EditIcon"
           disabled={false}
           autoComplete="new-password"
-          required
         />
 
         {isChangedData && (
@@ -101,7 +102,7 @@ function ProfileForm() {
           </div>
         )}
       </Form>
-    </>
+    </div>
   );
 }
 

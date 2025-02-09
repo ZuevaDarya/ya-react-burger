@@ -5,7 +5,7 @@ import { TPriceProps } from "../../types/types";
 function Price({ price, classes }: TPriceProps) {
   return (
     <div className={`pt-1 pb-1 ${priceStyles.price}`}>
-      <span className={`text ${classes}`}>{price}</span>
+      <span className={`${classes}`}>{price}</span>
       <CurrencyIcon type="primary" />
     </div>
   );

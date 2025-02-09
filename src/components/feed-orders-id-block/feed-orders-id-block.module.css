@@ -1,0 +1,17 @@
+.container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.lists-container {
+  display: grid;
+  height: 170px;
+  grid-template-columns: repeat(2, 1fr);
+  overflow-y: auto;
+  margin-top: 15px;
+  gap: 25px;
+}
+
+.done-lists {
+  color: var(--interface-success);
+}

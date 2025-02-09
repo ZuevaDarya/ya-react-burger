@@ -3,15 +3,15 @@ import {
   Input,
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import Form from "../../components/form/form";
+import { useNavigate } from "react-router-dom";
 import FormLink from "../../components/form-link/form-link";
+import Form from "../../components/form/form";
 import { AppRoute } from "../../constants/app-route";
 import { InputName } from "../../constants/input-name";
-import { useForm } from "../../hooks/useForm";
-import { TResetPasswordForm } from "../../types/types";
-import { useNavigate } from "react-router-dom";
+import { useForm } from "../../hooks/use-form";
 import { useAppDispatch } from "../../services/store";
 import { lastStepResetPassword } from "../../services/thunks";
+import { TResetPasswordForm } from "../../types/types";
 
 function ResetpasswordPage() {
   const { formData, handleChangeInput } = useForm<TResetPasswordForm>({
