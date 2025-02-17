@@ -3,7 +3,7 @@ import { SliceNamespace } from "../../constants/slice-namespace";
 import { TOrderdetailsState } from "../../types/services-types";
 import { createOrder, getOrder } from "../thunks";
 
-const initialState: TOrderdetailsState = {
+export const initialState: TOrderdetailsState = {
   order: null,
   isRequest: false,
   isSuccess: false,

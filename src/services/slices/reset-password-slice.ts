@@ -3,7 +3,7 @@ import { TResetPasswordState } from '../../types/services-types';
 import { SliceNamespace } from '../../constants/slice-namespace';
 import { firstStepResetPassword, lastStepResetPassword } from '../thunks';
 
-const initialState: TResetPasswordState = {
+export const initialState: TResetPasswordState = {
   message: null,
   isRequest: false,
   isSuccess: false,

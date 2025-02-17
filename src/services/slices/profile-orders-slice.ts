@@ -3,7 +3,7 @@ import { SliceNamespace } from "../../constants/slice-namespace";
 import { WSStatus } from "../../constants/ws-status";
 import { TProfileOrdersState, TWSGetMessage } from "../../types/services-types";
 
-const initialState: TProfileOrdersState = {
+export const initialState: TProfileOrdersState = {
   orders: [],
   status: WSStatus.Disconnect,
   connectionError: null,

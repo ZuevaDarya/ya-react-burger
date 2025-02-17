@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TConstructorIngredientsState, TIngredientConstructorSlice, TSwapIngredientAction } from '../../types/services-types';
-import { SliceNamespace } from '../../constants/slice-namespace';
-import { TIngredient } from '../../types/types';
 import uuid from 'react-uuid';
+import { SliceNamespace } from '../../constants/slice-namespace';
+import { TConstructorIngredientsState, TIngredientConstructorSlice, TSwapIngredientAction } from '../../types/services-types';
+import { TIngredient } from '../../types/types';
 
-const initialState: TConstructorIngredientsState = {
+export const initialState: TConstructorIngredientsState = {
   ingredients: [],
   bun: null
 };
