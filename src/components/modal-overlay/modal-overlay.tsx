@@ -1,5 +1,5 @@
-import modalOverlayStyles from "./modal-overlay.module.css";
 import { TModalOverlayProps } from "../../types/types";
+import modalOverlayStyles from "./modal-overlay.module.css";
 
 function ModalOverlay({ onClose }: TModalOverlayProps) {
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -14,6 +14,7 @@ function ModalOverlay({ onClose }: TModalOverlayProps) {
     <div
       className={modalOverlayStyles["modal-overlay"]}
       onClick={handleClick}
+      data-testid="modal-overlay"
     />
   );
 }

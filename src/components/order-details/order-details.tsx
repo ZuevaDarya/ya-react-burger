@@ -25,6 +25,7 @@ function OrderDetails() {
           <Title
             type={TextCssType.DigitsLarge}
             classes={`${orderStyles["order-id"]} mb-8`}
+            testId="order-number"
           >
             {order.number}
           </Title>
