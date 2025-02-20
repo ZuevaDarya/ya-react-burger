@@ -4,3 +4,4 @@
 по индивидуальным предпочтениям пользователей.
 
 *Приложение доступно на GitHub Pages по ссылке*: [Stellar Burgers](https://zuevadarya.github.io/ya-react-burger/)
+*Приложение доступно на Yandex Cloud по ссылке*: [Stellar Burgers](https://ya-react-burger.nomorepartiesco.ru/)

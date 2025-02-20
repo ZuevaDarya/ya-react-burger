@@ -11,7 +11,8 @@
     "preview": "vite preview",
     "test": "jest",
     "cy:open": "cypress open",
-    "deploy": "vite build && gh-pages -d dist"
+    "deploy": "vite build && gh-pages -d dist",
+    "ya-cloud-deploy": "vite build && scp -r ./dist/* zdarya@89.169.174.66:/home/zdarya/stellar-frontend"
   },
   "jest": {
     "transform": {
