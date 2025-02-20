@@ -7,10 +7,10 @@ import { addCurrentIngredient } from "../../services/slices/ingredient-details-s
 import { useAppDispatch } from "../../services/store";
 import { TIngredient, TIngredientCardProps } from "../../types/types";
 import Price from "../price/price";
-import Text from '../text/text';
+import Text from "../text/text";
 import cardStyles from "./ingredient-card.module.css";
 
-function IngredientCard({ ingredient, count }: TIngredientCardProps) {
+function IngredientCard({ ingredient, count, testId }: TIngredientCardProps) {
   const location = useLocation();
   const dispatch = useAppDispatch();
 
@@ -31,6 +31,7 @@ function IngredientCard({ ingredient, count }: TIngredientCardProps) {
       state={{ background: location }}
       ref={dragRef}
       draggable
+      data-testid={testId}
     >
       <img src={ingredient.image} alt={ingredient.name} />
       <Price price={ingredient.price} classes={`${TEXT_CSS[TextCssType.DigitsDefault]}`} />

@@ -3,10 +3,7 @@ import { useMemo } from "react";
 import { useDrop } from "react-dnd";
 import { useNavigate } from "react-router-dom";
 import { AppRoute } from "../../constants/app-route";
-import {
-  ConstructorElemType,
-  IngredientsType,
-} from "../../constants/ingredients-type";
+import { ConstructorElemType, IngredientsType } from "../../constants/ingredients-type";
 import { ModalType } from "../../constants/modal-type";
 import { TEXT_CSS, TextCssType } from "../../constants/text-css-type";
 import { useModal } from "../../hooks/use-modal";
@@ -31,9 +28,7 @@ function BurgerConstructor() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { ingredients, bun } = useAppSelector(
-    (store) => store.constructorIngredients
-  );
+  const { ingredients, bun } = useAppSelector((store) => store.constructorIngredients);
   const user = useAppSelector((store) => store.userInfo.user);
 
   const [{ isHover }, dropTarget] = useDrop({
@@ -58,11 +53,7 @@ function BurgerConstructor() {
 
   const ingredientsIds = useMemo(() => {
     if (bun) {
-      return [
-        bun._id,
-        ...ingredients.map(({ ingredient }) => ingredient._id),
-        bun._id,
-      ];
+      return [bun._id, ...ingredients.map(({ ingredient }) => ingredient._id), bun._id];
     } else {
       return ingredients.map(({ ingredient }) => ingredient._id);
     }
@@ -85,10 +76,7 @@ function BurgerConstructor() {
       sum = bun.price * 2;
     }
 
-    return ingredients.reduce(
-      (sum, { ingredient }) => (sum += ingredient.price),
-      sum
-    );
+    return ingredients.reduce((sum, { ingredient }) => (sum += ingredient.price), sum);
   }, [ingredients, bun]);
 
   return (
@@ -102,17 +90,10 @@ function BurgerConstructor() {
       <div
         ref={dropTarget}
         className={`pt-25 pl-4 ${burgerConstructorStyles["burger-constructor"]}`}
+        data-testid="drop-container"
       >
-        <div
-          className={`${burgerConstructorStyles["burger-constructor-list"]}`}
-        >
-          {!bun && (
-            <BurgerTemplate
-              text="булку"
-              type={ConstructorElemType.Top}
-              isHover={isHover}
-            />
-          )}
+        <div className={`${burgerConstructorStyles["burger-constructor-list"]}`}>
+          {!bun && <BurgerTemplate text="булку" type={ConstructorElemType.Top} isHover={isHover} />}
           {bun && (
             <BurgerConstructorItem
               ingredient={bun}
@@ -122,28 +103,15 @@ function BurgerConstructor() {
             />
           )}
 
-          <div
-            className={`${burgerConstructorStyles["burger-constructor-list"]}`}
-          >
-            {ingredients.length === 0 && (
-              <BurgerTemplate text="начинку" isHover={isHover} />
-            )}
+          <div className={`${burgerConstructorStyles["burger-constructor-list"]}`}>
+            {ingredients.length === 0 && <BurgerTemplate text="начинку" isHover={isHover} />}
             {ingredients.length !== 0 &&
               ingredients.map(({ uuid, ingredient }, idx) => (
-                <BurgerConstructorItem
-                  key={uuid}
-                  uuid={uuid}
-                  ingredient={ingredient}
-                  idx={idx}
-                />
+                <BurgerConstructorItem key={uuid} uuid={uuid} ingredient={ingredient} idx={idx} />
               ))}
           </div>
           {!bun && (
-            <BurgerTemplate
-              text="булку"
-              type={ConstructorElemType.Bottom}
-              isHover={isHover}
-            />
+            <BurgerTemplate text="булку" type={ConstructorElemType.Bottom} isHover={isHover} />
           )}
           {bun && (
             <BurgerConstructorItem
@@ -156,16 +124,14 @@ function BurgerConstructor() {
         </div>
 
         <div className={burgerConstructorStyles["constructor-price-container"]}>
-          <Price
-            price={totalPrice}
-            classes={`${TEXT_CSS[TextCssType.DigitsMedium]}`}
-          />
+          <Price price={totalPrice} classes={`${TEXT_CSS[TextCssType.DigitsMedium]}`} />
           <Button
             htmlType="button"
             type="primary"
             size="large"
             onClick={hadleClick}
             disabled={ingredients.length === 0 && !bun ? true : false}
+            data-testid="submit-order-btn"
           >
             Оформить заказ
           </Button>

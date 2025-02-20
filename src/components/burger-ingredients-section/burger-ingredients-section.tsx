@@ -1,5 +1,5 @@
 import { forwardRef, memo } from "react";
-import { TextCssType } from '../../constants/text-css-type';
+import { TextCssType } from "../../constants/text-css-type";
 import { TBurgerIngredientsSectionProps } from "../../types/types";
 import IngredientCard from "../ingredient-card/ingredient-card";
 import Subtitle from "../subtitle/subtitle";
@@ -11,16 +11,18 @@ const BurgerIngredientsSection = forwardRef<HTMLElement, TBurgerIngredientsSecti
       <section className="mb-10" ref={ref}>
         <Subtitle type={TextCssType.TextMedium}>{title}</Subtitle>
         <div className={`pt-6 pl-4 pr-4 ${sectionStyles["burger-ingredients-container"]}`}>
-          {ingredients.map((ingredient) => (
+          {ingredients.map((ingredient, idx) => (
             <IngredientCard
               key={ingredient._id}
               ingredient={ingredient}
               count={hashTable[ingredient._id]}
+              testId={`${ingredient.type}-${idx}`}
             />
           ))}
         </div>
       </section>
     );
-});
+  }
+);
 
 export default memo(BurgerIngredientsSection);

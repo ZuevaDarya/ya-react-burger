@@ -1,10 +1,7 @@
 import { API_PATHS } from "../constants/api-constants";
 import { AppRoute } from "../constants/app-route";
 import { IngredientsTabsValue } from "../constants/ingredients-tabs";
-import {
-  ConstructorElemType,
-  IngredientsType,
-} from "../constants/ingredients-type";
+import { ConstructorElemType, IngredientsType } from "../constants/ingredients-type";
 import { ModalType } from "../constants/modal-type";
 import { TextCssType } from "../constants/text-css-type";
 import { TFeedOrder, TIngredientConstructorSlice } from "./services-types";
@@ -40,6 +37,7 @@ export type TPriceProps = Pick<TIngredient, "price"> & {
 export type TIngredientCardProps = {
   ingredient: TIngredient;
   count: number;
+  testId?: string;
 };
 
 export type TBurgerConstructorItemProps = {
@@ -184,6 +182,7 @@ export type TTitleProps = {
   children: React.ReactNode;
   type: TextCssType;
   classes?: string;
+  testId?: string;
 };
 
 export type TSubtitleProps = TTitleProps;

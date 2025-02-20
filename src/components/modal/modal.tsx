@@ -24,9 +24,7 @@ function Modal({ title, onClose, children, type }: TModalProps) {
     };
   }, []);
 
-  const modalHeaderStyle = title
-    ? { justifyContent: "space-between" }
-    : { justifyContent: "end" };
+  const modalHeaderStyle = title ? { justifyContent: "space-between" } : { justifyContent: "end" };
 
   const modalPaddingClasses =
     type === ModalType.Ingredient
@@ -38,14 +36,12 @@ function Modal({ title, onClose, children, type }: TModalProps) {
   return createPortal(
     <>
       <ModalOverlay onClose={onClose} />
-      <div className={`${modalStyles.modal} ${modalPaddingClasses}`}>
+      <div data-testid="modal" className={`${modalStyles.modal} ${modalPaddingClasses}`}>
         <div className={modalStyles["modal-header"]} style={modalHeaderStyle}>
           {title && <Title type={TextCssType.TextLarge}>{title}</Title>}
-          <CloseIcon
-            type="primary"
-            className={modalStyles["close-icon"]}
-            onClick={onClose}
-          />
+          <span data-testid="close-modal-btn">
+            <CloseIcon type="primary" className={modalStyles["close-icon"]} onClick={onClose} />
+          </span>
         </div>
         {children}
       </div>

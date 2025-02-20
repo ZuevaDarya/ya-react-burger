@@ -7,7 +7,7 @@ import {
 import { TIngredient } from "../../types/types";
 import { getIngredients } from "../thunks";
 
-const initialState: TBurgerIngredientsState = {
+export const initialState: TBurgerIngredientsState = {
   ingredients: [],
   mapIngredients: new Map(),
   isRequest: false,

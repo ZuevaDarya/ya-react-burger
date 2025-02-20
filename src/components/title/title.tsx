@@ -1,9 +1,9 @@
 import { TTitleProps } from "../../types/types";
 import getStylesByType from "../../utils/functions/get-styles-by-type";
 
-function Title({ children, type, classes }: TTitleProps) {
+function Title({ children, type, classes, testId }: TTitleProps) {
   return (
-    <h1 className={`${getStylesByType(type)} ${classes && classes}`}>
+    <h1 data-testid={testId} className={`${getStylesByType(type)} ${classes && classes}`}>
       {children}
     </h1>
   );

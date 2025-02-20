@@ -3,7 +3,7 @@ import { SliceNamespace } from '../../constants/slice-namespace';
 import { TIngredientDetailsState } from '../../types/services-types';
 import { TIngredient } from '../../types/types';
 
-const initialState: TIngredientDetailsState = {
+export const initialState: TIngredientDetailsState = {
   currentIngredient: null,
 };
 

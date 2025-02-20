@@ -5,7 +5,7 @@ import { getUser, login, logout, register, updateUser } from '../thunks';
 import { localStorageKey } from '../../constants/local-storage-key';
 import getCorrectToken from '../../utils/functions/get-correct-token';
 
-const initialState: TUserState = {
+export const initialState: TUserState = {
   user: null,
   isRequest: false,
   isSuccess: false,

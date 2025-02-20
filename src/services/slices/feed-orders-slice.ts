@@ -3,7 +3,7 @@ import { SliceNamespace } from "../../constants/slice-namespace";
 import { WSStatus } from "../../constants/ws-status";
 import { TFeedOrdersState, TWSGetMessage } from "../../types/services-types";
 
-const initialState: TFeedOrdersState = {
+export const initialState: TFeedOrdersState = {
   orders: [],
   total: 0,
   totalToday: 0,
